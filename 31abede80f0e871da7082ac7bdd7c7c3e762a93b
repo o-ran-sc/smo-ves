@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d23f86c3_c6198094",
+        "filename": "setup_ves_demo.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-04-22T14:58:12Z",
+      "side": 1,
+      "message": "This is hopefully no longer a \"demo\" script. Let us remove all references to the word demo.",
+      "revId": "31abede80f0e871da7082ac7bdd7c7c3e762a93b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5569e9c_4fe0e7c3",
+        "filename": "setup_ves_demo.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-04-22T14:58:12Z",
+      "side": 1,
+      "message": "There is an assumption here that the system is a Linux system. I would add a if statement to check the output of \u0027uname -s\u0027 to make sure it is a Linux machine, otherwise abort this install.",
+      "revId": "31abede80f0e871da7082ac7bdd7c7c3e762a93b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbfd2ccc_9d0c1a92",
+        "filename": "setup_ves_demo.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-04-22T14:58:12Z",
+      "side": 1,
+      "message": "Can we docker commands as non-root user.",
+      "revId": "31abede80f0e871da7082ac7bdd7c7c3e762a93b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb3ba2c7_7757394a",
+        "filename": "setup_ves_demo.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-04-22T14:58:12Z",
+      "side": 1,
+      "message": "Let us rename the script and drop the word demo.",
+      "revId": "31abede80f0e871da7082ac7bdd7c7c3e762a93b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f2ec53c_039f8b31",
+        "filename": "setup_ves_demo.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-04-22T14:58:12Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "31abede80f0e871da7082ac7bdd7c7c3e762a93b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
