@@ -1,0 +1,24 @@
+This repository supports the VES collector interface in O-RAN. It
+makes use of three containers, the ves-collector container that
+collects VES events posted by other parts of the O-RAN solution,
+grafana, which is used to display measurement (PM) data posted
+by other entities and influxdb which is used to persist the data
+received by the collector.
+
+PREREQUISITES:
+
+The prerequisite to use this solution is that you need Docker
+running on the machine, where you want to run these containers.
+
+BUILD:
+
+To build the solution, you need to do the following in the collector
+folder.
+
+% make
+
+RUN:
+
+There are two scripts in the collector folder. A ves-start.sh script
+which starts the VES collector and other parts. A ves-stop.sh script
+can be used to stop the collector.
