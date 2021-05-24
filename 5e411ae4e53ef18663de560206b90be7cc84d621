@@ -105,6 +105,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12648489_faacaed7",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-05-24T20:28:36Z",
+      "side": 1,
+      "message": "Isn\u0027t there a logger already setup? Please put this print statement under the logger.",
+      "parentUuid": "1c7f8810_01114b4d",
+      "revId": "5e411ae4e53ef18663de560206b90be7cc84d621",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "890934dc_2d427640",
         "filename": "collector/evel-test-collector/code/collector/monitor.py",
         "patchSetId": 1
@@ -116,6 +134,24 @@
       "writtenOn": "2021-05-14T00:25:46Z",
       "side": 1,
       "message": "If we do not want to use these lines, can we remove them?",
+      "revId": "5e411ae4e53ef18663de560206b90be7cc84d621",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b7a980d_f2260679",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-05-24T20:28:36Z",
+      "side": 1,
+      "message": "I believe you have verbally explained to me what these comments indicate. Please indicate that these lines display the format the collector is expecting and resolve this comment.",
+      "parentUuid": "890934dc_2d427640",
       "revId": "5e411ae4e53ef18663de560206b90be7cc84d621",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
