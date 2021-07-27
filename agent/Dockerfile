@@ -1,4 +1,4 @@
-# Copyright 2017-2018 AT&T Intellectual Property, Inc
+# Copyright 2017 AT&T Intellectual Property, Inc
 #  
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,24 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# What this is: A Dockerfile for building an OPFNV VES Collector container image.
+# What this is: A Dockerfile for building an OPFNV VES Agent container image.
 #
 # Status: this is a work in progress, under test.
 #
 
-FROM ubuntu:focal
-
-
-RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests jsonschema
+FROM ubuntu:bionic
 
 RUN mkdir /opt/ves
 
-# Clone VES Collector
-RUN mkdir /opt/ves/evel-test-collector
-ADD evel-test-collector /opt/ves/evel-test-collector
+RUN apt-get update && apt-get -y upgrade
+# Required for kafka: default-jre zookeeperd python-pip kafka-python
+# Required for building librdkafka:  git build-essential
+# libpthread-stubs0-dev libssl-dev libsasl2-dev liblz4-dev
+# (or libz-dev?)
+# Required for building collectd: pkg-config
+RUN apt-get install -y default-jre zookeeperd \
+python-pip pkg-config git build-essential libpthread-stubs0-dev \
+libssl-dev libsasl2-dev liblz4-dev libz-dev
+RUN pip install kafka-python
 
-COPY Dashboard.json /opt/ves/Dashboard.json
+# Install VES Agent
+RUN pip install pyaml
+
+RUN mkdir /opt/ves/barometer
+ADD barometer /opt/ves/barometer
+
 COPY start.sh /opt/ves/start.sh
 ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
