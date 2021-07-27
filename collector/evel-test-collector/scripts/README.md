@@ -1,1 +1,0 @@
-NOTE: This folder and subfolders have not been updated since the initial release. Compatibility with the current VES specification and code has not been verified.

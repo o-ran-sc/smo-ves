@@ -1,6 +1,7 @@
 BSD License
 
-Copyright (c) 2016, AT&T Intellectual Property.  All other rights reserved.
+Original work Copyright (c) 2016, AT&T Intellectual Property.  All other rights reserved.
+Modified work Copyright 2021 Xoriant Corporation
 
 Redistribution and use in source and binary forms, with or without modification, are permitted
 provided that the following conditions are met:
