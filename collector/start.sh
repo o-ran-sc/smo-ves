@@ -13,8 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#. What this is: Startup script for the OPNFV VES Collector running under docker.
-
+# What this is: Startup script for the VES Collector running under docker.
+# the variables used below are now passed in as environmental variables
+# from the docker run command.
 cd /opt/ves
 touch monitor.log
 
@@ -82,15 +83,15 @@ curl -H "Accept: application/json" -H "Content-type: application/json" \
 echo; echo "add VES dashboard to Grafana"
 curl -H "Accept: application/json" -H "Content-type: application/json" \
   -X POST -d @/opt/ves/Dashboard.json \
-  http://$ves_grafana_auth@$ves_grafana_host:$ves_grafana_port/api/dashboards/db	
+  http://$ves_grafana_auth@$ves_grafana_host:$ves_grafana_port/api/dashboards/db
 
-if [[ "$ves_loglevel" != "" ]]; then 
-  python /opt/ves/evel-test-collector/code/collector/monitor.py \
+if [ "$ves_loglevel" != "" ]; then
+  python3 /opt/ves/evel-test-collector/code/collector/monitor.py \
     --config /opt/ves/evel-test-collector/config/collector.conf \
     --influxdb $ves_influxdb_host:$ves_influxdb_port \
     --section default > /opt/ves/monitor.log 2>&1
 else
-  python /opt/ves/evel-test-collector/code/collector/monitor.py \
+  python3 /opt/ves/evel-test-collector/code/collector/monitor.py \
     --config /opt/ves/evel-test-collector/config/collector.conf \
     --influxdb $ves_influxdb_host:$ves_influxdb_port \
     --section default

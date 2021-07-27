@@ -1,35 +1,37 @@
-# Copyright 2017-2018 AT&T Intellectual Property, Inc
-#  
+# Copyright 2017 AT&T Intellectual Property, Inc
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#  
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-#  
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# What this is: A Dockerfile for building an OPFNV VES Collector container image.
+# What this is: A Dockerfile for building a kafka server for use by the OPFNV
+# VES framework.
 #
 # Status: this is a work in progress, under test.
 #
 
-FROM ubuntu:focal
-
+FROM ubuntu:xenial
 
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests jsonschema
+RUN apt-get install -y default-jre python-pip wget
+# Required for kafka
+RUN pip install kafka-python
 
 RUN mkdir /opt/ves
 
-# Clone VES Collector
-RUN mkdir /opt/ves/evel-test-collector
-ADD evel-test-collector /opt/ves/evel-test-collector
+RUN cd /opt/ves; \
+wget https://archive.apache.org/dist/kafka/0.11.0.2/kafka_2.11-0.11.0.2.tgz; \
+tar -xvzf kafka_2.11-0.11.0.2.tgz; \
+sed -i -- 's/#delete.topic.enable=true/delete.topic.enable=true/' \
+  kafka_2.11-0.11.0.2/config/server.properties
 
-COPY Dashboard.json /opt/ves/Dashboard.json
 COPY start.sh /opt/ves/start.sh
 ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
