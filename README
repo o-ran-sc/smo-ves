@@ -19,6 +19,6 @@ folder.
 
 RUN:
 
-There are two scripts in the collector folder. A ves-start.sh script
+There are two scripts in this folder. A ves-start.sh script
 which starts the VES collector and other parts. A ves-stop.sh script
 can be used to stop the collector.
