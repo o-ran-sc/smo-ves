@@ -1,11 +1,11 @@
 # Copyright 2017-2018 AT&T Intellectual Property, Inc
-#
+#  
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
+#  
 # http://www.apache.org/licenses/LICENSE-2.0
-#
+#  
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,16 +17,22 @@
 # Status: this is a work in progress, under test.
 #
 
-FROM ubuntu:xenial
+FROM ubuntu:focal
+
+MAINTAINER Bryan Sullivan
 
 RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get -y upgrade
-RUN apt-get update && apt-get install -y git python-pip python-jsonschema curl
-RUN pip install requests pytz tzlocal
+RUN apt-get update && apt-get install -y git curl python3 python3-pip
+RUN pip3 install requests jsonschema
+
+# The next lines to install an editor, so one can do live
+# debugging inside the container. Can be removed in a release image.
+RUN apt-get install -y vim
 
 RUN mkdir /opt/ves
 
-# copy VES Collector over to the Docker
+# Clone VES Collector
 RUN mkdir /opt/ves/evel-test-collector
 ADD evel-test-collector /opt/ves/evel-test-collector
 
