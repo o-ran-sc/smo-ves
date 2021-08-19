@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f91db85_6435b44b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000124
+      },
+      "writtenOn": "2021-08-19T07:29:15Z",
+      "side": 1,
+      "message": "Just some minor comments.",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "997c649f_15c7dad5",
+        "filename": "kafka/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000124
+      },
+      "writtenOn": "2021-08-19T07:29:15Z",
+      "side": 1,
+      "message": "I would group all the apt-get commands under a single RUN. It would mean fewer docker image layers while building, you have no problems with the docker caches etc.\nE.g.:\nRUN apt-get update \u0026\u0026 apt-get install -y apt-utils default-jre python-pip ...",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be14f5c1_c972e95f",
+        "filename": "ves-start.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000124
+      },
+      "writtenOn": "2021-08-19T07:29:15Z",
+      "side": 1,
+      "message": "Why do you need to determine the IP address from the host to bind to?\nI think it would be easier just to use any IP address: 0.0.0.0",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c134cf89_54d07b56",
+        "filename": "ves-stop.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000124
+      },
+      "writtenOn": "2021-08-19T07:29:15Z",
+      "side": 1,
+      "message": "This is a little tricky, you stop any other containers running on the system, which might not be part of the VES solution. I think it would be cleaner to start/stop with docker-compose, instead of bash scripts.",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
