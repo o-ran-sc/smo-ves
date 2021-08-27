@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e7d24b1_6a6016d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-08-27T16:53:00Z",
+      "side": 1,
+      "message": "Good point. I am not clear on why we need the source code of barometer in the project. Or can one use a container image.",
+      "parentUuid": "61ae10cf_986c6163",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "997c649f_15c7dad5",
         "filename": "kafka/Dockerfile",
         "patchSetId": 2

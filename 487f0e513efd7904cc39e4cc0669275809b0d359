@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e6ed54e_e1bbf12f",
+        "filename": "agent/barometer/3rd_party/collectd-ves-app/ves_app/ves_app.log",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-08-27T16:53:00Z",
+      "side": 1,
+      "message": "Why does this file need to be committed?",
+      "revId": "487f0e513efd7904cc39e4cc0669275809b0d359",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c96211c_562c83fc",
+        "filename": "agent/barometer/3rd_party/collectd-ves-app/ves_app/yaml/host.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-08-27T16:53:00Z",
+      "side": 1,
+      "message": "Can we get rid of these blank spaces in this and other files?",
+      "revId": "487f0e513efd7904cc39e4cc0669275809b0d359",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
