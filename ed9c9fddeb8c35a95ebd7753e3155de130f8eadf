@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c24949b2_f68e00ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "I removed some unused files from the ves-agent module.",
+      "parentUuid": "e5dbf8d1_cc3960c9",
+      "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7446f2b_23eb015e",
@@ -53,6 +71,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6c332f4_78b9e009",
+        "filename": "agent/barometer/mibs/Intel-Bios.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3c8ede2_ca703c82",
+      "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e747caf5_cd0fea36",
@@ -66,6 +102,24 @@
       "writtenOn": "2021-08-17T00:45:29Z",
       "side": 1,
       "message": "MAINTAINER is marked obsolete in Dockerfile. Remove it.",
+      "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af4800ed_d01dbfa2",
+        "filename": "collector/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e747caf5_cd0fea36",
       "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -87,6 +141,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e828b979_e8b63074",
+        "filename": "collector/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "126272b6_525020b8",
+      "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fc410aa_3aad3838",
@@ -104,6 +176,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d186a5_4bebd13d",
+        "filename": "collector/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fc410aa_3aad3838",
+      "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1591e6c_6c0e1c00",
@@ -117,6 +207,24 @@
       "writtenOn": "2021-08-17T00:45:29Z",
       "side": 1,
       "message": "Remove this line and the next if not being used.",
+      "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270f1c0f_68070eba",
+        "filename": "ves-demo-start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1591e6c_6c0e1c00",
       "revId": "ed9c9fddeb8c35a95ebd7753e3155de130f8eadf",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }

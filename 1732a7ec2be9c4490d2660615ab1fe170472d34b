@@ -53,6 +53,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19da091b_ae824737",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "We have upgrade API version of the ves-agent from V5 to V7.",
+      "parentUuid": "61ae10cf_986c6163",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "997c649f_15c7dad5",
@@ -66,6 +84,24 @@
       "writtenOn": "2021-08-19T07:29:15Z",
       "side": 1,
       "message": "I would group all the apt-get commands under a single RUN. It would mean fewer docker image layers while building, you have no problems with the docker caches etc.\nE.g.:\nRUN apt-get update \u0026\u0026 apt-get install -y apt-utils default-jre python-pip ...",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61014ef2_33fca95e",
+        "filename": "kafka/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "997c649f_15c7dad5",
       "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -87,6 +123,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beaa2c80_72f604b4",
+        "filename": "ves-start.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "We are determining the IP address because 0.0.0.0 doesn\u0027t work to connect one container with other.",
+      "parentUuid": "be14f5c1_c972e95f",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c134cf89_54d07b56",
@@ -100,6 +154,24 @@
       "writtenOn": "2021-08-19T07:29:15Z",
       "side": 1,
       "message": "This is a little tricky, you stop any other containers running on the system, which might not be part of the VES solution. I think it would be cleaner to start/stop with docker-compose, instead of bash scripts.",
+      "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82fe4822_e1b6d1cc",
+        "filename": "ves-stop.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-09-01T16:46:08Z",
+      "side": 1,
+      "message": "I agree with you. We have plan to introduce docker-compose to resolve this problem in next set of check-ins.",
+      "parentUuid": "c134cf89_54d07b56",
       "revId": "1732a7ec2be9c4490d2660615ab1fe170472d34b",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
