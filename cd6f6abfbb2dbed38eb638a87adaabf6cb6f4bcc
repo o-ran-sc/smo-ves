@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aeeae2c_54186564",
+        "filename": "agent/Dockerfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "Remove blank spaces here and the two lines below.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b68f399_f42b4e76",
+        "filename": "agent/barometer/3rd_party/collectd-ves-app/ves_app/config/ves_app_config.conf",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "Please remove these blank spaces.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b2ed7ae_3e847dc4",
+        "filename": "agent/start.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "Remove blank space here.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5445ac12_7ccfd698",
+        "filename": "collector/start.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "And here.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3bf9a4a_90ce2345",
+        "filename": "kafka/Dockerfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "And here and the two lines below.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b4ca5c_63e9f074",
+        "filename": "ves-start.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "Remove blank spaces in this and the next few lines.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28088c61_f902d319",
+        "filename": "ves-start.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "Can we remove this and the next few lines?",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac8ca1e_89f9e126",
+        "filename": "ves-start.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "Remove blank spaces.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee4a0ec_958df4cd",
+        "filename": "ves-start.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-09-02T16:27:39Z",
+      "side": 1,
+      "message": "And here.",
+      "revId": "cd6f6abfbb2dbed38eb638a87adaabf6cb6f4bcc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
