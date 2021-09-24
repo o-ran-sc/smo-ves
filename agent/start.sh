@@ -1,5 +1,6 @@
 #!/bin/bash
-# Copyright 2017 AT&T Intellectual Property, Inc
+# Original work Copyright 2017 AT&T Intellectual Property, Inc
+# Modified work Copyright 2021 Xoriant Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -43,7 +44,7 @@ if [[ "$ves_loglevel" == "" ]]; then
   ves_loglevel=ERROR
 fi
 
-python ves_app.py --events-schema=$ves_mode.yaml --loglevel $ves_loglevel \
+python3 ves_app.py --events-schema=$ves_mode.yaml --loglevel $ves_loglevel \
   --config=ves_app_config.conf
 
 # Dump ves_app.log if the command above exits (fails)
