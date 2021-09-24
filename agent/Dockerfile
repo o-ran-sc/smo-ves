@@ -1,4 +1,5 @@
-# Copyright 2017 AT&T Intellectual Property, Inc
+# Original work Copyright 2017 AT&T Intellectual Property, Inc
+# Modified work Copyright 2021 Xoriant Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,23 +18,22 @@
 # Status: this is a work in progress, under test.
 #
 
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 RUN mkdir /opt/ves
 
 RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y tzdata
 # Required for kafka: default-jre zookeeperd python-pip kafka-python
 # Required for building librdkafka:  git build-essential
 # libpthread-stubs0-dev libssl-dev libsasl2-dev liblz4-dev
 # (or libz-dev?)
 # Required for building collectd: pkg-config
-RUN apt-get install -y default-jre zookeeperd \
-python-pip pkg-config git build-essential libpthread-stubs0-dev \
-libssl-dev libsasl2-dev liblz4-dev libz-dev
-RUN pip install kafka-python
 
-# Install VES Agent
-RUN pip install pyaml
+RUN apt-get install -y default-jre zookeeperd \
+python3 python3-pip pkg-config git build-essential libpthread-stubs0-dev \
+libssl-dev libsasl2-dev liblz4-dev libz-dev
+RUN pip3 install kafka-python pyaml
 
 RUN mkdir /opt/ves/barometer
 ADD barometer /opt/ves/barometer
