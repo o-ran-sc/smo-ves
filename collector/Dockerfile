@@ -1,11 +1,12 @@
-# Copyright 2017-2018 AT&T Intellectual Property, Inc
-#  
+# Original work Copyright 2017-2018 AT&T Intellectual Property, Inc
+# Modified work Copyright 2021 Xoriant Corporation
+
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#  
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-#  
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,10 +20,10 @@
 
 FROM ubuntu:focal
 
-
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests jsonschema
+RUN pip3 install requests jsonschema elasticsearch kafka-python
+
 
 RUN mkdir /opt/ves
 
