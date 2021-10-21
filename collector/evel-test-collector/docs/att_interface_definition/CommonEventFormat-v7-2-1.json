@@ -245,6 +245,24 @@
         "thresholdCrossed"
       ]
     },
+    "networkSlice": {
+      "description": "PM counters for network slicing",
+      "type": "object",
+      "properties": {
+        "networkSliceIdentifier": {
+          "description": "network slicing identifier",
+          "type": "string"
+          },
+          "DRB.UEThpDl.SNSSAI": {
+          "description": "UE throughput in the downlink direction for each slice",
+          "type": "number"
+          },
+          "DRB.UEThpUl.SNSSAI": {
+          "description": "UE throughput in the uplink direction for each slice",
+          "type": "number"
+          }
+       }
+    },
     "cpuUsage": {
       "description": "usage of an identified CPU",
       "type": "object",
@@ -1850,6 +1868,13 @@
         "configuredEntities": {
           "description": "over the measurementInterval, peak total number of: users, subscribers, devices, adjacencies, etc., for the VM, or subscribers, devices, etc., for the xNF",
           "type": "integer"
+        },
+        "networkSliceArray": {
+          "description": "usage of an array of network slicing",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/networkSlice"
+          }
         },
         "cpuUsageArray": {
           "description": "usage of an array of CPUs",
