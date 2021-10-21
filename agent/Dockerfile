@@ -29,7 +29,7 @@ RUN apt-get install -y tzdata
 # libpthread-stubs0-dev libssl-dev libsasl2-dev liblz4-dev
 # (or libz-dev?)
 # Required for building collectd: pkg-config
-
+RUN apt-get install -y netcat
 RUN apt-get install -y default-jre zookeeperd \
 python3 python3-pip pkg-config git build-essential libpthread-stubs0-dev \
 libssl-dev libsasl2-dev liblz4-dev libz-dev
