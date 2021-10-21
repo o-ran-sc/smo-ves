@@ -1,0 +1,446 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "718e5950_3bd1b7eb",
+        "filename": "agent/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why this extra space?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1cec49_b6f10a88",
+        "filename": "agent/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "And here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77012473_8822f309",
+        "filename": "agent/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Who is trying to connect to Kafka Broker?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db8f8e11_fa863760",
+        "filename": "agent/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Again, who is trying to connect to ves-collector?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b0d9560_cf6d0bfe",
+        "filename": "agent/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why this extra space here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f2d7ce_31a71787",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why this blank line?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9699587a_73842c1b",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "The data has to be persisted somewhere. And that default is Kafka. Why is this check needed?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696ca44b_23062e41",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "What happens if the event is not one of these types?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e43904b3_24dee8ec",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove the extra space at the end.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad2eba6e_dba80067",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "What is the change here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a9e90c_72ef26cb",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "What is the change here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21ea39c8_24bd055c",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove extra line.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80fdf06a_687c37d4",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove commented code out.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02a66092_e708bd14",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why the extra line?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f073bfd_60b3d9d5",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "What is the change here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f966800f_1646640b",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "What is this change for?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494e9697_72bb9e35",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove extra spaces.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c3f4718_50f098de",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "And here.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ff9117_9d77d99c",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "What is the change here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1595e95e_ec0149f7",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why the extra line?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ec2850_953cec40",
+        "filename": "collector/evel-test-collector/config/collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why the extra line?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c3f105_7bf2cc00",
+        "filename": "collector/evel-test-collector/config/collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove extra spaces here and above.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d1b358_dda1a795",
+        "filename": "collector/evel-test-collector/config/collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove extra spaces.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d1bb4f_d3d329c7",
+        "filename": "collector/evel-test-collector/docs/att_interface_definition/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove extra space here.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa1485b_e7e32725",
+        "filename": "collector/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Why the extra tab here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9eb8fb7_36e70915",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-21T17:08:20Z",
+      "side": 1,
+      "message": "Remove extra spaces in this file.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
