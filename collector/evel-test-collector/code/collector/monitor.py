@@ -34,6 +34,12 @@ import json
 import jsonschema
 from functools import partial
 import requests
+from datetime import timezone
+from elasticsearch import Elasticsearch
+from kafka import KafkaProducer
+from json import dumps
+from time import sleep
+import datetime
 import time
 
 monitor_mode = "f"
@@ -48,6 +54,7 @@ rows = 0
 
 
 class JSONObject:
+
     def __init__(self, d):
         self.__dict__ = d
 
@@ -98,6 +105,7 @@ pending_command_list = None
 # Logger for this module.
 # ------------------------------------------------------------------------------
 logger = None
+producer = None
 
 
 def listener(environ, start_response, schema):
@@ -130,7 +138,7 @@ def listener(environ, start_response, schema):
     logger.debug('Content Body: {0}'.format(body))
 
     mode, b64_credentials = str.split(environ.get('HTTP_AUTHORIZATION',
-                                                  'None None'))
+                                      'None None'))
     logger.debug('Auth. Mode: {0} Credentials: ****'.format(mode))
     if (b64_credentials != 'None'):
         credentials = b64decode(b64_credentials)
@@ -157,8 +165,8 @@ def listener(environ, start_response, schema):
     # --------------------------------------------------------------------------
     # See whether the user authenticated themselves correctly.
     # --------------------------------------------------------------------------
-            if (credentials == bytes((vel_username
-                                      + ':' + vel_password), 'utf-8')):
+            if (credentials == bytes((vel_username + ':' + vel_password),
+                                     'utf-8')):
                 logger.info('Authenticated OK')
 
         # ----------------------------------------------------------------------
@@ -172,20 +180,19 @@ def listener(environ, start_response, schema):
                     response = pending_command_list
                     pending_command_list = None
 
-                    logger.debug('\n' + '='*80)
+                    logger.debug('\n' + '=' * 80)
                     logger.debug('Sending pending commandList in the response:\n'
                                  '{0}'.format(json.dumps(response,
                                               sort_keys=True,
                                               indent=4,
                                               separators=(',', ': '))))
-                    logger.debug('='*80 + '\n')
+                    logger.debug('=' * 80 + '\n')
                     yield json.dumps(response).encode()
                 else:
                     start_response('202 Accepted', [])
                     yield ''.encode()
             else:
-                logger.warn('Failed to authenticate OK; creds: '
-                            + credentials)
+                logger.warn('Failed to authenticate OK; creds: ' + credentials)
                 logger.warn('Failed to authenticate agent credentials: ',
                             credentials,
                             'against expected ',
@@ -197,19 +204,27 @@ def listener(environ, start_response, schema):
         # Respond to the caller.
         # ----------------------------------------------------------------------
                 start_response('401 Unauthorized', [('Content-type',
-                                                    'application/json')])
+                                                     'application/json')])
                 req_error = {'requestError': {
                                  'policyException': {
-                                     'messageId': 'POL0001',
-                                     'text': 'Failed to authenticate'
-                                     }
-                        }
-                    }
+                                    'messageId': 'POL0001',
+                                    'text': 'Failed to authenticate'
+                                    }
+                                 }
+                             }
                 yield json.dumps(req_error)
 
+            # saving data in influxdb by deafult
+            save_event_in_db(body)
             logger.info("data_storage ={}".format(data_storage))
-            if(data_storage == 'influxdb'):
-                save_event_in_db(body)
+            data_storageArr = data_storage.split("|")
+            # if word 'elasticsearch' exsits in config file then save data in elasticsearch
+            if('elasticsearch' in data_storageArr):
+                save_event_in_elasticsearch(body)
+            # if word 'kafka' exsits in config file then save data in kafka bus
+            if('kafka' in data_storageArr):
+                logger.debug('Kafka topic =' f'{kafka_topic} and kafka port='f'{kafka_port}')
+                save_event_in_kafka(body)
 
         except jsonschema.SchemaError as e:
             logger.error('Schema is not valid! {0}'.format(e))
@@ -230,9 +245,9 @@ def listener(environ, start_response, schema):
             decoded_body = json.loads(body)
             logger.warn('Valid JSON body (no schema checking) decoded:\n'
                         '{0}'.format(json.dumps(decoded_body,
-                                     sort_keys=True,
-                                     indent=4,
-                                     separators=(',', ': '))))
+                                                sort_keys=True,
+                                                indent=4,
+                                                separators=(',', ': '))))
             logger.warn('Event is valid JSON but not checked against schema!')
 
         except Exception as e:
@@ -244,11 +259,143 @@ def listener(environ, start_response, schema):
 # --------------------------------------------------------------------------
 def send_to_influxdb(event, pdata):
     url = 'http://{}/write?db=veseventsdb'.format(influxdb)
-    logger.info('Send {} to influxdb at {}: {}'.format(event, influxdb, pdata))
+    logger.debug('Send {} to influxdb at {}: {}'.format(event, influxdb, pdata))
     r = requests.post(url, data=pdata, headers={'Content-Type': 'text/plain'})
     logger.info('influxdb return code {}'.format(r.status_code))
     if r.status_code != 204:
         logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
+
+#--------------------------------------------------------------------------
+# Save event data in Kafka
+#--------------------------------------------------------------------------
+def save_event_in_kafka(body):
+    jobj = json.loads(body)
+    if 'commonEventHeader' in jobj['event']:
+        logger.debug('Got a event request with common event header')
+        if 'measurementFields' in jobj['event']:
+            logger.debug('Got a event request with measurementFields')
+            produce_events_in_kafka(jobj)
+        if 'pnfRegistrationFields' in jobj['event']:
+            logger.debug('Got a event request with pnfRegistrationFields')
+            produce_events_in_kafka(jobj)
+        if 'faultFields' in jobj['event']:
+            logger.debug('Got a event request with faultFields')
+            produce_events_in_kafka(jobj)
+        if 'thresholdCrossingAlertFields' in jobj['event']:
+            logger.debug('Got a event request with thresholdCrossingAlertFields')
+            produce_events_in_kafka(jobj)
+        if 'heartbeatFields' in jobj['event']:
+            logger.debug('Got a event request with heartbeatFields')
+            produce_events_in_kafka(jobj)
+
+def produce_events_in_kafka(jobj):
+    try:
+        global producer
+        if producer is None:
+            logger.debug('Producer is None')
+            producer = KafkaProducer(bootstrap_servers=[kafka_port],
+                            value_serializer=lambda x: 
+                            dumps(x).encode('utf-8'))
+        producer.send(kafka_topic, value=jobj)
+        sleep(1)
+        logger.debug('Event has been successfully posted into kafka bus')
+    except Exception as e:
+        logger.error('Getting error while posting event into kafka bus {0}'.format(e))
+
+# --------------------------------------------------------------------------
+# Save event data in Elasticsearch
+# --------------------------------------------------------------------------
+
+def format_timestamp(EpochMicrosec):
+    if isinstance(EpochMicrosec, int):
+        return datetime.datetime.fromtimestamp(int(str(EpochMicrosec)[:10]), tz=timezone.utc)
+    else:
+        return datetime.datetime.fromtimestamp(EpochMicrosec, tz=timezone.utc)
+
+
+def save_event_in_elasticsearch(body):
+    jobj = json.loads(body)
+    eventId = jobj['event']['commonEventHeader']['eventId']
+    sourceId = jobj['event']['commonEventHeader']['sourceId']
+    startEpochMicrosec = jobj['event']['commonEventHeader']['startEpochMicrosec']
+    lastEpochMicrosec = jobj['event']['commonEventHeader']['lastEpochMicrosec']
+    jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp'] = format_timestamp(startEpochMicrosec)
+    jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp'] = format_timestamp(lastEpochMicrosec)
+    domain = jobj['event']['commonEventHeader']['domain'].lower()
+    es = Elasticsearch([{'host': elasticsearch_domain, 'port': elasticsearch_port}])
+
+    if 'measurementFields' in jobj['event']:
+        if 'commonEventHeader' in jobj['event']:
+            es.index(index='measurement', body=jobj['event']['commonEventHeader'])
+
+        if 'additionalMeasurements' in jobj['event']['measurementFields']:
+            for addmeasure in jobj['event']['measurementFields']['additionalMeasurements']:
+                addmeasure['eventId'] = eventId
+                addmeasure['sourceId'] = sourceId
+                addmeasure['startEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp']
+                addmeasure['lastEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp']
+                addmeasure['startEpochMicrosec'] = startEpochMicrosec
+                addmeasure['lastEpochMicrosec'] = lastEpochMicrosec
+                es.index(index='measurementaddlmeasurements', body=addmeasure)
+
+        if 'cpuUsageArray' in jobj['event']['measurementFields']:
+            for cpu in jobj['event']['measurementFields']['cpuUsageArray']:
+                cpu['eventId'] = eventId
+                cpu['sourceId'] = sourceId
+                cpu['startEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp']
+                cpu['lastEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp']
+                cpu['startEpochMicrosec'] = startEpochMicrosec
+                cpu['lastEpochMicrosec'] = lastEpochMicrosec
+                es.index(index='measurementcpuusage', body=cpu)
+
+        if 'diskUsageArray' in jobj['event']['measurementFields']:
+            for disk in jobj['event']['measurementFields']['diskUsageArray']:
+                disk['eventId'] = eventId
+                disk['sourceId'] = sourceId
+                disk['startEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp']
+                disk['lastEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp']
+                disk['startEpochMicrosec'] = startEpochMicrosec
+                disk['lastEpochMicrosec'] = lastEpochMicrosec
+                es.index(index='measurementdiskusage', body=disk)
+
+        if 'nicPerformanceArray' in jobj['event']['measurementFields']:
+            for vnic in jobj['event']['measurementFields']['nicPerformanceArray']:
+                vnic['eventId'] = eventId
+                vnic['sourceId'] = sourceId
+                vnic['startEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp']
+                vnic['lastEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp']
+                vnic['startEpochMicrosec'] = startEpochMicrosec
+                vnic['lastEpochMicrosec'] = lastEpochMicrosec
+                es.index(index='measurementnicperformance', body=vnic)
+
+        if 'memoryUsageArray' in jobj['event']['measurementFields']:
+            for memory in jobj['event']['measurementFields']['memoryUsageArray']:
+                memory['eventId'] = eventId
+                memory['sourceId'] = sourceId
+                memory['startEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp']
+                memory['lastEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp']
+                memory['startEpochMicrosec'] = startEpochMicrosec
+                memory['lastEpochMicrosec'] = lastEpochMicrosec
+                es.index(index='measurementmemoryusage', body=memory)
+
+        if 'loadArray' in jobj['event']['measurementFields']:
+            for load in jobj['event']['measurementFields']['loadArray']:
+                load['eventId'] = eventId
+                load['sourceId'] = sourceId
+                load['startEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['startEpochMicrosecTimestamp']
+                load['lastEpochMicrosecTimestamp'] = jobj['event']['commonEventHeader']['lastEpochMicrosecTimestamp']
+                load['startEpochMicrosec'] = startEpochMicrosec
+                load['lastEpochMicrosec'] = lastEpochMicrosec
+                es.index(index='measurementload', body=load)
+
+    if 'pnfRegistrationFields' in jobj['event']:
+        es.index(index=domain, body=jobj['event'])
+    if 'thresholdCrossingAlertFields' in jobj['event']:
+        es.index(index=domain, body=jobj['event'])
+    if 'faultFields' in jobj['event']:
+        es.index(index=domain, body=jobj['event'])
+    if 'heartbeatFields' in jobj['event']:
+        es.index(index=domain, body=jobj['event'])
 
 
 def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
@@ -333,7 +480,8 @@ def process_thresholdCrossingAlert_event(domain, jobj, pdata, nonstringpdata):
             for associatedAlertId in val:
                 associatedAlertIdList = associatedAlertIdList + associatedAlertId + "|"
                 if(associatedAlertIdList != ""):
-                    pdata = pdata + ',{}={}'.format("associatedAlertIdList", process_special_char(associatedAlertIdList)[:-1])
+                    pdata = pdata + ',{}={}'.format("associatedAlertIdList",
+                                                    process_special_char(associatedAlertIdList)[:-1])
 
     send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
 
@@ -382,41 +530,17 @@ def process_measurement_events(domain, jobj, pdata, nonstringpdata, eventId, sta
                 pdata = pdata + ',{}={}'.format(key, process_special_char(val))
             elif isinstance(val, list):
                 if key == 'additionalMeasurements':
-                    process_additional_measurements(val,
-                                                    domain + "additionalmeasurements",
-                                                    eventId,
-                                                    startEpochMicrosec,
-                                                    lastEpochMicrosec)
+                    process_additional_measurements(val, domain + "additionalmeasurements", eventId, startEpochMicrosec, lastEpochMicrosec)
                 elif key == 'cpuUsageArray':
-                    process_nonadditional_measurements(val,
-                                                       domain + "cpuusage",
-                                                       eventId,
-                                                       startEpochMicrosec,
-                                                       lastEpochMicrosec)
+                    process_nonadditional_measurements(val, domain + "cpuusage", eventId, startEpochMicrosec, lastEpochMicrosec)
                 elif key == 'diskUsageArray':
-                    process_nonadditional_measurements(val,
-                                                       domain + "diskusage",
-                                                       eventId,
-                                                       startEpochMicrosec,
-                                                       lastEpochMicrosec)
+                    process_nonadditional_measurements(val, domain + "diskusage", eventId, startEpochMicrosec, lastEpochMicrosec)
                 elif key == 'memoryUsageArray':
-                    process_nonadditional_measurements(val,
-                                                       domain + "memoryusage",
-                                                       eventId,
-                                                       startEpochMicrosec,
-                                                       lastEpochMicrosec)
+                    process_nonadditional_measurements(val, domain + "memoryusage", eventId, startEpochMicrosec, lastEpochMicrosec)
                 elif key == 'nicPerformanceArray':
-                    process_nonadditional_measurements(val,
-                                                       domain + "nicperformance",
-                                                       eventId,
-                                                       startEpochMicrosec,
-                                                       lastEpochMicrosec)
+                    process_nonadditional_measurements(val, domain + "nicperformance", eventId, startEpochMicrosec, lastEpochMicrosec)
                 elif key == 'loadArray':
-                    process_nonadditional_measurements(val,
-                                                       domain + "load",
-                                                       eventId,
-                                                       startEpochMicrosec,
-                                                       lastEpochMicrosec)
+                    process_nonadditional_measurements(val, domain + "load", eventId, startEpochMicrosec, lastEpochMicrosec)
             elif isinstance(val, dict):
                 for key2, val2 in val.items():
                     if isinstance(val2, str):
@@ -441,13 +565,13 @@ def process_time(eventTimestamp):
         eventTimestamp = eventTimestamp + "0"
     return format(int(eventTimestamp))
 
+
 # --------------------------------------------------------------------------
 # Save event data
 # --------------------------------------------------------------------------
-
-
 def save_event_in_db(body):
     jobj = json.loads(body)
+    # e = json.loads(body, object_hook=JSONObject)
     global source
     global eventTimestamp
     source = "unknown"
@@ -461,6 +585,7 @@ def save_event_in_db(body):
 
     # processing common header part
     pdata = domain
+
     nonstringpdata = " "
     commonHeaderObj = jobj['event']['commonEventHeader'].items()
     for key, val in commonHeaderObj:
@@ -474,7 +599,7 @@ def save_event_in_db(body):
                 for key2, val2 in val.items():
                     if val2 != "":
                         if isinstance(val2, str):
-                            pdata = pdata +',{}={}'.format(key2, process_special_char(val2))
+                            pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
                         else:
                             nonstringpdata = nonstringpdata + '{}={}'.format(key2, val2) + ','
 
@@ -497,10 +622,7 @@ def save_event_in_db(body):
     # processing fault events
     if 'faultFields' in jobj['event']:
         logger.debug('Found faultFields')
-        process_fault_event(domain,
-                            jobj['event']['faultFields'],
-                            pdata,
-                            nonstringpdata)
+        process_fault_event(domain, jobj['event']['faultFields'], pdata, nonstringpdata)
 
     # process heartbeat events
     if 'heartbeatFields' in jobj['event']:
@@ -515,7 +637,8 @@ def save_event_in_db(body):
         logger.debug('Found measurementFields')
         process_measurement_events(domain,
                                    jobj['event']['measurementFields'],
-                                   pdata, nonstringpdata,
+                                   pdata,
+                                   nonstringpdata,
                                    jobj['event']['commonEventHeader']['eventId'],
                                    jobj['event']['commonEventHeader']['startEpochMicrosec'],
                                    jobj['event']['commonEventHeader']['lastEpochMicrosec'])
@@ -714,15 +837,30 @@ USAGE
         global vel_password
         global vel_topic_name
         global data_storage
-
+        global elasticsearch_domain
+        global elasticsearch_port
+        global kafka_port
+        global kafka_topic
+                        
         influxdb = config.get(config_section, 'influxdb', vars=overrides)
         log_file = config.get(config_section, 'log_file', vars=overrides)
         vel_port = config.get(config_section, 'vel_port', vars=overrides)
         vel_path = config.get(config_section, 'vel_path', vars=overrides)
+        kafka_port=config.get(config_section,
+                                         'kafka_second_port',
+                                          vars=overrides)        
+        kafka_topic=config.get(config_section, 
+                                         'kafka_topic',
+                                         vars=overrides)
         data_storage = config.get(config_section,
                                   'data_storage',
                                   vars=overrides)
-
+        elasticsearch_domain = config.get(config_section,
+                                          'elasticsearch_domain',
+                                          vars=overrides)
+        elasticsearch_port = config.get(config_section,
+                                        'elasticsearch_port',
+                                        vars=overrides)
         vel_topic_name = config.get(config_section,
                                     'vel_topic_name',
                                     vars=overrides)
@@ -742,7 +880,7 @@ USAGE
                                           'throttle_schema_file',
                                           vars=overrides)
         test_control_schema_file = config.get(config_section,
-                                              'test_control_schema_file',
+                                             'test_control_schema_file',
                                               vars=overrides)
 
         # ----------------------------------------------------------------------
@@ -768,8 +906,9 @@ USAGE
         handler.setFormatter(formatter)
         logger.addHandler(handler)
         logger.info('Started')
+ 
 
-        # ----------------------------------------------------------------------
+        # ----------------------------------------------------------------------      
         # Log the details of the configuration.
         # ----------------------------------------------------------------------
         logger.debug('Log file = {0}'.format(log_file))
@@ -790,6 +929,7 @@ USAGE
         # ----------------------------------------------------------------------
         # Perform some basic error checking on the config.
         # ----------------------------------------------------------------------
+
         if (int(vel_port) < 1024 or int(vel_port) > 65535):
             logger.error('Invalid Vendor Event Listener port ({0}) '
                          'specified'.format(vel_port))
