@@ -16,6 +16,28 @@
 #
 #. What this is: Startup script for the OPNFV VES Agent running under docker.
 
+echo "Trying to connect Kafka Broker.."
+timeout 1m bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$ves_kafka_host/$ves_kafka_port; do sleep 2; done'
+success=$?
+if [ $success -eq 0 ]
+        then
+                echo "Kafka is up.."
+        else
+                echo "No Kafka found .. exiting container.."
+                exit;
+fi
+
+echo "Trying to connect ves-collector.."
+timeout 1m bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$ves_host/$ves_port; do sleep 2; done'
+success=$?
+if [ $success -eq 0 ]
+        then
+                echo "ves-collector is up.."
+        else
+                echo "No ves-collector found .. exiting container.."
+                exit;
+fi
+
 echo "$ves_kafka_host $ves_kafka_hostname" >>/etc/hosts
 echo "ves_kafka_hostname=$ves_kafka_hostname"
 echo "*** /etc/hosts ***"
@@ -40,7 +62,7 @@ EOF
 cat ves_app_config.conf
 echo "ves_mode=$ves_mode"
 
-if [[ "$ves_loglevel" == "" ]]; then
+if [[ "$ves_loglevel" == "" ]]; then 
   ves_loglevel=ERROR
 fi
 
