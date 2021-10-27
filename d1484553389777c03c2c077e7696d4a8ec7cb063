@@ -193,6 +193,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ecfd4a6_24d8fe1f",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4f2d7ce_31a71787",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9699587a_73842c1b",
@@ -206,6 +224,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "The data has to be persisted somewhere. And that default is Kafka. Why is this check needed?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "187fa244_d20ac2f4",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9699587a_73842c1b",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -227,6 +263,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19371a05_daa927c5",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "696ca44b_23062e41",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e43904b3_24dee8ec",
@@ -240,6 +294,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "Remove the extra space at the end.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dea9c07_3b8750ab",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e43904b3_24dee8ec",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -261,6 +333,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d280875_ad32c52e",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad2eba6e_dba80067",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5a9e90c_72ef26cb",
@@ -274,6 +364,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "What is the change here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e92cc5fe_1117d08f",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a9e90c_72ef26cb",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -295,6 +403,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2804cba_959ce411",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21ea39c8_24bd055c",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80fdf06a_687c37d4",
@@ -308,6 +434,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "Remove commented code out.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c409459b_2b9dcdee",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80fdf06a_687c37d4",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -329,6 +473,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b3c6053_9c633778",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02a66092_e708bd14",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f073bfd_60b3d9d5",
@@ -342,6 +504,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "What is the change here?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f96e0303_7e16ed9f",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f073bfd_60b3d9d5",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -363,6 +543,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a276da84_e7dac3f9",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f966800f_1646640b",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "494e9697_72bb9e35",
@@ -376,6 +574,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "Remove extra spaces.",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d21d2b_8ba58b0a",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "494e9697_72bb9e35",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -397,6 +613,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc39cac3_9038250e",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c3f4718_50f098de",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70ff9117_9d77d99c",
@@ -414,6 +648,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58253fed_9de80a9e",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70ff9117_9d77d99c",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1595e95e_ec0149f7",
@@ -427,6 +679,24 @@
       "writtenOn": "2021-10-21T17:08:20Z",
       "side": 1,
       "message": "Why the extra line?",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "248985ec_90536792",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-27T10:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1595e95e_ec0149f7",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
