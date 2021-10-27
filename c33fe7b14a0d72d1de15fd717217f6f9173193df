@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a9f45a_c88a27c2",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-27T19:03:02Z",
+      "side": 1,
+      "message": "By this logic, I can send garbage event, and a topic would be created in Kafka.\n\nMore precisely, I would have expected that the events are verified before they are persisted anywhere, including Kafka. That should be a common piece of logic, and should be called before data is persisted anywhere. Only if the event is valid, but the topic does not exist in Kafka, would the topic be created in Kafka or the data persisted in Elasticsearch or InfluxdB.\n\nInstead the first time the event is validated when we write to Elasticsearch or when it is written to influxdB and that too only if elasticsearch or influxdb word exists in config. But if elasticsearch or influxdb does not exist in config, we would have be writing to Kafka regardless of the event type. Is that true?",
+      "revId": "c33fe7b14a0d72d1de15fd717217f6f9173193df",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f4e7a72_6d818e64",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-27T19:03:02Z",
+      "side": 1,
+      "message": "What happens if the key does not match any of the if/elif conditions?",
+      "revId": "c33fe7b14a0d72d1de15fd717217f6f9173193df",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
