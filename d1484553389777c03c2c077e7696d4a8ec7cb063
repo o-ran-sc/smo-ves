@@ -266,6 +266,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de1c9b1d_364e7589",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "ves-collector:\n         container_name: ves-collector\n         build: ./collector\n         image: ves-collector\n         networks:\n             - ves-net\n         ports:\n             - 9999:9999\n         environment:\n                 ves_influxdb_host: \"ves-influxdb\"\n                 ves_influxdb_port: \"8086\"\n                 ves_grafana_host: \"ves-grafana\"\n                 ves_grafana_port: \"3000\"\n                 data_storage: \"kafka|elasticsearch\"\n\n\n\u0027data_storage\u0027 variable is defined in docker-compose file. On depends on value of the variable we decide on where to persist data. We are saving data in InfluxDB by default.",
+      "parentUuid": "dd2575ac_7e355298",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "696ca44b_23062e41",
         "filename": "collector/evel-test-collector/code/collector/monitor.py",
         "patchSetId": 1
@@ -492,6 +510,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de05583e_13a8c473",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8b11b59_49deae7f",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02a66092_e708bd14",
@@ -541,6 +577,24 @@
       "side": 1,
       "message": "But I see the extra line still.",
       "parentUuid": "7b3c6053_9c633778",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29d49888_b25cbbe1",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82f6d11b_c60d176d",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -808,6 +862,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea29722b_ac80a1a8",
+        "filename": "collector/evel-test-collector/config/collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4850236b_5a2787df",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79c3f105_7bf2cc00",
@@ -857,6 +929,24 @@
       "side": 1,
       "message": "And the extra spaces at the end of the line.",
       "parentUuid": "93f760b9_438f3f90",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b3c9d7_68c6cdbe",
+        "filename": "collector/evel-test-collector/config/collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ec74d20_49623c06",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -914,6 +1004,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a92036a_c1696c7a",
+        "filename": "collector/evel-test-collector/config/collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b83b756_c7780bae",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95d1bb4f_d3d329c7",
@@ -967,6 +1075,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19b10b15_f7bdbe5f",
+        "filename": "collector/evel-test-collector/docs/att_interface_definition/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2cca057_92f322b1",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fa1485b_e7e32725",
@@ -1016,6 +1142,24 @@
       "side": 1,
       "message": "Still see extra space at the end of the line.",
       "parentUuid": "e9281044_7bf61767",
+      "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffff7155_fd618847",
+        "filename": "collector/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T01:51:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b8dc697_2f6c4b7a",
       "revId": "d1484553389777c03c2c077e7696d4a8ec7cb063",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
