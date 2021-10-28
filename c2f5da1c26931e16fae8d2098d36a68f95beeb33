@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c4e0566_e7e0cde8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000124
+      },
+      "writtenOn": "2021-10-28T08:16:32Z",
+      "side": 1,
+      "message": "Seems that all of Mahesh\u0027s comments are resolved. I don\u0027t have any other comments.",
+      "revId": "c2f5da1c26931e16fae8d2098d36a68f95beeb33",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
