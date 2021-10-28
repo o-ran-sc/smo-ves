@@ -16,6 +16,57 @@
       "message": "Seems that all of Mahesh\u0027s comments are resolved. I don\u0027t have any other comments.",
       "revId": "c2f5da1c26931e16fae8d2098d36a68f95beeb33",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "193ac6f5_c2f39d6a",
+        "filename": "collector/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-28T23:57:10Z",
+      "side": 1,
+      "message": "Thanks for removing all the extra spaces. Just left with these two. One on this line and on line 9.",
+      "revId": "c2f5da1c26931e16fae8d2098d36a68f95beeb33",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e2a92b_0c7b9a30",
+        "filename": "collector/evel-test-collector/docs/att_interface_definition/CommonEventFormat-v7-2-1.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-28T23:57:10Z",
+      "side": 1,
+      "message": "I will wait for you to add the min and max values to the schema here.",
+      "revId": "c2f5da1c26931e16fae8d2098d36a68f95beeb33",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53bf08c8_a96d0fab",
+        "filename": "collector/evel-test-collector/docs/att_interface_definition/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-10-28T23:57:10Z",
+      "side": 1,
+      "message": "Should we bump this release to reflect changes we have made to the schema?",
+      "revId": "c2f5da1c26931e16fae8d2098d36a68f95beeb33",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
