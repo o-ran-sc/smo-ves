@@ -36,6 +36,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bdbbff2_b7c4c50f",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T10:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cb6f28d_1b735552",
+      "revId": "c33fe7b14a0d72d1de15fd717217f6f9173193df",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f4e7a72_6d818e64",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "We will not process those attributes and save in database. Currently, we process only those attributes whose model/structure are known to us. Model/structure of each attribute could be different and we have to write code accordingly. That\u0027s why we are not considering all.",
       "parentUuid": "6f4e7a72_6d818e64",
+      "revId": "c33fe7b14a0d72d1de15fd717217f6f9173193df",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6731c84_75b8ab4f",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-10-28T10:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "664e6915_92ce1396",
       "revId": "c33fe7b14a0d72d1de15fd717217f6f9173193df",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
