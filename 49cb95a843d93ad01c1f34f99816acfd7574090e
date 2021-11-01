@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22952d02_e6f42e20",
+        "filename": "dmaapadapter/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-01T20:59:17Z",
+      "side": 1,
+      "message": "Remove blank spaces.",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac5c6f4_4562d2ea",
+        "filename": "dmaapadapter/adapter/LICENSE.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-01T20:59:17Z",
+      "side": 1,
+      "message": "Remove blank spaces.",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd8f426a_2850056d",
+        "filename": "dmaapadapter/start.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-01T20:59:17Z",
+      "side": 1,
+      "message": "Remove blank space",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdf955e7_0365eb9b",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-01T20:59:17Z",
+      "side": 1,
+      "message": "There should be two networks for all these containers. A \u0027ves-net\u0027, which I assume is the agent side of the network connecting all containers that belong to the agent side of the network, and what I call \u0027smo-net\u0027, which is the network where all containers related to SMO are connected.\n\nThe only way a container on the \u0027vas-event\u0027 network can communicate with a container on the \u0027smo-net\u0027 is by doing a HTTP POST to the ves-collector. The two networks can come together using a bridge if need be, but ideally they should on two different IP networks.\n\nRight now, as it seems, the ves-agent can send a message directly to the Kafka port and bypass the collector completely.",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c97941_c5f1fdeb",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-01T20:59:17Z",
+      "side": 1,
+      "message": "I had not caught this earlier, but why is ves-agent on the same network as the rest of these containers?",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d292784_36679f75",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-01T20:59:17Z",
+      "side": 1,
+      "message": "Doesn\u0027t the dmaap adapter depend on smo-kafka?",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
