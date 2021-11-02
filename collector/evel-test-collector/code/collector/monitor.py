@@ -33,7 +33,6 @@ from base64 import b64decode
 import json
 import jsonschema
 from functools import partial
-import requests
 from datetime import timezone
 from elasticsearch import Elasticsearch
 from kafka import KafkaProducer
@@ -221,9 +220,6 @@ def listener(environ, start_response, schema):
             # if word 'elasticsearch' exists in config file then save data in elasticsearch
             if('elasticsearch' in data_storageArr):
                 save_event_in_elasticsearch(body)
-            # if word 'influxdb' exists in config file then save data in influxdb
-            if('influxdb' in data_storageArr):
-                save_event_in_db(body)
 
         except jsonschema.SchemaError as e:
             logger.error('Schema is not valid! {0}'.format(e))
@@ -252,18 +248,6 @@ def listener(environ, start_response, schema):
         except Exception as e:
             logger.error('Event invalid for unexpected reason! {0}'.format(e))
 
-
-# --------------------------------------------------------------------------
-# Send event to influxdb
-# --------------------------------------------------------------------------
-
-def send_to_influxdb(event, pdata):
-    url = 'http://{}/write?db=veseventsdb'.format(influxdb)
-    logger.debug('Send {} to influxdb at {}: {}'.format(event, influxdb, pdata))
-    r = requests.post(url, data=pdata, headers={'Content-Type': 'text/plain'})
-    logger.info('influxdb return code {}'.format(r.status_code))
-    if r.status_code != 204:
-        logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
 
 # --------------------------------------------------------------------------
 # Save event data in Kafka
@@ -297,6 +281,7 @@ def produce_events_in_kafka(jobj, topic):
 # --------------------------------------------------------------------------
 # Save event data in Elasticsearch
 # --------------------------------------------------------------------------
+
 
 def format_timestamp(EpochMicrosec):
     if isinstance(EpochMicrosec, int):
@@ -398,252 +383,6 @@ def save_event_in_elasticsearch(body):
         es.index(index=domain, body=jobj['event'])
     if 'heartbeatFields' in jobj['event']:
         es.index(index=domain, body=jobj['event'])
-
-
-def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
-    for additionalMeasurements in val:
-        pdata = domain + ",eventId={},system={}".format(eventId, source)
-        nonstringpdata = " startEpochMicrosec={},lastEpochMicrosec={},".format(startEpochMicrosec, lastEpochMicrosec)
-        for key, val in additionalMeasurements.items():
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            elif isinstance(val, dict):
-                for key2, val2 in val.items():
-                    if isinstance(val2, str):
-                        pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                    else:
-                        nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_nonadditional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
-    for disk in val:
-        pdata = domain + ",eventId={},system={}".format(eventId, source)
-        nonstringpdata = " startEpochMicrosec={},lastEpochMicrosec={},".format(startEpochMicrosec, lastEpochMicrosec)
-        for key, val in disk.items():
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-
-        send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_pnfRegistration_event(domain, jobj, pdata, nonstringpdata):
-    pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'additionalFields' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
-    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_thresholdCrossingAlert_event(domain, jobj, pdata, nonstringpdata):
-    pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if (key != 'additionalFields' and key != 'additionalParameters' and key != 'associatedAlertIdList') and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-        elif key == 'additionalParameters':
-            for addParameter in val:
-                for key2, val2 in addParameter.items():
-                    if key2 != "hashMap":
-                        if val2 != "" and isinstance(val2, str):
-                            pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                        elif val2 != "":
-                            nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-                    elif key2 == "hashMap":
-                        for key3, val3 in val2.items():
-                            if val3 != "" and isinstance(val3, str):
-                                pdata = pdata + ',{}={}'.format(key3, process_special_char(val3))
-                            elif val3 != "":
-                                nonstringpdata = nonstringpdata + '{}={},'.format(key3, val3)
-        elif key == 'associatedAlertIdList':
-            associatedAlertIdList = ""
-            for associatedAlertId in val:
-                associatedAlertIdList = associatedAlertIdList + associatedAlertId + "|"
-                if(associatedAlertIdList != ""):
-                    pdata = pdata + ',{}={}'.format("associatedAlertIdList",
-                                                    process_special_char(associatedAlertIdList)[:-1])
-
-    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_fault_event(domain, jobj, pdata, nonstringpdata):
-    pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'alarmAdditionalInformation' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'alarmAdditionalInformation':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
-    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_heartbeat_events(domain, jobj, pdata, nonstringpdata):
-    pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'additionalFields' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
-    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_measurement_events(domain, jobj, pdata, nonstringpdata, eventId, startEpochMicrosec, lastEpochMicrosec):
-    pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            elif isinstance(val, list):
-                if key == 'additionalMeasurements':
-                    process_additional_measurements(val, domain + "additionalmeasurements", eventId, startEpochMicrosec, lastEpochMicrosec)
-                elif key == 'cpuUsageArray':
-                    process_nonadditional_measurements(val, domain + "cpuusage", eventId, startEpochMicrosec, lastEpochMicrosec)
-                elif key == 'diskUsageArray':
-                    process_nonadditional_measurements(val, domain + "diskusage", eventId, startEpochMicrosec, lastEpochMicrosec)
-                elif key == 'memoryUsageArray':
-                    process_nonadditional_measurements(val, domain + "memoryusage", eventId, startEpochMicrosec, lastEpochMicrosec)
-                elif key == 'nicPerformanceArray':
-                    process_nonadditional_measurements(val, domain + "nicperformance", eventId, startEpochMicrosec, lastEpochMicrosec)
-                elif key == 'loadArray':
-                    process_nonadditional_measurements(val, domain + "load", eventId, startEpochMicrosec, lastEpochMicrosec)
-                elif key == 'networkSliceArray':
-                    process_nonadditional_measurements(val, domain + "networkslice", eventId, startEpochMicrosec, lastEpochMicrosec)
-            elif isinstance(val, dict):
-                for key2, val2 in val.items():
-                    if isinstance(val2, str):
-                        pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                    else:
-                        nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-
-    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
-
-
-def process_special_char(str):
-    for search_char, replace_char in {" ": "\ ", ",": "\,"}.items():
-        str = str.replace(search_char, replace_char)
-    return str
-
-
-def process_time(eventTimestamp):
-    eventTimestamp = str(eventTimestamp).replace(".", "")
-    while len(eventTimestamp) < 19:
-        eventTimestamp = eventTimestamp + "0"
-    return format(int(eventTimestamp))
-
-
-# --------------------------------------------------------------------------
-# Save event data
-# --------------------------------------------------------------------------
-def save_event_in_db(body):
-    global source
-    global eventTimestamp
-
-    jobj = json.loads(body)
-    source = "unknown"
-    domain = jobj['event']['commonEventHeader']['domain']
-    eventTimestamp = jobj['event']['commonEventHeader']['startEpochMicrosec']
-    agent = jobj['event']['commonEventHeader']['reportingEntityName'].upper()
-    if "LOCALHOST" in agent:
-        agent = "computehost"
-        source = jobj['event']['commonEventHeader']['sourceId'].upper()
-
-    # processing common header part
-    pdata = domain
-    nonstringpdata = " "
-    commonHeaderObj = jobj['event']['commonEventHeader'].items()
-    for key, val in commonHeaderObj:
-        if val != "":
-            if (key != 'internalHeaderFields'):
-                if isinstance(val, str):
-                    pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-                else:
-                    nonstringpdata = nonstringpdata + '{}={}'.format(key, val) + ','
-            if (key == 'internalHeaderFields'):
-                for key2, val2 in val.items():
-                    if val2 != "":
-                        if isinstance(val2, str):
-                            pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                        else:
-                            nonstringpdata = nonstringpdata + '{}={}'.format(key2, val2) + ','
-
-    # processing pnfRegistration events
-    if 'pnfRegistrationFields' in jobj['event']:
-        logger.debug('Found pnfRegistrationFields')
-        process_pnfRegistration_event(domain,
-                                      jobj['event']['pnfRegistrationFields'],
-                                      pdata,
-                                      nonstringpdata)
-
-    # processing thresholdCrossingAlert events
-    if 'thresholdCrossingAlertFields' in jobj['event']:
-        logger.debug('Found thresholdCrossingAlertFields')
-        process_thresholdCrossingAlert_event(domain,
-                                             jobj['event']['thresholdCrossingAlertFields'],
-                                             pdata,
-                                             nonstringpdata)
-
-    # processing fault events
-    if 'faultFields' in jobj['event']:
-        logger.debug('Found faultFields')
-        process_fault_event(domain, jobj['event']['faultFields'], pdata, nonstringpdata)
-
-    # process heartbeat events
-    if 'heartbeatFields' in jobj['event']:
-        logger.debug('Found Heartbeat')
-        process_heartbeat_events(domain,
-                                 jobj['event']['heartbeatFields'],
-                                 pdata,
-                                 nonstringpdata)
-
-    # processing measurement events
-    if 'measurementFields' in jobj['event']:
-        logger.debug('Found measurementFields')
-        process_measurement_events(domain,
-                                   jobj['event']['measurementFields'],
-                                   pdata,
-                                   nonstringpdata,
-                                   jobj['event']['commonEventHeader']['eventId'],
-                                   jobj['event']['commonEventHeader']['startEpochMicrosec'],
-                                   jobj['event']['commonEventHeader']['lastEpochMicrosec'])
 
 
 def test_listener(environ, start_response, schema):
