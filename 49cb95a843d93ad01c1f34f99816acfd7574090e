@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04954403_c4cbe95e",
+        "filename": "dmaapadapter/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-02T06:35:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22952d02_e6f42e20",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ac5c6f4_4562d2ea",
@@ -35,6 +53,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3e648e6_b909a51d",
+        "filename": "dmaapadapter/adapter/LICENSE.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-02T06:35:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac5c6f4_4562d2ea",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd8f426a_2850056d",
@@ -48,6 +84,24 @@
       "writtenOn": "2021-11-01T20:59:17Z",
       "side": 1,
       "message": "Remove blank space",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74fbf8c1_668e1954",
+        "filename": "dmaapadapter/start.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-02T06:35:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd8f426a_2850056d",
       "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -99,6 +153,24 @@
       "writtenOn": "2021-11-01T20:59:17Z",
       "side": 1,
       "message": "Doesn\u0027t the dmaap adapter depend on smo-kafka?",
+      "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76b7a988_cdea019e",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-02T06:35:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d292784_36679f75",
       "revId": "49cb95a843d93ad01c1f34f99816acfd7574090e",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
