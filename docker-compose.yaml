@@ -130,6 +130,23 @@ services:
              - smo-kafka
              - ves-influxdb
              - ves-grafana
+  kafka-connector-influxdb:
+         container_name: kafka-connector-influxdb
+         build: ./kafka-connector-influxdb
+         image: influxdb-connector
+         networks:
+             - ves-net
+         ports:
+             - 9990:9990
+         environment:
+                 ves_influxdb_host: "ves-influxdb"
+                 ves_influxdb_port: "8086"
+                 ves_loglevel: "ERROR"
+                 kafka_host_2: "smo-kafka"
+                 kafka_port_2: "29092"
+         depends_on:
+             - smo-kafka
+             - ves-influxdb
   ves-agent:
           container_name: ves-agent
           build: ./agent
