@@ -35,6 +35,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4e572c5_012c5f03",
+        "filename": "kafka-connector-influxdb/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34e6bf37_ac9f9a09",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "186c8181_de63ded5",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-11-03T03:05:16Z",
       "side": 1,
       "message": "Remove extra space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "446efe7d_2a61acdc",
+        "filename": "kafka-connector-influxdb/influxdb-connector/LICENSE.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "186c8181_de63ded5",
       "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -69,6 +105,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e94a45_f46f1349",
+        "filename": "kafka-connector-influxdb/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cb1d7b2_15b78665",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36a15063_dba4c234",
@@ -82,6 +136,24 @@
       "writtenOn": "2021-11-03T03:05:16Z",
       "side": 1,
       "message": "Remove blank spaces.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99f26e65_d49a8120",
+        "filename": "kafka-connector-influxdb/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36a15063_dba4c234",
       "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -103,6 +175,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa1f8c59_ebc03874",
+        "filename": "kafka-connector-influxdb/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35ceb0e6_4d933433",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8f6e679_0197155f",
@@ -120,6 +210,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07e6d87b_cac59260",
+        "filename": "kafka-connector-influxdb/influxdb-connector/config/influxdb_connector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f6e679_0197155f",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6294634e_3f847489",
@@ -133,6 +241,24 @@
       "writtenOn": "2021-11-03T03:05:16Z",
       "side": 1,
       "message": "Remove extra space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "727dcc7d_596bfa96",
+        "filename": "kafka-connector-influxdb/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-03T10:05:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6294634e_3f847489",
       "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
