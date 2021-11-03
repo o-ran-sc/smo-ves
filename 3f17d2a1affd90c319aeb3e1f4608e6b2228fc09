@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929a4321_c7abb414",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "The same comment on \u0027vas-net\u0027 as before. This should be on a separate network from the network that vis-agent is on, as they should not be able to communicate directly on the network.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34e6bf37_ac9f9a09",
+        "filename": "kafka-connector-influxdb/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove blank space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186c8181_de63ded5",
+        "filename": "kafka-connector-influxdb/influxdb-connector/LICENSE.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove extra space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb1d7b2_15b78665",
+        "filename": "kafka-connector-influxdb/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove blank space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a15063_dba4c234",
+        "filename": "kafka-connector-influxdb/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove blank spaces.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ceb0e6_4d933433",
+        "filename": "kafka-connector-influxdb/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove all these blank spaces.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f6e679_0197155f",
+        "filename": "kafka-connector-influxdb/influxdb-connector/config/influxdb_connector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove extra space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6294634e_3f847489",
+        "filename": "kafka-connector-influxdb/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "Remove extra space.",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06c920c2_8fd5dfc3",
+        "filename": "kafka-connector-influxdb/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-03T03:05:16Z",
+      "side": 1,
+      "message": "What happens if InfluxdB never responds?",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
