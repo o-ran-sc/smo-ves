@@ -69,6 +69,24 @@
       "parentUuid": "c075ccc7_a349d055",
       "revId": "adf450663e6d2956cea62be7429f518a29230752",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0370760f_5e6c5397",
+        "filename": "dmaapadapter/adapter/code/consumer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000128
+      },
+      "writtenOn": "2021-11-10T14:36:47Z",
+      "side": 1,
+      "message": "Thanks for your reply.\n\nI am still facing some problem in reading the message using dmaapadapter. I might be doing something wrong here, but it would be good if you can double check. I am following these steps:\n\n1) create topic:\ndocker exec smo-kafka sh -c \"kafka-topics --create --zookeeper smo-zookeeper:22181 --replication-factor 1 --partitions 1 --topic unauthenticated.SEC_FAULT_OUTPUT\"\n\n2) check created topic using dmaapadapter:\n$curl http://localhost:5000/dmaapapi/v1/topics\n{\"topics\": [\"unauthenticated.SEC_FAULT_OUTPUT\", \"__confluent.support.metrics\", \"__consumer_offsets\"]}\n\n3) write a message to the topic:\ndocker exec smo-kafka sh -c \"echo \u0027Hello, World\u0027 | kafka-console-producer --broker-list smo-kafka:29092 --topic unauthenticated.SEC_FAULT_OUTPUT\"\n\n4) read the message using dmaapadapter:\n$curl http://localhost:5000/dmaapapi/v1/events/unauthenticated.SEC_FAULT_OUTPUT/testGroup/testId\n[]\n\nThe message list is empty. These are the logs appearing in dmaapadapter:\n172.25.0.1 - - [10/Nov/2021 14:20:00] \"GET /dmaapapi/v1/events/unauthenticated.SEC_FAULT_OUTPUT/testGroup/testId HTTP/1.1\" 200 -\ntopic\u003dunauthenticated.SEC_FAULT_OUTPUT, consumergroup\u003dtestGroup, consumerid\u003dtestId, limit\u003d-1, timeout\u003d15 \n2021-11-10 14:20:00.%f +0000 root - DEBUG - No records \n2021-11-10 14:20:00.%f +0000 root - DEBUG - closing consumer\n2021-11-10 14:20:00.%f +0000 werkzeug - INFO - 172.25.0.1 - - [10/Nov/2021 14:20:00] \"GET /dmaapapi/v1/events/unauthenticated.SEC_FAULT_OUTPUT/testGroup/testId HTTP/1.1\" 200 -\n\n\nI can read the message directly from Kafka if I don\u0027t use the dmaapadapter:\ndocker exec smo-kafka sh -c \"kafka-console-consumer --bootstrap-server smo-kafka:29092 --topic unauthenticated.SEC_FAULT_OUTPUT --from-beginning\"\nHello, World",
+      "parentUuid": "e245907a_88e4343e",
+      "revId": "adf450663e6d2956cea62be7429f518a29230752",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
