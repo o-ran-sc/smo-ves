@@ -51,6 +51,24 @@
       "parentUuid": "21e022d2_36f5bd32",
       "revId": "adf450663e6d2956cea62be7429f518a29230752",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e245907a_88e4343e",
+        "filename": "dmaapadapter/adapter/code/consumer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-10T11:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c075ccc7_a349d055",
+      "revId": "adf450663e6d2956cea62be7429f518a29230752",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
