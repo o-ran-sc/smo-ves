@@ -33,6 +33,24 @@
       "message": "dubug -\u003e debug\n\nThis gives the following error:\nDEBUG - Failed to get event information due to unexpected reason! \u0027RootLogger\u0027 object has no attribute \u0027dubug\u0027\n\nI fixed this bug and tried again. Now, I see this error:\nDEBUG - Error reading message : KafkaError{code\u003dUNKNOWN_TOPIC_OR_PART,val\u003d3,str\u003d\"Subscribed topic not available: unauthenticated.SEC_FAULT_OUTPUT: Broker: Unknown topic or partition\"}\n\nI am wondering how would you create a new topic?\nDoes the topic need to be created directly in Kafka, and this dmaap adapter would just read the messages from different topics?\n\nAs a sidenote, even though the above calls fail, the dmaap adapter still returns 200 which also seems to be a bug:\nINFO - 172.22.0.1 - - [10/Nov/2021 09:41:01] \"GET /dmaapapi/v1/events/unauthenticated.SEC_FAULT_OUTPUT/testGroup/testId HTTP/1.1\" 200",
       "revId": "adf450663e6d2956cea62be7429f518a29230752",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c075ccc7_a349d055",
+        "filename": "dmaapadapter/adapter/code/consumer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-11-10T11:09:42Z",
+      "side": 1,
+      "message": "We are aware about the typo. We will rectify \"dubug\" in next commit.\n\nCurrently we are developing the consumer side. It will just read messages from the topic.\n\nYes you are right. We have plan to enhance DMaaP adapter to return error message along with error code as response.",
+      "parentUuid": "21e022d2_36f5bd32",
+      "revId": "adf450663e6d2956cea62be7429f518a29230752",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
