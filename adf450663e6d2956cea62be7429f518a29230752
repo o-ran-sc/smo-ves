@@ -105,6 +105,24 @@
       "parentUuid": "0370760f_5e6c5397",
       "revId": "adf450663e6d2956cea62be7429f518a29230752",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9389429_896e347f",
+        "filename": "dmaapadapter/adapter/code/consumer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000128
+      },
+      "writtenOn": "2021-11-12T12:28:36Z",
+      "side": 1,
+      "message": "Thanks, it works now.",
+      "parentUuid": "ee043bcf_e111248d",
+      "revId": "adf450663e6d2956cea62be7429f518a29230752",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
