@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d026bfa9_d8bc8bf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-29T17:48:45Z",
+      "side": 1,
+      "message": "We need to at some point come back and cleanup the docker-compose file to have names for containers and networks that clearly indicate whether the container or network belong to the smo or the agent part of the sub-system.",
+      "revId": "ba2cbac82cc5afd340507de981ecd2fc32b2a5c2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c11bbbd_80f0c3d3",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-11-29T17:48:45Z",
+      "side": 1,
+      "message": "Please rename ves-net to smo-net, and make the appropriate changes in the network portion of the docker-compose file.",
+      "revId": "ba2cbac82cc5afd340507de981ecd2fc32b2a5c2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
