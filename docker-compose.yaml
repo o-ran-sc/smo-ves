@@ -107,6 +107,8 @@ services:
              - ves-net
          ports:
              - 9999:9999
+         volumes:
+             - ~/ves-certificate:/opt/ves/certs    
          environment:
                  ves_influxdb_host: "ves-influxdb"
                  ves_influxdb_port: "8086"
@@ -144,14 +146,14 @@ services:
                   ves_port: "9999"
                   ves_path: ""
                   ves_topic: "events"
-                  ves_https: "False"
+                  ves_https: "True"
                   ves_user: "user"
                   ves_pass: "password"
                   ves_interval: "10"
                   ves_kafka_port: "9092"
                   ves_mode: "./yaml/host"
                   ves_version: "5"
-                  ves_loglevel: "ERROR"
+                  ves_loglevel: "DEBUG"
           depends_on:
              - ves-kafka
              - ves-collector
