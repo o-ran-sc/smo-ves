@@ -40,6 +40,7 @@ from kafka import KafkaProducer
 from json import dumps
 import datetime
 import time
+from gevent import pywsgi
 
 monitor_mode = "f"
 vdu_id = ['', '', '', '', '', '']
@@ -1026,7 +1027,7 @@ USAGE
         dispatcher.register('POST', test_control_url, test_control_listener)
         dispatcher.register('GET', test_control_url, test_control_listener)
 
-        httpd = make_server('', int(vel_port), vendor_event_listener)
+        httpd = pywsgi.WSGIServer(('', int(vel_port)), vendor_event_listener, keyfile='/opt/ves/certs/vescertificate.key', certfile='/opt/ves/certs/vescertificate.crt')
         logger.info('Serving on port {0}...'.format(vel_port))
         httpd.serve_forever()
 
