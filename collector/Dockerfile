@@ -22,10 +22,10 @@ FROM ubuntu:focal
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests jsonschema elasticsearch kafka-python
+RUN pip3 install requests jsonschema elasticsearch kafka-python gevent
 
 
-RUN mkdir /opt/ves
+RUN mkdir -p /opt/ves/certs
 
 # Clone VES Collector
 RUN mkdir /opt/ves/evel-test-collector

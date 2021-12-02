@@ -20,6 +20,8 @@ import sys
 import base64
 import logging
 import argparse
+import ssl
+from socket import timeout
 
 try:
     import configparser
@@ -80,16 +82,16 @@ class VESApp(Normalizer):
             request.add_header('Content-Type', 'application/json')
             event_str = json.dumps(event).encode()
             logging.debug("Sending {} to {}".format(event_str, server_url))
-            url.urlopen(request, event_str, timeout=1)
+            ssl._create_default_https_context = ssl._create_unverified_context
+            url.urlopen(request, event_str, timeout=1).read().decode('utf-8')
             logging.debug("Sent data to {} successfully".format(server_url))
-        except url.HTTPError as e:
-            logging.error('Vendor Event Listener exception: {}'.format(e))
-        except url.URLError as e:
-            logging.error(
-                'Vendor Event Listener is is not reachable: {}'.format(e))
+        except (HTTPError, URLError) as e:
+            logging.error('Vendor Event Listener is is not reachable: {}'.format(e))
+        except timeout:
+            logging.error('Timed out - URL %s', url)
         except Exception as e:
-            logging.error('Vendor Event Listener error: {}'.format(e))
-
+            logging.error('Vendor Event Listener error: {}'.format(e)) 
+            
     def config(self, config):
         """VES option configuration"""
         for key, value in config.items('config'):

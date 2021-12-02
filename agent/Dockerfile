@@ -34,6 +34,7 @@ RUN apt-get install -y default-jre zookeeperd \
 python3 python3-pip pkg-config git build-essential libpthread-stubs0-dev \
 libssl-dev libsasl2-dev liblz4-dev libz-dev
 RUN pip3 install kafka-python pyaml
+RUN pip3 install --upgrade certifi
 
 RUN mkdir /opt/ves/barometer
 ADD barometer /opt/ves/barometer
