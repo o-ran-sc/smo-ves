@@ -33,6 +33,24 @@
       "message": "Please rename ves-net to smo-net, and make the appropriate changes in the network portion of the docker-compose file.",
       "revId": "ba2cbac82cc5afd340507de981ecd2fc32b2a5c2",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c2558f_92384b35",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-02T10:01:20Z",
+      "side": 1,
+      "message": "We will respective changes in https://jira.o-ran-sc.org/browse/SMO-26",
+      "parentUuid": "1c11bbbd_80f0c3d3",
+      "revId": "ba2cbac82cc5afd340507de981ecd2fc32b2a5c2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
