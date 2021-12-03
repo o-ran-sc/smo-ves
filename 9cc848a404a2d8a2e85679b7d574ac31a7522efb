@@ -250,6 +250,24 @@
       "parentUuid": "45783a78_5f2d4a2c",
       "revId": "9cc848a404a2d8a2e85679b7d574ac31a7522efb",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81f8f28c_7ace4c3a",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001627
+      },
+      "writtenOn": "2021-12-03T07:21:20Z",
+      "side": 1,
+      "message": "We rollback log-level to \"ERROR\" means it will print only error related information.",
+      "parentUuid": "9082bcb9_0ff3a967",
+      "revId": "9cc848a404a2d8a2e85679b7d574ac31a7522efb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
