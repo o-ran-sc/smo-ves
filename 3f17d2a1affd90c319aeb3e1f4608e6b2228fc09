@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ecc683_2a7b2b42",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-03T15:37:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "929a4321_c7abb414",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34e6bf37_ac9f9a09",
@@ -276,6 +294,24 @@
       "writtenOn": "2021-11-03T03:05:16Z",
       "side": 1,
       "message": "What happens if InfluxdB never responds?",
+      "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "149cf7cd_96106c0c",
+        "filename": "kafka-connector-influxdb/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-03T15:37:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06c920c2_8fd5dfc3",
       "revId": "3f17d2a1affd90c319aeb3e1f4608e6b2228fc09",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
