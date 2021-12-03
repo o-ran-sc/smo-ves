@@ -1,0 +1,22 @@
+---
+distribution_type: container
+container_release_tag: 2.0.1
+container_pull_registry: nexus3.o-ran-sc.org:10004
+container_push_registry: nexus3.o-ran-sc.org:10002
+project: smo/ves
+ref: I152b0ad5a7b6676eef702e3c3811c2f381b0f4f8
+containers:
+    - name: ves-influxdb
+      version: 1.8.5
+    - name: ves-grafana
+      version: 7.5.11
+    - name: smo-zookeeper
+      version: 5.5.6
+    - name: smo-kafka
+      version: 5.5.6
+    - name: smo-kafdrop
+      version: 3.27.0
+    - name: ves-dmaap-adapter
+      version: 1.0.0
+    - name: ves-collector
+      version: 2.0.1
