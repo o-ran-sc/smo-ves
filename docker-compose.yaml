@@ -29,6 +29,9 @@ services:
              - 8880:3000
         networks:
              - ves-net
+        depends_on:
+             - ves-influxdb
+             - kafka-connector-influxdb
   ves-zookeeper:
         container_name: ves-zookeeper
         image: confluentinc/cp-zookeeper:5.5.6
@@ -114,7 +117,7 @@ services:
                  ves_influxdb_port: "8086"
                  ves_grafana_host: "ves-grafana"
                  ves_grafana_port: "3000"
-                 data_storage: "influxdb|elasticsearch"
+                 data_storage: "elasticsearch"
                  elasticsearch_domain: "ves-elasticsearch"
                  kafka_host_2: "smo-kafka"
                  kafka_port_2: "29092"
@@ -132,6 +135,23 @@ services:
              - smo-kafka
              - ves-influxdb
              - ves-grafana
+  kafka-connector-influxdb:
+         container_name: kafka-connector-influxdb
+         build: ./kafka-connector-influxdb
+         image: influxdb-connector
+         networks:
+             - ves-net
+         ports:
+             - 9990:9990
+         environment:
+                 ves_influxdb_host: "ves-influxdb"
+                 ves_influxdb_port: "8086"
+                 ves_loglevel: "ERROR"
+                 kafka_host_2: "smo-kafka"
+                 kafka_port_2: "29092"
+         depends_on:
+             - smo-kafka
+             - ves-influxdb
   ves-agent:
           container_name: ves-agent
           build: ./agent
