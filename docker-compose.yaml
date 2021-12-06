@@ -15,44 +15,44 @@
 
 version: '3'
 services:
-  ves-influxdb:
-        container_name: ves-influxdb
+  smo-influxdb:
+        container_name: smo-influxdb
         image: influxdb:1.8.5
         ports:
              - 8086:8086
         networks:
-             - ves-net
-  ves-grafana:
-        container_name: ves-grafana
+             - smo-net
+  smo-grafana:
+        container_name: smo-grafana
         image: grafana/grafana:7.5.11
         ports:
              - 8880:3000
         networks:
-             - ves-net
+             - smo-net
         depends_on:
-             - ves-influxdb
-             - kafka-connector-influxdb
-  ves-zookeeper:
-        container_name: ves-zookeeper
+             - smo-influxdb
+             - smo-influxdb-connector
+  agent-zookeeper:
+        container_name: agent-zookeeper
         image: confluentinc/cp-zookeeper:5.5.6
         networks:
-             - ves-net
+             - agent-net
         environment:
              ZOOKEEPER_CLIENT_PORT: 2181
              ZOOKEEPER_TICK_TIME: 2000
-  ves-kafka:
-         container_name: ves-kafka
+  agent-kafka:
+         container_name: agent-kafka
          image: confluentinc/cp-kafka:5.5.6
          networks:
-             - ves-net
+             - agent-net
          depends_on:
-             - ves-zookeeper
+             - agent-zookeeper
          ports:
              - 9092:9092
          environment:
               KAFKA_BROKER_ID: 1
-              KAFKA_ZOOKEEPER_CONNECT: ves-zookeeper:2181
-              KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://ves-kafka:9092,PLAINTEXT_HOST://localhost:19092
+              KAFKA_ZOOKEEPER_CONNECT: agent-zookeeper:2181
+              KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://agent-kafka:9092,PLAINTEXT_HOST://localhost:19092
               KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
               KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
               KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -60,7 +60,7 @@ services:
         container_name: smo-zookeeper
         image: confluentinc/cp-zookeeper:5.5.6
         networks:
-             - ves-net
+             - smo-net
         environment:
              ZOOKEEPER_CLIENT_PORT: 22181
              ZOOKEEPER_TICK_TIME: 2000
@@ -68,7 +68,7 @@ services:
          container_name: smo-kafka
          image: confluentinc/cp-kafka:5.5.6
          networks:
-             - ves-net
+             - smo-net
          depends_on:
              - smo-zookeeper
          ports:
@@ -80,49 +80,50 @@ services:
               KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
               KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
               KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-  ves-kafdrop:
-         container_name: ves-kafdrop
+  agent-kafdrop:
+         container_name: agent-kafdrop
          image: obsidiandynamics/kafdrop:3.27.0
          networks:
-             - ves-net
+             - agent-net
          depends_on:
-             - ves-kafka
+             - agent-kafka
          ports:
              - 9000:9000
          environment:
-                 KAFKA_BROKERCONNECT: ves-kafka:9092
+                 KAFKA_BROKERCONNECT: agent-kafka:9092
   smo-kafdrop:
          container_name: smo-kafdrop
          image: obsidiandynamics/kafdrop:3.27.0
          networks:
-             - ves-net
+             - smo-net
          depends_on:
              - smo-kafka
          ports:
              - 29000:9000
          environment:
                  KAFKA_BROKERCONNECT: smo-kafka:29092
-  ves-collector:
-         container_name: ves-collector
+  smo-collector:
+         container_name: smo-collector
          build: ./collector
-         image: ves-collector
+         image: smo-collector
          networks:
-             - ves-net
+             - agent-net
+             - smo-net
          ports:
              - 9999:9999
          volumes:
              - ~/ves-certificate:/opt/ves/certs
          environment:
-                 ves_influxdb_host: "ves-influxdb"
+                 ves_influxdb_host: "smo-influxdb"
                  ves_influxdb_port: "8086"
-                 ves_grafana_host: "ves-grafana"
+                 ves_grafana_host: "smo-grafana"
                  ves_grafana_port: "3000"
                  data_storage: "elasticsearch"
-                 elasticsearch_domain: "ves-elasticsearch"
+                 elasticsearch_domain: "smo-elasticsearch"
                  kafka_host_2: "smo-kafka"
                  kafka_port_2: "29092"
                  kafka_topic: "smo-events"
-                 ves_host: "ves-collector"
+                 ves_host: "smo-collector"
                  ves_port: "9999"
                  ves_grafana_auth: "admin:admin"
                  ves_user: "user"
@@ -131,38 +132,37 @@ services:
                  ves_topic: "events"
                  ves_loglevel: "ERROR"
          depends_on:
-             - ves-kafka
              - smo-kafka
-             - ves-influxdb
-             - ves-grafana
-  kafka-connector-influxdb:
-         container_name: kafka-connector-influxdb
-         build: ./kafka-connector-influxdb
-         image: influxdb-connector
+             - smo-influxdb
+             - smo-grafana
+  smo-influxdb-connector:
+         container_name: smo-influxdb-connector
+         build: ./influxdb-connector
+         image: smo-influxdb-connector
          networks:
-             - ves-net
+             - smo-net
          ports:
              - 9990:9990
          environment:
-                 ves_influxdb_host: "ves-influxdb"
+                 ves_influxdb_host: "smo-influxdb"
                  ves_influxdb_port: "8086"
                  ves_loglevel: "ERROR"
                  kafka_host_2: "smo-kafka"
                  kafka_port_2: "29092"
          depends_on:
              - smo-kafka
-             - ves-influxdb
-  ves-agent:
-          container_name: ves-agent
+             - smo-influxdb
+  agent:
+          container_name: agent
           build: ./agent
-          image: ves-agent
+          image: agent
           networks:
-             - ves-net
+             - agent-net
           restart: always
           environment:
-                  ves_kafka_host: "ves-kafka"
-                  ves_kafka_hostname: "ves-kafka"
-                  ves_host: "ves-collector"
+                  ves_kafka_host: "agent-kafka"
+                  ves_kafka_hostname: "agent-kafka"
+                  ves_host: "smo-collector"
                   ves_port: "9999"
                   ves_path: ""
                   ves_topic: "events"
@@ -175,25 +175,23 @@ services:
                   ves_version: "5"
                   ves_loglevel: "ERROR"
           depends_on:
-             - ves-kafka
-             - ves-collector
-  ves-dmaap-adapter:
-         container_name: ves-dmaap-adapter
+             - agent-kafka
+             - smo-collector
+  smo-dmaap-adapter:
+         container_name: smo-dmaap-adapter
          build: ./dmaapadapter
-         image: ves-dmaap-adapter
+         image: smo-dmaap-adapter
          networks:
-             - ves-net
+             - smo-net
          ports:
              - 5000:5000
          environment:
              kafka_host: "smo-kafka"
              kafka_port: "29092"
              log_level: "DEBUG"
-         depends_on:
-             - smo-kafka
-  ves-elasticsearch:
+  smo-elasticsearch:
            image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
-           container_name: ves-elasticsearch
+           container_name: smo-elasticsearch
            restart: always
            environment:
                   discovery.type: "single-node"
@@ -202,8 +200,13 @@ services:
                    - 9200:9200
                    - 9300:9300
            networks:
-                   - ves-net
+                   - smo-net
+ 
 
 networks:
-        ves-net:
+        agent-net:
                 driver: bridge
+                name: agent-net
+        smo-net:
+                driver: bridge
+                name: smo-net
