@@ -43,34 +43,43 @@ class AppConfig:
         config = configparser.ConfigParser()
         config.read(config_file)
 
-        self.kafka_broker = config.get(config_section,
-                                       'kafka_broker',
-                                       vars=overrides)
+        self.kafka_broker = config.get(config_section, 'kafka_broker', vars=overrides)
         log_file = config.get(config_section, 'log_file', vars=overrides)
         log_level = config.get(config_section, 'log_level', vars=overrides)
 
-        handler = logging.handlers.RotatingFileHandler(log_file,
-                                                       maxBytes=1000000,
-                                                       backupCount=10)
-        formatter = logging.Formatter('%(asctime)s %(name)s - '
-                                      '%(levelname)s - %(message)s',
-                                      '%Y-%m-%d %H:%M:%S.%f %z')
-        handler.setFormatter(formatter)
-        self.logger.addHandler(handler)
-
-        # we are going to set the log level
-        if (log_level == 'DEBUG'):
-            self.logger.setLevel(logging.DEBUG)
-        elif (log_level == 'ERROR'):
-            self.logger.setLevel(logging.ERROR)
-        else:
-            self.logger.setLevel(logging.INFO)
-
-        self.logger.info('Log level {} and log file {} : '
-                         .format(log_level, log_file))
+        self.setLogger(log_file, log_level)
 
     def getKafkaBroker(self):
         return self.kafka_broker
 
     def getLogger(self):
         return self.logger
+
+    def setLogger(self, log_file, log_level):
+        rfh = logging.handlers.RotatingFileHandler(
+            filename=log_file,
+            mode='w',
+            maxBytes=1000000,
+            backupCount=10,
+            encoding=None,
+            delay=0
+        )
+
+        logging.basicConfig(
+            format="%(asctime)s %(name)-8s %(levelname)-8s %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S.%f %z",
+            handlers=[rfh]
+        )
+
+        logger = logging.getLogger("DMaaP")
+
+        # we are going to set the log level
+        if (log_level == 'DEBUG'):
+            logger.setLevel(logging.DEBUG)
+        elif (log_level == 'ERROR'):
+            logger.setLevel(logging.ERROR)
+        else:
+            logger.setLevel(logging.INFO)
+
+        logger.info('Log level {} and log file {} : '.format(log_level, log_file))
+        self.logger = logger
