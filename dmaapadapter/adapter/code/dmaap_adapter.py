@@ -16,7 +16,7 @@
 import flask
 from flask import request
 from consumer import EventConsumer, TopicConsumer
-import json
+from prepare_response import PrepareResponse
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -30,18 +30,22 @@ def index():
 
 @app.route(api_base_url + '/topics', methods=['GET'])
 def get_all_topics():
+    prepareResponse = PrepareResponse()
     topicConsumer = TopicConsumer()
-    response = app.response_class(response=json.dumps(topicConsumer.getTopics()),
-                                  status=200,
+    topicConsumer.getTopics(prepareResponse)
+    response = app.response_class(response=prepareResponse.getResponseMsg(),
+                                  status=prepareResponse.getResponseCode(),
                                   mimetype='application/json')
     return response
 
 
 @app.route(api_base_url + '/topics/listAll', methods=['GET'])
 def listall_topics():
+    prepareResponse = PrepareResponse()
     topicConsumer = TopicConsumer()
-    response = app.response_class(response=json.dumps(topicConsumer.listAllTopics()),
-                                  status=200,
+    topicConsumer.listAllTopics(prepareResponse)
+    response = app.response_class(response=prepareResponse.getResponseMsg(),
+                                  status=prepareResponse.getResponseCode(),
                                   mimetype='application/json')
     return response
 
@@ -49,9 +53,11 @@ def listall_topics():
 @app.route(api_base_url + '/topics/<topic>', methods=['GET'])
 def topic_details(topic):
     assert topic == request.view_args['topic']
+    prepareResponse = PrepareResponse()
     topicConsumer = TopicConsumer()
-    response = app.response_class(response=json.dumps(topicConsumer.getTopicDetails(topic)),
-                                  status=200,
+    topicConsumer.getTopicDetails(prepareResponse, topic)
+    response = app.response_class(response=prepareResponse.getResponseMsg(),
+                                  status=prepareResponse.getResponseCode(),
                                   mimetype='application/json')
     return response
 
@@ -69,15 +75,11 @@ def get_events(topic, consumergroup, consumerid):
     if 'timeout' in request.args:
         timeout = request.args['timeout']
 
+    prepareResponse = PrepareResponse()
     eventConsumer = EventConsumer()
-    response = app.response_class(response=json.dumps(
-                                    eventConsumer.consumeEvents(
-                                        topic,
-                                        consumergroup,
-                                        consumerid,
-                                        getLimit(limit),
-                                        getTimeout(timeout))),
-                                  status=200,
+    eventConsumer.consumeEvents(prepareResponse, topic, consumergroup, consumerid, getLimit(limit), getTimeout(timeout))
+    response = app.response_class(response=prepareResponse.getResponseMsg(),
+                                  status=prepareResponse.getResponseCode(),
                                   mimetype='application/json')
     return response
 
@@ -94,6 +96,8 @@ def getLimit(limit):
 def getTimeout(timeout):
     try:
         timeout = int(timeout)
+        if (timeout < 0):
+            timeout = 15
     except Exception:
         timeout = 15
     finally:
