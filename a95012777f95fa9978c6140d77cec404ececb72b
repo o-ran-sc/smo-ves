@@ -16,6 +16,23 @@
       "message": "IS there any test case/documentation where we could see this working? \nVisually it looks OK, but TBH I\u0027m not sure how it would behave. ",
       "revId": "a95012777f95fa9978c6140d77cec404ececb72b",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96422f4_88d97cc3",
+        "filename": "dmaapadapter/adapter/code/prepare_response.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000124
+      },
+      "writtenOn": "2021-12-08T16:04:56Z",
+      "side": 1,
+      "message": "This led me to the impression that responseCode was a string, which is not the case.\n\nMaybe initialise with \"None\", to avoid confusions.",
+      "revId": "a95012777f95fa9978c6140d77cec404ececb72b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
