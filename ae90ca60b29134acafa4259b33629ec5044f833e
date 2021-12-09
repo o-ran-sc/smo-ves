@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b42a7a25_954c424c",
+        "filename": "postconfig/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-09T20:44:11Z",
+      "side": 1,
+      "message": "Remove blank spaces.",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0815b19_6c4db227",
+        "filename": "postconfig/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-09T20:44:11Z",
+      "side": 1,
+      "message": "Remove blank spaces",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed60e9ab_e1956f86",
+        "filename": "postconfig/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-09T20:44:11Z",
+      "side": 1,
+      "message": "Remove extra blank space.",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c36bb185_31893417",
+        "filename": "postconfig/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-09T20:44:11Z",
+      "side": 1,
+      "message": "What happens if Grafana host never responds?",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
