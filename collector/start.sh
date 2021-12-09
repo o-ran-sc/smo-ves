@@ -62,51 +62,6 @@ sed -i -- "s/kafka_topic =/kafka_topic = $kafka_topic/g" \
 echo; echo $config_file
 cat $config_file
 
-echo; echo "wait for InfluxDB API at $ves_influxdb_host:$ves_influxdb_port"
-while ! curl http://$ves_influxdb_host:$ves_influxdb_port/ping ; do
-  echo "InfluxDB API is not yet responding... waiting 10 seconds"
-  sleep 10
-done
-
-echo; echo "setup veseventsdb in InfluxDB"
-# TODO: check if pre-existing and skip
-curl -X POST http://$ves_influxdb_host:$ves_influxdb_port/query \
-  --data-urlencode "q=CREATE DATABASE veseventsdb"
-
-echo; echo "wait for Grafana API to be active"
-while ! curl http://$ves_grafana_host:$ves_grafana_port ; do
-  echo "Grafana API is not yet responding... waiting 10 seconds"
-  sleep 10
-done
-
-echo; echo "add VESEvents datasource to Grafana"
-# TODO: check if pre-existing and skip
-cat <<EOF >/opt/ves/datasource.json
-{ "name":"VESEvents",
-  "type":"influxdb",
-  "access":"direct",
-  "url":"http://$ves_influxdb_host:$ves_influxdb_port",
-  "password":"root",
-  "user":"root",
-  "database":"veseventsdb",
-  "basicAuth":false,
-  "basicAuthUser":"",
-  "basicAuthPassword":"",
-  "withCredentials":false,
-  "isDefault":false,
-  "jsonData":null
-}
-EOF
-
-curl -H "Accept: application/json" -H "Content-type: application/json" \
-  -X POST -d @/opt/ves/datasource.json \
-  http://$ves_grafana_auth@$ves_grafana_host:$ves_grafana_port/api/datasources
-
-echo; echo "add VES dashboard to Grafana"
-curl -H "Accept: application/json" -H "Content-type: application/json" \
-  -X POST -d @/opt/ves/Dashboard.json \
-  http://$ves_grafana_auth@$ves_grafana_host:$ves_grafana_port/api/dashboards/db
-
 if [ "$ves_loglevel" != "" ]; then
   python3 /opt/ves/evel-test-collector/code/collector/monitor.py \
     --config /opt/ves/evel-test-collector/config/collector.conf \

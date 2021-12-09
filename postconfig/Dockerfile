@@ -1,5 +1,5 @@
 # Copyright 2021 Xoriant Corporation
-#
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,14 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#
-default: all
 
-all:
-	cd agent; make
-	cd collector; make
-	cd kafka; make
-	cd postconfig; make
+FROM ubuntu:focal
 
-clean:
-	docker rm `docker ps -a -q -f status=exited`
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y git curl 
+
+
+RUN mkdir /opt/ves
+
+RUN mkdir /opt/ves/grafana
+ADD grafana /opt/ves/grafana
+
+
+COPY start.sh /opt/ves/start.sh
+ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]

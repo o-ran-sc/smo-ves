@@ -12,14 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#
+
 default: all
 
 all:
-	cd agent; make
-	cd collector; make
-	cd kafka; make
-	cd postconfig; make
+	docker build -t smo-post-config .
 
-clean:
-	docker rm `docker ps -a -q -f status=exited`
