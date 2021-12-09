@@ -228,7 +228,10 @@ def listener(environ, start_response, schema):
 
         except jsonschema.SchemaError as e:
             logger.error('Schema is not valid! {0}'.format(e))
-
+            # Stop container forcefully.
+            for i in range(2):
+                if i == 1:
+                    os._exit(0)
         except jsonschema.ValidationError as e:
             logger.warn('Event is not valid against schema! {0}'.format(e))
             logger.warn('Bad JSON body decoded:\n'
@@ -236,9 +239,14 @@ def listener(environ, start_response, schema):
                                      sort_keys=True,
                                      indent=4,
                                      separators=(',', ': '))))
-
+            start_response('400 Bad Request',
+                                   [('Content-type', 'application/json')])
+            yield ''.encode()
         except Exception as e:
             logger.error('Event invalid for unexpected reason! {0}'.format(e))
+            start_response('500 Internal Server Error',
+                                   [('Content-type', 'application/json')])
+            yield ''.encode()
     else:
         logger.debug('No schema so just decode JSON: {0}'.format(body))
         try:
