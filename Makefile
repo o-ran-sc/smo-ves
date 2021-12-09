@@ -19,6 +19,14 @@ all:
 	cd agent; make
 	cd collector; make
 	cd kafka; make
+	cd dmaapadapter; make
+	cd influxdb-connector; make
+
+run:
+	docker-compose up -d
+
+stop:
+	docker-compose down
 
 clean:
 	docker rm `docker ps -a -q -f status=exited`
