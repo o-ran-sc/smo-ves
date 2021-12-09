@@ -1,3 +1,4 @@
+
 # Copyright 2021 Xoriant Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +22,7 @@ all:
 	cd kafka; make
 	cd dmaapadapter; make
 	cd influxdb-connector; make
+	cd postconfig; make
 
 run:
 	docker-compose up -d
