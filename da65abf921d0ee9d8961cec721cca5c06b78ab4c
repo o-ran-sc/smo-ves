@@ -35,6 +35,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11019a5d_5c5c830d",
+        "filename": "Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-09T07:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c627f9f_fcbd041a",
+      "revId": "da65abf921d0ee9d8961cec721cca5c06b78ab4c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a374af_7b43bc09",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-12-09T07:42:46Z",
       "side": 1,
       "message": "Do we need to specify an option to -d. I believe without ves-collector it still brings up both the agent and collector. Pleas confirm.",
+      "revId": "da65abf921d0ee9d8961cec721cca5c06b78ab4c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "853474a0_0288a2d3",
+        "filename": "README",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-09T07:50:04Z",
+      "side": 1,
+      "message": "Actually we don\u0027t need to put all container name. docker-compose up -d will spin all those containers",
+      "parentUuid": "a5a374af_7b43bc09",
       "revId": "da65abf921d0ee9d8961cec721cca5c06b78ab4c",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
