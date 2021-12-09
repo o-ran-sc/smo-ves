@@ -26,7 +26,7 @@ services:
         container_name: smo-grafana
         image: grafana/grafana:7.5.11
         ports:
-             - 8880:3000
+             - 3000:3000
         networks:
              - smo-net
         depends_on:
@@ -133,8 +133,6 @@ services:
                  ves_loglevel: "ERROR"
          depends_on:
              - smo-kafka
-             - smo-influxdb
-             - smo-grafana
   smo-influxdb-connector:
          container_name: smo-influxdb-connector
          build: ./influxdb-connector
@@ -201,7 +199,20 @@ services:
                    - 9300:9300
            networks:
                    - smo-net
- 
+  smo-post-config:
+         container_name: smo-post-config
+         build: ./postconfig
+         image: smo-post-config
+         environment:
+             ves_influxdb_host: "smo-influxdb"
+             ves_influxdb_port: "8086"
+             ves_grafana_host: "smo-grafana"
+             ves_grafana_port: "3000"
+             ves_grafana_auth: "admin:admin"
+         depends_on:
+             - smo-grafana
+         networks:
+             - smo-net
 
 networks:
         agent-net:
