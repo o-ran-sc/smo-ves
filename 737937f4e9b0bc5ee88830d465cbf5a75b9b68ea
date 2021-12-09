@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f6e56f2_50bd6373",
+        "filename": "collector/evel-test-collector/code/collector/monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-09T20:50:13Z",
+      "side": 1,
+      "message": "I do not understand this logic. Why do we need this for loop to exit out of the container if we have already encountered an error?",
+      "revId": "737937f4e9b0bc5ee88830d465cbf5a75b9b68ea",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
