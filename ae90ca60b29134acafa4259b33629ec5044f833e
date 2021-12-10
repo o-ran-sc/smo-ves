@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8a09086_8d31c0ae",
+        "filename": "postconfig/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-10T06:51:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b42a7a25_954c424c",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0815b19_6c4db227",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-12-09T20:44:11Z",
       "side": 1,
       "message": "Remove blank spaces",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b080c8dd_c095f13f",
+        "filename": "postconfig/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-10T06:51:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0815b19_6c4db227",
       "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -52,6 +88,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19d2e60_3e146861",
+        "filename": "postconfig/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-10T06:51:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed60e9ab_e1956f86",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c36bb185_31893417",
@@ -65,6 +119,24 @@
       "writtenOn": "2021-12-09T20:44:11Z",
       "side": 1,
       "message": "What happens if Grafana host never responds?",
+      "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21faba2f_b691fd6c",
+        "filename": "postconfig/start.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2021-12-10T06:51:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c36bb185_31893417",
       "revId": "ae90ca60b29134acafa4259b33629ec5044f833e",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
