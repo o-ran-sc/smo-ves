@@ -14,10 +14,10 @@
 #
 
 from confluent_kafka.admin import AdminClient
-from confluent_kafka import Consumer
+from confluent_kafka import Consumer, KafkaError
 from app_config import AppConfig
-import logging
 import sys
+import logging.handlers
 
 
 class EventConsumer:
@@ -29,9 +29,9 @@ class EventConsumer:
         self.logger = appConfig.getLogger()
         self.broker = appConfig.getKafkaBroker()
 
-    def consumeEvents(self, topic, consumergroup, consumerid, limit, timeout):
+    def consumeEvents(self, prepareResponse, topic, consumergroup, consumerid, limit, timeout):
         self.logger.debug("topic={}, consumergroup={}, consumerid={}, limit={}, timeout={} "
-                          .format(topic, consumergroup, consumerid, limit, timeout))
+                     .format(topic, consumergroup, consumerid, limit, timeout))
         consumer_config = {
             'bootstrap.servers': self.broker,
             'group.id': consumergroup,
@@ -47,6 +47,7 @@ class EventConsumer:
         try:
             ctr = 0
             content_size = 0
+            response_code = 200
             while True:
                 if (ctr == int(limit)):
                     break
@@ -56,85 +57,103 @@ class EventConsumer:
                 # read single message at a time
                 msg = consumer.poll(timeout=int(timeout))
                 if msg is None:
-                    self.logger.debug("No records ")
+                    self.logger.debug("No new records exists in topic {} of broker {}".format(topic, self.broker))
                     break
                 if msg.error():
+                    if (msg.error().code() == KafkaError.UNKNOWN_TOPIC_OR_PART):
+                        response_code = 409
                     self.logger.debug("Error reading message : {}".format(msg.error()))
                     break
-                event = msg.value().decode('utf8').replace("'", '"')
-                content_size = content_size + sys.getsizeof(event)
-                event_list.append(event)
+
+                content_size = content_size + sys.getsizeof(msg.value().decode('utf8').replace("'", '"'))
+                event_list.append(msg.value().decode('utf8').replace("'", '"'))
                 consumer.commit()
 
+            prepareResponse.setResponseCode(response_code)
+            if (response_code == 409):
+                prepareResponse.setResponseMsg("Unable to read the messages from the topic")
+            else:
+                prepareResponse.setResponseMsg(event_list)
+
         except Exception as ex:
-            self.logger.debug('Failed to get event information due to unexpected reason! {0}'.format(ex))
+            self.logger.error("Failed to get event information due to unexpected reason! {0}".format(ex))
+            prepareResponse.setResponseCode(500)
+            prepareResponse.setResponseMsg("Failed to return the events")
 
         finally:
             self.logger.debug("closing consumer")
             consumer.close()
-            return event_list
 
 
 class TopicConsumer:
 
     broker = ""
-    logger = logging.getLogger()
     timeout = 10
+    logger = logging.getLogger()
 
     def __init__(self):
         appConfig = AppConfig()
         self.logger = appConfig.getLogger()
         self.broker = appConfig.getKafkaBroker()
 
-    def getTopics(self):
+    def getTopics(self, prepareResponse):
         try:
+            topic_list = []
             adminClient = AdminClient({"bootstrap.servers": self.broker})
             ListTopicsResult = adminClient.list_topics(timeout=self.timeout)
-            topic_list = []
 
             for key, value in ListTopicsResult.topics.items():
                 topic_list.append(key)
 
-            dict = {'topics': topic_list}
-            return dict
+            dict = {"topics": topic_list}
+            prepareResponse.setResponseCode(200)
+            prepareResponse.setResponseMsg(dict)
 
         except Exception as ex:
-            self.logger.debug('Failed to get topic information due to unexpected reason! {0}'.format(ex))
+            self.logger.error('Failed to get topic information due to unexpected reason! {0}'.format(ex))
+            prepareResponse.setResponseCode(500)
+            prepareResponse.setResponseMsg("Failed to return the topics")
 
-    def listAllTopics(self):
+    def listAllTopics(self, prepareResponse):
         try:
             topic_list = []
             adminClient = AdminClient({"bootstrap.servers": self.broker})
             ListTopicsResult = adminClient.list_topics(timeout=self.timeout)
 
             for key, value in ListTopicsResult.topics.items():
-                dict = {'topicName': key,
-                        'owner': '',
-                        'txenabled': False
-                        }
+                dict = {"topicName": key, "owner": "", "txenabled": False}
                 topic_list.append(dict)
 
-            dict2 = {'topics': topic_list}
-            return dict2
+            dict2 = {"topics": topic_list}
+            prepareResponse.setResponseCode(200)
+            prepareResponse.setResponseMsg(dict2)
         except Exception as ex:
-            self.logger.debug('Failed to get list of topic information due to unexpected reason! {0}'.format(ex))
+            self.logger.error('Failed to get list of topic information due to unexpected reason! {0}'.format(ex))
+            prepareResponse.setResponseCode(500)
+            prepareResponse.setResponseMsg("Failed to return the topics")
 
-    def getTopicDetails(self, topic):
+    def getTopicDetails(self, prepareResponse, topic):
         try:
             adminClient = AdminClient({"bootstrap.servers": self.broker})
             ListTopicsResult = adminClient.list_topics(timeout=self.timeout)
 
+            topic_exists = False
             for key, value in ListTopicsResult.topics.items():
                 if (key == topic):
-                    dict = {'name': key,
-                            'owner': '',
-                            'description': '',
-                            'readerAcl': {"enabled": True, "users": []},
-                            'writerAcl': {"enabled": True, "users": []}
-                            }
-                    return dict
+                    topic_exists = True
+                    dict = {"name": key,
+                            "owner": "",
+                            "description": "",
+                            "readerAcl": {"enabled": True, "users": []},
+                            "writerAcl": {"enabled": True, "users": []}}
+                    prepareResponse.setResponseCode(200)
+                    prepareResponse.setResponseMsg(dict)
 
-            self.logger.debug("Topic {} does not exists! ".format(topic))
-            return "Topic [" + topic + "] does not exists"
+            if (topic_exists is False):
+                self.logger.debug("Topic '{}' does not exists! ".format(topic))
+                prepareResponse.setResponseCode(404)
+                prepareResponse.setResponseMsg("Topic [" + topic + "] not found")
         except Exception as ex:
-            self.logger.debug('Failed to get topic detail due to unexpected reason! {0}'.format(ex))
+            self.logger.error('Failed to get topic detail due to unexpected reason! {0}'.format(ex))
+            prepareResponse.setResponseCode(500)
+            prepareResponse.setResponseMsg("Failed to return the topics")
