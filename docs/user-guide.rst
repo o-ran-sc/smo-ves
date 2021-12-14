@@ -6,27 +6,66 @@
 User Guide
 ==========
 
-This is the user guide of OSC <COMPONENT>.
+# Introduction
 
-.. contents::
-   :depth: 3
-   :local:
+This repository supports the VES collector interface in O-RAN. It
+makes use of three containers, the ves-collector container that
+collects VES events posted by other parts of the O-RAN solution,
+Grafana, which is used to display measurement (PM) data posted
+by other entities and InfluxdB which is used to persist the data
+received by the collector.
 
-..  a user guide should be how to use the component or system; it should not be a requirements document
-..  delete this content after edittng it
+## Prerequisites:
 
+The prerequisite to use this solution is that you need Docker
+running on the machine, where you want to run these containers.
 
-Description
------------
-.. Describe the traget users of the projcet, for example, modeler/data scientist, ORAN-OSC platform admin, marketplace user, design studio end user, etc
-.. Descirbe how the target users can get use of a O-RAN SC component.
-.. If the guide contains sections on third-party tools, is it clearly stated why the O-RAN-OSC platform is using those tools? Are there instructions on how to install and configure each tool/toolset?
+## Build:
 
-Feature Introduction
---------------------
-.. Provide enough information that a user will be able to operate the feature on a deployed scenario. content can be added from administration, management, using, Troubleshooting sections perspectives.
+To build the solution, you need to do the following in the current
+folder.
 
+    % make
 
+## Run:
 
-    
+To run the solution, you need to invoke the following command
+
+    % docker-compose up -d ves-collector
+    % docker-compose up -d ves-agent
+
+or simply by the following make command
+
+    % make run
+
+To stop the solution the following command should be invoked.
+
+    % docker-compose down -d ves-collector
+    % docker-compose down -d ves-agent
+
+or simply by the following make command
+
+    % make stop
+
+********************************************************************************************************
+Following steps are required for certificate.
+*******************************************************************************************************
+### Self-Signed Certificates
+Following steps are required for self-signed certificate.
+1. Create ves-certificate directory on the host system using command "mkdir ~/ves-certificate".
+2. Go to ves-certificate directory and use below commands to create self-signed certificate files.
+
+    openssl genrsa -out vescertificate.key 2048
+    openssl req -new -key vescertificate.key -out vescertificate.csr
+    openssl x509 -req -days 365 -in vescertificate.csr -signkey vescertificate.key -out vescertificate.crt
+### Third Party Certificates
+Third party certificates can be installed by overwriting the file *vescertificate.csr*, *vescertificate.key*, and *vescertficate.crt* in ~/ves-certificate directory of the host system.
+
+********************************************************************************************************
+Following steps are required to add entry in host file
+********************************************************************************************************
+Add following entry in host file on the computer from which user want to access Grafana  dashboard.
+<IP Address of VM/Machine on which docker containers are running> smo-influxdb
+
+For Example- Docker container running on the guest VM or different/remote machine having IP Address 192.168.56.110 then host file entry is as follows.
 
