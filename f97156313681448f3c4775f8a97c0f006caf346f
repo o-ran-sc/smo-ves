@@ -1,0 +1,633 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81cde700_7dc721a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "The ORAN JOBbuilder failure should have been an indication that some of the syntax was wrong. So look up the syntax for .rst files if you do not understand some of the comments that I have provided. There is a difference in the syntax between .md and .rst.\n\nAlso, please download the tox tool and execute the following command in the root folder. It will build the documentation and put it in docs/_build folder. Open the docs/_build/html/index.html file in your browser, and you will see how the documentation is going to be rendered. Make any more edits that I might have missed and resubmit this review. The ORAN JOBbuilder will return a +1 if everything builds fine.\n\n%  tox -e docs,docs-linkcheck",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "357f4b53_b19bdae4",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Better to say\n\nFollowing steps are required for installing a certificate.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dce4827a_aff4da60",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Add what needs to follow here.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75bd4c73_00150b58",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Insert the following lines here.\n\nsmo/ves Overview\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bf2945_4cac513b",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "A few suggested edits in this paragraph.\n\nThis repository supports the O1 VES collector interface in O-RAN. It\nmakes use of three containers, the ves-collector container that\ncollects VES events posted by Network Functions (NF) of the O-RAN solution,\nGrafana, which is used to display Performance Measurement (PM) data send\nby the NFs, and InfluxdB which is used to persist data\nreceived by the collector.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b632a31_55c11ccd",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace \n## Prerequisites\nwith\nPrerequisites\n-------------",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54cc5764_1434100e",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "And edits here:\n\nThe prerequisites for using this solution are that you need Docker and docker-compose\ninstalled on the machine, where you want to run these containers.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a014c745_02908c87",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace \n## Build\nwith\nBuild\n-----",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb179a09_0a8123c5",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "If you replace folder. with folder:: it will put the next line in a box by itself.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21a8eaa_24483f2a",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace command with command::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "123890dc_798d2660",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "And here.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f68ed917_3b8ab677",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace invoked. with invoked::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62b3f59a_a8a07e17",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace command with command::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3014014_dde52de3",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Remove ** as they are used for emphasis and put ------ as follows\n\nFollowing steps are required to install a certificate\n-----------------------------------------------------",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01b36151_ffcc2b49",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n### Self-Signed Certificates\nwith\nSelf-Signed Certificates\n~~~~~~~~~~~~~~~~~~~~~~~~",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecefae3c_706ec5e1",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "End this line with files::\n\nso the next three lines are put inside a type fixed font.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "730b3e1f_37f16be3",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n### Third Party Certificates\nwith\nThird Party Certificates\n~~~~~~~~~~~~~~~~~~~~~~~~",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90654779_430ee950",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Remove *** and replace with the following\n\nFollowing steps are required to add an entry in the host file\n-------------------------------------------------------------",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5267556e_8a19fea1",
+        "filename": "docs/overview.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Are you missing something here?",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7964f3d5_5c9fce2b",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Insert the following lines here (you should not have removed them)\n\nThis is the user guide for OSC smo/ves\n\n.. contents::\n   :depth: 3\n   :local:",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a732c06_39620568",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n\n# Introduction\nwith\nIntroduction\n------------",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dd117b2_71994765",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "A few suggested edits in this paragraph.\n\nThis repository supports the O1 VES collector interface in O-RAN. It\nmakes use of three containers, the ves-collector container that\ncollects VES events posted by Network Functions (NF) of the O-RAN solution,\nGrafana, which is used to display Performance Measurement (PM) data send\nby the NFs, and InfluxdB which is used to persist data\nreceived by the collector.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcfbf5c_22ec50a4",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n\n## Prerequisites\nwith\nPrerequisites\n-------------",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "823a9933_5ed45642",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "And edits here:\n\nThe prerequisites for using this solution are that you need Docker and docker-compose\ninstalled on the machine, where you want to run these containers.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049b1355_c12c26cd",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n\n## Build\nwith\nBuild\n-----",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf7ba30_86ec8993",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n\nfolder.\n\nwith\n\nfolder::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22888845_6ff0ab8d",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n\n## Run:\n\nwith\n\nRun\n---",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "124dc29f_cb4bff54",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "End this line with command::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819cd5e3_2a2162d2",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "End this line with command::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bd0bf9_a80d186f",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "And this line with invoked::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45df982_63120eea",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "And this line with command::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e34541eb_86d583a1",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Remove ** and put ---- under the title as shown in the previous file comments.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ed8733_e2236166",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace\n\n### Self-Signed Certificates\n\nwith\n\nSelf-Signed Certificates\n------------------------",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d89705b0_5598e594",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "End this line with files::",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e6e5847_905cf026",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Replace \n\n### Third Party Certificates\n\nwith\n\nThird Party Certificates\n~~~~~~~~~~~~~~~~~~~~~~~~",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9c0c2f_66ea46e1",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "Remove ** and add the following to end of the line :: as explained in the previous file.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b8c1e7_4af95ec8",
+        "filename": "docs/user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-14T19:15:25Z",
+      "side": 1,
+      "message": "You are missing something here.",
+      "revId": "f97156313681448f3c4775f8a97c0f006caf346f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
