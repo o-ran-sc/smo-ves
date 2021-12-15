@@ -13,6 +13,7 @@ This is the user guide for OSC smo/ves
    :local:
    
 Introduction
+------------
 
 This repository supports the VES collector interface in O-RAN. It
 makes use of three containers, the ves-collector container that
@@ -21,24 +22,25 @@ Grafana, which is used to display measurement (PM) data posted
 by other entities and InfluxdB which is used to persist the data
 received by the collector.
 
-Prerequisites:
+Prerequisites
+-------------
 
-The prerequisites for using this solution are that you need Docker and docker-compose
-installed on the machine, where you want to run these containers.
+The prerequisites for using this solution are that you need Docker and docker-compose installed on the machine, where you want to run these containers.
 
-Build:
+Build
+-----
 
 To build the solution, you need to do the following in the current
 folder::
 
     % make
 
-Run:
+Run
+---
 
 To run the solution, you need to invoke the following command::
 
-    % docker-compose up -d ves-collector
-    % docker-compose up -d ves-agent
+    % docker-compose up -d
 
 or simply by the following make command::
 
@@ -46,8 +48,7 @@ or simply by the following make command::
 
 To stop the solution the following command should be invoked::
 
-    % docker-compose down -d ves-collector
-    % docker-compose down -d ves-agent
+    % docker-compose down
 
 or simply by the following make command::
 
