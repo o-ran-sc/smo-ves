@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b76003d_b5a8dadd",
+        "filename": "docs/overview.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2021-12-15T14:06:47Z",
+      "side": 1,
+      "message": "Please remove this blank spaces.",
+      "revId": "f5a7e950fde77899d592d015da6780f856c650d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
