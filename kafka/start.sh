@@ -18,7 +18,7 @@
 
 echo "$zookeeper_host $zookeeper_hostname" >>/etc/hosts
 cat /etc/hosts
-cd /opt/ves
+cd /opt/smo
 
 sed -i "s/localhost:2181/$zookeeper_hostname:$zookeeper_port/" \
   kafka_2.11-0.11.0.2/config/server.properties

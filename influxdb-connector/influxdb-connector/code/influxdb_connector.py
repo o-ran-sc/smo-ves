@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import sys
+import os
 import platform
 import json
 import logging
@@ -19,6 +21,7 @@ from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import configparser
 import logging.handlers
 import requests
+import urllib.request as url
 from confluent_kafka import Consumer, KafkaError
 
 # ------------------------------------------------------------------------------
@@ -29,15 +32,13 @@ influxdb = '127.0.0.1'
 
 logger = None
 
-
 def send_to_influxdb(event, pdata):
-    url = 'http://{}/write?db=veseventsdb'.format(influxdb)
+    url = 'http://{}/write?db=eventsdb'.format(influxdb)
     logger.debug('Send {} to influxdb at {}: {}'.format(event, influxdb, pdata))
     r = requests.post(url, data=pdata, headers={'Content-Type': 'text/plain'})
     logger.info('influxdb return code {}'.format(r.status_code))
     if r.status_code != 204:
-        logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
-
+         logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
 
 def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
     for additionalMeasurements in val:
@@ -289,25 +290,25 @@ def main():
     # Setup argument parser so we can parse the command-line.
     # ----------------------------------------------------------------------
     parser = ArgumentParser(description='',
-                            formatter_class=ArgumentDefaultsHelpFormatter)
+                               formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('-i', '--influxdb',
-                        dest='influxdb',
-                        default='localhost',
-                        help='InfluxDB server addresss')
+                            dest='influxdb',
+                            default='localhost',
+                            help='InfluxDB server addresss')
     parser.add_argument('-v', '--verbose',
-                        dest='verbose',
-                        action='count',
-                        help='set verbosity level')
+                            dest='verbose',
+                            action='count',
+                            help='set verbosity level')
     parser.add_argument('-c', '--config',
-                        dest='config',
-                        default='/opt/ves/connector/config/consumer.conf',
-                        help='Use this config file.',
-                        metavar='<file>')
+                            dest='config',
+                            default='/opt/smo/connector/config/consumer.conf',
+                            help='Use this config file.',
+                            metavar='<file>')
     parser.add_argument('-s', '--section',
-                        dest='section',
-                        default='default',
-                        metavar='<section>',
-                        help='section to use in the config file')
+                            dest='section',
+                            default='default',
+                            metavar='<section>',
+                            help='section to use in the config file')
 
     # ----------------------------------------------------------------------
     # Process arguments received.
@@ -327,6 +328,7 @@ def main():
                           }
     config.read(config_file)
 
+
     # ----------------------------------------------------------------------
     # extract the values we want.
     # ----------------------------------------------------------------------
@@ -336,7 +338,8 @@ def main():
 
     influxdb = config.get(config_section, 'influxdb', vars=overrides)
     log_file = config.get(config_section, 'log_file', vars=overrides)
-    kafka_server = config.get(config_section, 'kafka_server', vars=overrides)
+    kafka_server=config.get(config_section,'kafka_server',
+                                   vars=overrides)
 
     # ----------------------------------------------------------------------
     # Finally we have enough info to start a proper flow trace.
@@ -350,8 +353,8 @@ def main():
     else:
         logger.setLevel(logging.DEBUG)
     handler = logging.handlers.RotatingFileHandler(log_file,
-                                                   maxBytes=1000000,
-                                                   backupCount=10)
+                                                       maxBytes=1000000,
+                                                       backupCount=10)
     if (platform.system() == 'Windows'):
         date_format = '%Y-%m-%d %H:%M:%S'
     else:
@@ -373,6 +376,7 @@ def main():
     # kafka Consumer code .
     # ----------------------------------------------------------------------
 
+
     settings = {
         'bootstrap.servers': kafka_server,
         'group.id': 'mygroup',
@@ -384,8 +388,8 @@ def main():
 
     c = Consumer(settings)
 
-    c.subscribe(['measurement', 'pnfregistration',
-                 'fault', 'thresholdcrossingalert', 'heartbeat'])
+    c.subscribe(['measurement','pnfregistration',
+    'fault','thresholdcrossingalert','heartbeat'])
 
     try:
         while True:
@@ -398,7 +402,7 @@ def main():
                 save_event_in_db(msg.value())
             elif msg.error().code() == KafkaError._PARTITION_EOF:
                 logger.error('End of partition reached {0}/{1}'
-                             .format(msg.topic(), msg.partition()))
+                      .format(msg.topic(), msg.partition()))
             else:
                 logger.error('Error occured: {0}'.format(msg.error().str()))
 
@@ -407,7 +411,6 @@ def main():
 
     finally:
         c.close()
-
 
 if __name__ == '__main__':
     main()

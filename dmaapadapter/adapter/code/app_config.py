@@ -27,7 +27,7 @@ class AppConfig:
                                 formatter_class=ArgumentDefaultsHelpFormatter)
         parser.add_argument('-c', '--config',
                             dest='config',
-                            default='/opt/ves/adapter/config/adapter.conf',
+                            default='/opt/smo/adapter/config/adapter.conf',
                             help='Use this config file.')
         parser.add_argument('-s', '--section',
                             dest='section',

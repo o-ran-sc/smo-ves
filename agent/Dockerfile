@@ -20,7 +20,7 @@
 
 FROM ubuntu:focal
 
-RUN mkdir /opt/ves
+RUN mkdir /opt/smo
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y tzdata
@@ -36,8 +36,8 @@ libssl-dev libsasl2-dev liblz4-dev libz-dev
 RUN pip3 install kafka-python pyaml
 RUN pip3 install --upgrade certifi
 
-RUN mkdir /opt/ves/barometer
-ADD barometer /opt/ves/barometer
+RUN mkdir /opt/smo/barometer
+ADD barometer /opt/smo/barometer
 
-COPY start.sh /opt/ves/start.sh
-ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
+COPY start.sh /opt/smo/start.sh
+ENTRYPOINT ["/bin/bash", "/opt/smo/start.sh"]

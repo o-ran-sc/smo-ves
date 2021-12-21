@@ -14,10 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#. What this is: Startup script for the OPNFV VES Agent running under docker.
+#. What this is: Startup script for the OPNFV Agent running under docker.
 
-echo "Ves-agent is trying to connect Kafka Broker.."
-timeout 1m bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$ves_kafka_host/$ves_kafka_port; do sleep 2; done'
+echo "Agent is trying to connect Kafka Broker.."
+timeout 1m bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$agent_kafka_host/$agent_kafka_port; do sleep 2; done'
 success=$?
 if [ $success -eq 0 ]
         then
@@ -27,48 +27,48 @@ if [ $success -eq 0 ]
                 exit;
 fi
 
-echo "Ves-agent is trying to connect ves-collector.."
-timeout 1m bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$ves_host/$ves_port; do sleep 2; done'
+echo "Agent is trying to connect smo-collector.."
+timeout 1m bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$smo_collector_host/$smo_collector_port; do sleep 2; done'
 success=$?
 if [ $success -eq 0 ]
         then
-                echo "ves-collector is up.."
+                echo "smo-collector is up.."
         else
-                echo "No ves-collector found .. exiting container.."
+                echo "No smo-collector found .. exiting container.."
                 exit;
 fi
 
-echo "$ves_kafka_host $ves_kafka_hostname" >>/etc/hosts
-echo "ves_kafka_hostname=$ves_kafka_hostname"
+echo "$agent_kafka_host $agent_kafka_host" >>/etc/hosts
+echo "agent_kafka_host =$agent_kafka_host"
 echo "*** /etc/hosts ***"
 cat /etc/hosts
 
-cd /opt/ves/barometer/3rd_party/collectd-ves-app/ves_app
-cat <<EOF >ves_app_config.conf
+cd /opt/smo/barometer/3rd_party/collectd-agent-app/agent_app
+cat <<EOF >agent_app_config.conf
 [config]
-Domain = $ves_host
-Port = $ves_port
-Path = $ves_path
-Topic = $ves_topic
-UseHttps = $ves_https
-Username = $ves_user
-Password = $ves_pass
-SendEventInterval = $ves_interval
-ApiVersion = $ves_version
-KafkaPort = $ves_kafka_port
-KafkaBroker = $ves_kafka_host
+Domain = $smo_collector_host
+Port = $smo_collector_port
+Path = $smo_collector_path
+Directory_path = $smo_collector_directory_path
+UseHttps = $smo_collector_https
+Username = $smo_collector_user
+Password = $smo_collector_pass
+SendEventInterval = $agent_interval
+ApiVersion = $smo_collector_version
+KafkaPort = $agent_kafka_port
+KafkaBroker = $agent_kafka_host
 EOF
 
-cat ves_app_config.conf
-echo "ves_mode=$ves_mode"
+cat agent_app_config.conf
+echo "agent_mode=$agent_mode"
 
-if [[ "$ves_loglevel" == "" ]]; then
-  ves_loglevel=ERROR
+if [[ "$loglevel" == "" ]]; then
+  loglevel=ERROR
 fi
 
-python3 ves_app.py --events-schema=$ves_mode.yaml --loglevel $ves_loglevel \
-  --config=ves_app_config.conf
+python3 agent_app.py --events-schema=$agent_mode.yaml --loglevel $loglevel \
+  --config=agent_app_config.conf
 
-# Dump ves_app.log if the command above exits (fails)
-echo "*** ves_app.log ***"
-cat ves_app.log
+# Dump agent_app.log if the command above exits (fails)
+echo "*** agent_app.log ***"
+cat agent_app.log

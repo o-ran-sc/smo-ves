@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd /opt/ves
+cd /opt/smo
 touch dmaap.log
 
 config_file="adapter/config/adapter.conf"
@@ -29,11 +29,11 @@ cat $config_file
 
 
 if [ "$log_level" != "" ]; then
-  python3 /opt/ves/adapter/code/dmaap_adapter.py \
-    --config /opt/ves/adapter/config/adapter.conf \
-    --section default > /opt/ves/dmaap.log 2>&1
+  python3 /opt/smo/adapter/code/dmaap_adapter.py \
+    --config /opt/smo/adapter/config/adapter.conf \
+    --section default > /opt/smo/dmaap.log 2>&1
 else
-  python3 /opt/ves/adapter/code/dmaap_adapter.py \
-    --config /opt/ves/adapter/config/adapter.conf \
+  python3 /opt/smo/adapter/code/dmaap_adapter.py \
+    --config /opt/smo/adapter/config/adapter.conf \
     --section default
 fi

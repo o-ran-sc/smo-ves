@@ -14,7 +14,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -211,7 +211,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -367,7 +367,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -524,7 +524,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -679,7 +679,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -826,7 +826,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -973,7 +973,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1152,7 +1152,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "VESEvents",
+      "datasource": "Events",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1290,7 +1290,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "VESEvents",
+        "datasource": "Events",
         "definition": "",
         "error": null,
         "hide": 0,
@@ -1337,7 +1337,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "VES Demo",
+  "title": "Events Demo",
   "version": 4
  }
 }

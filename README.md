@@ -23,8 +23,8 @@ folder.
 
 To run the solution, you need to invoke the following command
 
-    % docker-compose up -d ves-collector
-    % docker-compose up -d ves-agent
+    % docker-compose up -d smo-collector
+    % docker-compose up -d agent
 
 or simply by the following make command
 
@@ -32,8 +32,8 @@ or simply by the following make command
 
 To stop the solution the following command should be invoked.
 
-    % docker-compose down -d ves-collector
-    % docker-compose down -d ves-agent
+    % docker-compose down -d smo-collector
+    % docker-compose down -d agent
 
 or simply by the following make command
 

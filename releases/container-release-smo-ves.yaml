@@ -6,9 +6,9 @@ container_push_registry: nexus3.o-ran-sc.org:10002
 project: smo/ves
 ref: I152b0ad5a7b6676eef702e3c3811c2f381b0f4f8
 containers:
-    - name: ves-influxdb
+    - name: smo-influxdb
       version: 1.8.5
-    - name: ves-grafana
+    - name: smo-grafana
       version: 7.5.11
     - name: smo-zookeeper
       version: 5.5.6
@@ -16,7 +16,13 @@ containers:
       version: 5.5.6
     - name: smo-kafdrop
       version: 3.27.0
-    - name: ves-dmaap-adapter
+    - name: smo-dmaap-adapter
       version: 1.0.0
-    - name: ves-collector
+    - name: smo-collector
       version: 2.0.1
+    - name: smo-post-config
+      version: 1.0.0
+    - name: smo-influxdb-connector
+      version: 1.0.0
+    - name: smo-elasticsearch
+      version: 7.11.1

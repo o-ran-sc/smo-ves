@@ -26,13 +26,13 @@ RUN apt-get install -y default-jre python-pip wget
 # Required for kafka
 RUN pip install kafka-python
 
-RUN mkdir /opt/ves
+RUN mkdir /opt/smo
 
-RUN cd /opt/ves; \
+RUN cd /opt/smo; \
 wget https://archive.apache.org/dist/kafka/0.11.0.2/kafka_2.11-0.11.0.2.tgz; \
 tar -xvzf kafka_2.11-0.11.0.2.tgz; \
 sed -i -- 's/#delete.topic.enable=true/delete.topic.enable=true/' \
   kafka_2.11-0.11.0.2/config/server.properties
 
-COPY start.sh /opt/ves/start.sh
-ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
+COPY start.sh /opt/smo/start.sh
+ENTRYPOINT ["/bin/bash", "/opt/smo/start.sh"]
