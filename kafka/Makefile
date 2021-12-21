@@ -16,4 +16,4 @@
 default: all
 
 all:
-	docker build -t ves-kafka .
+	docker build -t agent-kafka .

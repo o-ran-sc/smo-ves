@@ -16,5 +16,5 @@
 default: all
 
 all:
-	docker build -t ves-dmaap-adapter .
+	docker build -t smo-dmaap-adapter .
 

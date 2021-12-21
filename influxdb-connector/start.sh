@@ -12,23 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-cd /opt/ves
+cd /opt/smo
 touch monitor.log
 
 config_file="influxdb-connector/config/influxdb_connector.conf"
 
-sed -i -- "s/influxdb =/influxdb = $ves_influxdb_host:$ves_influxdb_port/g" \
+sed -i -- "s/influxdb =/influxdb = $smo_influxdb_host:$smo_influxdb_port/g" \
   $config_file
-sed -i -- "s/kafka_server =/kafka_server = $kafka_host_2:$kafka_port_2/g" \
+sed -i -- "s/kafka_server =/kafka_server = $smo_kafka_host:$smo_kafka_port/g" \
   $config_file
 
 echo; echo $config_file
 cat $config_file
 
-echo; echo "wait for InfluxDB API at $ves_influxdb_host:$ves_influxdb_port"
+echo; echo "wait for InfluxDB API at $smo_influxdb_host:$smo_influxdb_port"
 STARTTIME=$(date +%s)
 max_time=60
-while ! curl http://$ves_influxdb_host:$ves_influxdb_port/ping ;
+while ! curl http://$smo_influxdb_host:$smo_influxdb_port/ping ;
    do
      ELAPSED_TIME=$(($(date +%s) - $STARTTIME))
      if [ $ELAPSED_TIME -ge $max_time ]; then
@@ -39,19 +39,19 @@ while ! curl http://$ves_influxdb_host:$ves_influxdb_port/ping ;
      sleep 10
    done
    echo "Done."
-echo; echo "setup veseventsdb in InfluxDB"
+echo; echo "setup eventsdb in InfluxDB"
 # TODO: check if pre-existing and skip
-curl -X POST http://$ves_influxdb_host:$ves_influxdb_port/query \
-  --data-urlencode "q=CREATE DATABASE veseventsdb"
+curl -X POST http://$smo_influxdb_host:$smo_influxdb_port/query \
+  --data-urlencode "q=CREATE DATABASE eventsdb"
 
-if [ "$ves_loglevel" != "" ]; then
-  python3 /opt/ves/influxdb-connector/code/influxdb_connector.py \
-    --config /opt/ves/influxdb-connector/config/influxdb_connector.conf \
-    --influxdb $ves_influxdb_host:$ves_influxdb_port \
-    --section default > /opt/ves/monitor.log 2>&1
+if [ "$loglevel" != "" ]; then
+  python3 /opt/smo/influxdb-connector/code/influxdb_connector.py \
+    --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
+    --influxdb $smo_influxdb_host:$smo_influxdb_port \
+    --section default > /opt/smo/monitor.log 2>&1
 else
-  python3 /opt/ves/influxdb-connector/code/influxdb_connector.py  \
-    --config /opt/ves/influxdb-connector/config/influxdb_connector.conf \
-    --influxdb $ves_influxdb_host:$ves_influxdb_port \
+  python3 /opt/smo/influxdb-connector/code/influxdb_connector.py  \
+    --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
+    --influxdb $smo_influxdb_host:$smo_influxdb_port \
     --section default
 fi

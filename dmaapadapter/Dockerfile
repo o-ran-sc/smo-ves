@@ -20,12 +20,12 @@ RUN apt-get install -y git curl python3 python3-pip
 RUN pip3 install requests jsonschema kafka-python flask confluent-kafka
 
 
-RUN mkdir /opt/ves
+RUN mkdir /opt/smo
 
 # Clone adapter folder
-RUN mkdir /opt/ves/adapter
-ADD adapter /opt/ves/adapter
+RUN mkdir /opt/smo/adapter
+ADD adapter /opt/smo/adapter
 
 
-COPY start.sh /opt/ves/start.sh
-ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
+COPY start.sh /opt/smo/start.sh
+ENTRYPOINT ["/bin/bash", "/opt/smo/start.sh"]

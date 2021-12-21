@@ -16,5 +16,5 @@
 default: all
 
 all:
-	docker build -t ves-collector .
+	docker build -t smo-collector .
 
