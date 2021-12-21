@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#. What this is: Startup script for the OPNFV VES Collector running under docker.
+#. What this is: Startup script for the OPNFV SMO Collector running under docker.
 # the variables used below are now passed in as environmental variables
 # from the docker run command.
-cd /opt/ves
+cd /opt/smo
 touch monitor.log
 
 config_file="evel-test-collector/config/collector.conf"
@@ -36,40 +36,34 @@ fi
 sed -i -- \
   "s~log_file = /var/log/att/collector.log~log_file = /opt/ves/collector.log~" \
   $config_file
-sed -i -- "s/vel_domain = 127.0.0.1/vel_domain = $ves_host/g" \
+sed -i -- "s/vel_domain = 127.0.0.1/vel_domain = $collector_host/g" \
   $config_file
-sed -i -- "s/vel_port = 30000/vel_port = $ves_port/g" \
+sed -i -- "s/vel_port = 30000/vel_port = $collector_port/g" \
   $config_file
-sed -i -- "s/vel_username =/vel_username = $ves_user/g" \
+sed -i -- "s/vel_username =/vel_username = $collector_user/g" \
   $config_file
-sed -i -- "s/vel_password =/vel_password = $ves_pass/g" \
+sed -i -- "s/vel_password =/vel_password = $collector_pass/g" \
   $config_file
-sed -i -- "s~vel_path = vendor_event_listener/~vel_path = $ves_path~g" \
-  $config_file
-sed -i -- "s~vel_topic_name = example_vnf~vel_topic_name = $ves_topic~g" \
-  $config_file
-sed -i -- "/vel_topic_name = /a influxdb = $ves_influxdb_host:$ves_influxdb_port" \
+sed -i -- "s~vel_path = vendor_event_listener/~vel_path = $collector_path~g" \
   $config_file
 sed -i -- "s/elasticsearch_domain =/elasticsearch_domain = $elasticsearch_domain/g" \
   $config_file
 sed -i -- "s/data_storage =/data_storage = $data_storage/g" \
   $config_file
-sed -i -- "s/kafka_second_port =/kafka_second_port = $kafka_host_2:$kafka_port_2/g" \
+sed -i -- "s/kafka_server =/kafka_server = $smo_kafka_host:$smo_kafka_port/g" \
   $config_file
-sed -i -- "s/kafka_topic =/kafka_topic = $kafka_topic/g" \
+sed -i -- "s/kafka_topic =/kafka_topic = $smo_kafka_topic/g" \
   $config_file
 
 echo; echo $config_file
 cat $config_file
 
-if [ "$ves_loglevel" != "" ]; then
-  python3 /opt/ves/evel-test-collector/code/collector/monitor.py \
-    --config /opt/ves/evel-test-collector/config/collector.conf \
-    --influxdb $ves_influxdb_host:$ves_influxdb_port \
-    --section default > /opt/ves/monitor.log 2>&1
+if [ "$loglevel" != "" ]; then
+  python3 /opt/smo/evel-test-collector/code/collector/monitor.py \
+    --config /opt/smo/evel-test-collector/config/collector.conf \
+    --section default > /opt/smo/monitor.log 2>&1
 else
-  python3 /opt/ves/evel-test-collector/code/collector/monitor.py \
-    --config /opt/ves/evel-test-collector/config/collector.conf \
-    --influxdb $ves_influxdb_host:$ves_influxdb_port \
+  python3 /opt/smo/evel-test-collector/code/collector/monitor.py \
+    --config /opt/smo/evel-test-collector/config/collector.conf \
     --section default
 fi

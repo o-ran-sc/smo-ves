@@ -268,7 +268,7 @@ def save_event_in_kafka(body):
         if (len(topic) == 0):
             topic = kafka_topic
 
-        logger.debug('Kafka broker ={} and kafka topic={}'.format(kafka_port, topic))
+        logger.debug('Kafka broker ={} and kafka topic={}'.format(kafka_server, topic))
         produce_events_in_kafka(jobj, topic)
 
 
@@ -277,7 +277,7 @@ def produce_events_in_kafka(jobj, topic):
         global producer
         if producer is None:
             logger.debug('Producer is None')
-            producer = KafkaProducer(bootstrap_servers=[kafka_port],
+            producer = KafkaProducer(bootstrap_servers=[kafka_server],
                                      value_serializer=lambda x:
                                      dumps(x).encode('utf-8'))
         producer.send(topic, value=jobj)
@@ -587,15 +587,15 @@ USAGE
         global data_storage
         global elasticsearch_domain
         global elasticsearch_port
-        global kafka_port
+        global kafka_server
         global kafka_topic
 
         influxdb = config.get(config_section, 'influxdb', vars=overrides)
         log_file = config.get(config_section, 'log_file', vars=overrides)
         vel_port = config.get(config_section, 'vel_port', vars=overrides)
         vel_path = config.get(config_section, 'vel_path', vars=overrides)
-        kafka_port = config.get(config_section,
-                              'kafka_second_port',
+        kafka_server = config.get(config_section,
+                              'kafka_server',
                               vars=overrides)
         kafka_topic = config.get(config_section,
                                          'kafka_topic',
@@ -772,7 +772,7 @@ USAGE
         dispatcher.register('POST', test_control_url, test_control_listener)
         dispatcher.register('GET', test_control_url, test_control_listener)
 
-        httpd = pywsgi.WSGIServer(('', int(vel_port)), vendor_event_listener, keyfile='/opt/ves/certs/vescertificate.key', certfile='/opt/ves/certs/vescertificate.crt')
+        httpd = pywsgi.WSGIServer(('', int(vel_port)), vendor_event_listener, keyfile='/opt/smo/certs/vescertificate.key', certfile='/opt/smo/certs/vescertificate.crt')
         logger.info('Serving on port {0}...'.format(vel_port))
         httpd.serve_forever()
 

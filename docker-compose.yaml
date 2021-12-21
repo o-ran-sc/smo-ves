@@ -102,79 +102,6 @@ services:
              - 29000:9000
          environment:
                  KAFKA_BROKERCONNECT: smo-kafka:29092
-  smo-collector:
-         container_name: smo-collector
-         build: ./collector
-         image: smo-collector
-         networks:
-             - agent-net
-             - smo-net
-         ports:
-             - 9999:9999
-         volumes:
-             - ~/ves-certificate:/opt/ves/certs
-         environment:
-                 ves_influxdb_host: "smo-influxdb"
-                 ves_influxdb_port: "8086"
-                 ves_grafana_host: "smo-grafana"
-                 ves_grafana_port: "3000"
-                 data_storage: "elasticsearch"
-                 elasticsearch_domain: "smo-elasticsearch"
-                 kafka_host_2: "smo-kafka"
-                 kafka_port_2: "29092"
-                 kafka_topic: "smo-events"
-                 ves_host: "smo-collector"
-                 ves_port: "9999"
-                 ves_grafana_auth: "admin:admin"
-                 ves_user: "user"
-                 ves_pass: "password"
-                 ves_path: ""
-                 ves_topic: "events"
-                 ves_loglevel: "ERROR"
-         depends_on:
-             - smo-kafka
-  smo-influxdb-connector:
-         container_name: smo-influxdb-connector
-         build: ./influxdb-connector
-         image: smo-influxdb-connector
-         networks:
-             - smo-net
-         ports:
-             - 9990:9990
-         environment:
-                 ves_influxdb_host: "smo-influxdb"
-                 ves_influxdb_port: "8086"
-                 ves_loglevel: "ERROR"
-                 kafka_host_2: "smo-kafka"
-                 kafka_port_2: "29092"
-         depends_on:
-             - smo-kafka
-             - smo-influxdb
-  agent:
-          container_name: agent
-          build: ./agent
-          image: agent
-          networks:
-             - agent-net
-          restart: always
-          environment:
-                  ves_kafka_host: "agent-kafka"
-                  ves_kafka_hostname: "agent-kafka"
-                  ves_host: "smo-collector"
-                  ves_port: "9999"
-                  ves_path: ""
-                  ves_topic: "events"
-                  ves_https: "True"
-                  ves_user: "user"
-                  ves_pass: "password"
-                  ves_interval: "10"
-                  ves_kafka_port: "9092"
-                  ves_mode: "./yaml/host"
-                  ves_version: "5"
-                  ves_loglevel: "ERROR"
-          depends_on:
-             - agent-kafka
-             - smo-collector
   smo-dmaap-adapter:
          container_name: smo-dmaap-adapter
          build: ./dmaapadapter
@@ -187,6 +114,72 @@ services:
              kafka_host: "smo-kafka"
              kafka_port: "29092"
              log_level: "DEBUG"
+  smo-collector:
+         container_name: smo-collector
+         build: ./collector
+         image: smo-collector
+         networks:
+             - agent-net
+             - smo-net
+         ports:
+             - 9999:9999
+         volumes:
+             - ~/ves-certificate:/opt/smo/certs
+         environment:
+                 elasticsearch_domain: "smo-elasticsearch"
+                 smo_kafka_host: "smo-kafka"
+                 smo_kafka_port: "29092"
+                 smo_kafka_topic: "smo-events"
+                 data_storage: "elasticsearch"
+                 collector_host: "smo-collector"
+                 collector_port: "9999"
+                 collector_user: "user"
+                 collector_pass: "password"
+                 collector_path: ""
+                 loglevel: "ERROR"
+         depends_on:
+             - smo-kafka
+  smo-influxdb-connector:
+         container_name: smo-influxdb-connector
+         build: ./influxdb-connector
+         image: smo-influxdb-connector
+         networks:
+             - smo-net
+         ports:
+             - 9990:9990
+         environment:
+                 smo_influxdb_host: "smo-influxdb"
+                 smo_influxdb_port: "8086"
+                 smo_kafka_host: "smo-kafka"
+                 smo_kafka_port: "29092"
+                 loglevel: "ERROR"
+         depends_on:
+             - smo-kafka
+             - smo-influxdb
+  agent:
+          container_name: agent
+          build: ./agent
+          image: agent
+          networks:
+             - agent-net
+          restart: always
+          environment:
+                  smo_collector_host: "smo-collector"
+                  smo_collector_port: "9999"
+                  smo_collector_path: ""
+                  smo_collector_directory_path: "events"
+                  smo_collector_https: "True"
+                  smo_collector_user: "user"
+                  smo_collector_pass: "password"
+                  smo_collector_version: "5"
+                  agent_interval: "10"
+                  agent_kafka_port: "9092"
+                  agent_kafka_host: "agent-kafka"
+                  agent_mode: "./yaml/host"
+                  loglevel: "ERROR"
+          depends_on:
+             - agent-kafka
+             - smo-collector
   smo-elasticsearch:
            image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
            container_name: smo-elasticsearch
@@ -204,11 +197,11 @@ services:
          build: ./postconfig
          image: smo-post-config
          environment:
-             ves_influxdb_host: "smo-influxdb"
-             ves_influxdb_port: "8086"
-             ves_grafana_host: "smo-grafana"
-             ves_grafana_port: "3000"
-             ves_grafana_auth: "admin:admin"
+             smo_influxdb_host: "smo-influxdb"
+             smo_influxdb_port: "8086"
+             smo_grafana_host: "smo-grafana"
+             smo_grafana_port: "3000"
+             smo_grafana_auth: "admin:admin"
          depends_on:
              - smo-grafana
          networks:
