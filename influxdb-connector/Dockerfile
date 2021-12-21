@@ -20,8 +20,8 @@ RUN apt-get install -y git curl python3 python3-pip
 RUN pip3 install requests confluent-kafka
 
 # Clone influxdb-connector
-RUN mkdir -p /opt/ves/influxdb-connector
-ADD influxdb-connector /opt/ves/influxdb-connector
+RUN mkdir -p /opt/smo/influxdb-connector
+ADD influxdb-connector /opt/smo/influxdb-connector
 
-COPY start.sh /opt/ves/start.sh
-ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
+COPY start.sh /opt/smo/start.sh
+ENTRYPOINT ["/bin/bash", "/opt/smo/start.sh"]

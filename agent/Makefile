@@ -16,4 +16,4 @@
 default: all
 
 all:
-	docker build -t ves-agent .
+	docker build -t agent .

@@ -19,11 +19,11 @@ RUN apt-get update --fix-missing && apt-get -y upgrade
 RUN apt-get install -y git curl
 
 
-RUN mkdir /opt/ves
+RUN mkdir /opt/smo
 
-RUN mkdir /opt/ves/grafana
-ADD grafana /opt/ves/grafana
+RUN mkdir /opt/smo/grafana
+ADD grafana /opt/smo/grafana
 
 
-COPY start.sh /opt/ves/start.sh
-ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
+COPY start.sh /opt/smo/start.sh
+ENTRYPOINT ["/bin/bash", "/opt/smo/start.sh"]

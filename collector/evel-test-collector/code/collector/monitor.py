@@ -68,12 +68,6 @@ DEBUG = False
 PROFILE = False
 
 # ------------------------------------------------------------------------------
-# Address of influxdb server.
-# ------------------------------------------------------------------------------
-
-influxdb = '127.0.0.1'
-
-# ------------------------------------------------------------------------------
 # Credentials we expect clients to authenticate themselves with.
 # ------------------------------------------------------------------------------
 vel_username = ''
@@ -268,7 +262,7 @@ def save_event_in_kafka(body):
         if (len(topic) == 0):
             topic = kafka_topic
 
-        logger.debug('Kafka broker ={} and kafka topic={}'.format(kafka_port, topic))
+        logger.debug('Kafka broker ={} and kafka topic={}'.format(kafka_server, topic))
         produce_events_in_kafka(jobj, topic)
 
 
@@ -277,7 +271,7 @@ def produce_events_in_kafka(jobj, topic):
         global producer
         if producer is None:
             logger.debug('Producer is None')
-            producer = KafkaProducer(bootstrap_servers=[kafka_port],
+            producer = KafkaProducer(bootstrap_servers=[kafka_server],
                                      value_serializer=lambda x:
                                      dumps(x).encode('utf-8'))
         producer.send(topic, value=jobj)
@@ -528,10 +522,6 @@ USAGE
         # ----------------------------------------------------------------------
         parser = ArgumentParser(description=program_license,
                                 formatter_class=ArgumentDefaultsHelpFormatter)
-        parser.add_argument('-i', '--influxdb',
-                            dest='influxdb',
-                            default='localhost',
-                            help='InfluxDB server addresss')
         parser.add_argument('-v', '--verbose',
                             dest='verbose',
                             action='count',
@@ -580,22 +570,20 @@ USAGE
         # ----------------------------------------------------------------------
         # extract the values we want.
         # ----------------------------------------------------------------------
-        global influxdb
         global vel_username
         global vel_password
         global vel_topic_name
         global data_storage
         global elasticsearch_domain
         global elasticsearch_port
-        global kafka_port
+        global kafka_server
         global kafka_topic
 
-        influxdb = config.get(config_section, 'influxdb', vars=overrides)
         log_file = config.get(config_section, 'log_file', vars=overrides)
         vel_port = config.get(config_section, 'vel_port', vars=overrides)
         vel_path = config.get(config_section, 'vel_path', vars=overrides)
-        kafka_port = config.get(config_section,
-                              'kafka_second_port',
+        kafka_server = config.get(config_section,
+                              'kafka_server',
                               vars=overrides)
         kafka_topic = config.get(config_section,
                                          'kafka_topic',
@@ -659,7 +647,6 @@ USAGE
         # Log the details of the configuration.
         # ---------------------------------------------------------------------
         logger.debug('Log file = {0}'.format(log_file))
-        logger.debug('Influxdb server = {0}'.format(influxdb))
         logger.debug('Event Listener Port = {0}'.format(vel_port))
         logger.debug('Event Listener Path = {0}'.format(vel_path))
         logger.debug('Event Listener Topic = {0}'.format(vel_topic_name))
@@ -772,7 +759,7 @@ USAGE
         dispatcher.register('POST', test_control_url, test_control_listener)
         dispatcher.register('GET', test_control_url, test_control_listener)
 
-        httpd = pywsgi.WSGIServer(('', int(vel_port)), vendor_event_listener, keyfile='/opt/ves/certs/vescertificate.key', certfile='/opt/ves/certs/vescertificate.crt')
+        httpd = pywsgi.WSGIServer(('', int(vel_port)), vendor_event_listener, keyfile='/opt/smo/certs/vescertificate.key', certfile='/opt/smo/certs/vescertificate.crt')
         logger.info('Serving on port {0}...'.format(vel_port))
         httpd.serve_forever()
 

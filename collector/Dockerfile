@@ -25,12 +25,13 @@ RUN apt-get install -y git curl python3 python3-pip
 RUN pip3 install requests jsonschema elasticsearch kafka-python gevent
 
 
-RUN mkdir -p /opt/ves/certs
+RUN mkdir -p /opt/smo/certs
 
 # Clone VES Collector
-RUN mkdir /opt/ves/evel-test-collector
-ADD evel-test-collector /opt/ves/evel-test-collector
+RUN mkdir /opt/smo/evel-test-collector
+ADD evel-test-collector /opt/smo/evel-test-collector
 
-COPY Dashboard.json /opt/ves/Dashboard.json
-COPY start.sh /opt/ves/start.sh
-ENTRYPOINT ["/bin/bash", "/opt/ves/start.sh"]
+
+COPY start.sh /opt/smo/start.sh
+
+ENTRYPOINT ["/bin/bash", "/opt/smo/start.sh"]

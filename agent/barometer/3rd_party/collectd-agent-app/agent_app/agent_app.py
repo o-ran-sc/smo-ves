@@ -53,7 +53,7 @@ class VESApp(Normalizer):
             'Path': '',
             'Username': 'user',
             'Password': 'password',
-            'Topic': 'events',
+            'Directory_path': 'events',
             'UseHttps': False,
             'SendEventInterval': 10.0,
             'ApiVersion': 5,
@@ -69,8 +69,8 @@ class VESApp(Normalizer):
             '{}'.format('/{}'.format(self._app_config['Path']) if len(
                 self._app_config['Path']) > 0 else ''),
             int(self._app_config['ApiVersion']), '{}'.format(
-                '/{}'.format(self._app_config['Topic']) if len(
-                    self._app_config['Topic']) > 0 else ''))
+                '/{}'.format(self._app_config['Directory_path']) if len(
+                    self._app_config['Directory_path']) > 0 else ''))
         logging.info('Vendor Event Listener is at: {}'.format(server_url))
         credentials = base64.b64encode('{}:{}'.format(
             self._app_config['Username'],
@@ -88,10 +88,12 @@ class VESApp(Normalizer):
         except (HTTPError, URLError) as e:
             logging.error('Vendor Event Listener is is not reachable: {}'.format(e))
         except timeout:
-            logging.error('Timed out - URL %s', url)
+            logging.error('socket timed out - URL %s', url)
         except Exception as e:
-            logging.error('Vendor Event Listener error: {}'.format(e)) 
-            
+            logging.error('Vendor Event Listener error: {}'.format(e))
+        else:
+            logging.info('Access successful.')
+
     def config(self, config):
         """VES option configuration"""
         for key, value in config.items('config'):
@@ -191,7 +193,7 @@ def main():
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'],
                         help="Specify log level (default: %(default)s)",
                         metavar="LEVEL")
-    parser.add_argument("--logfile", dest="logfile", default='ves_app.log',
+    parser.add_argument("--logfile", dest="logfile", default='agent_app.log',
                         help="Specify log file (default: %(default)s)",
                         metavar="FILE")
     args = parser.parse_args()
