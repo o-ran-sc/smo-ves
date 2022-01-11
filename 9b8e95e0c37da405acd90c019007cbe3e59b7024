@@ -16,6 +16,23 @@
       "message": "Adding the ability to run static code analysis tool in the repository. ",
       "revId": "9b8e95e0c37da405acd90c019007cbe3e59b7024",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6286da_e045ace4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-01-11T17:19:13Z",
+      "side": 1,
+      "message": "remerge",
+      "revId": "9b8e95e0c37da405acd90c019007cbe3e59b7024",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
