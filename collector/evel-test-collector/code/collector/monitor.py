@@ -148,7 +148,9 @@ def listener(environ, start_response, schema):
                      'Against schema: {1}'.format(body, schema))
         try:
             decoded_body = json.loads(body)
-            jsonschema.validate(decoded_body, schema)
+            validate = jsonschema.validate(decoded_body, schema)
+            assert (validate is None), "Invalid event!"
+
             logger.info('Event is valid!')
             logger.info('Valid body decoded & checked against schema OK:\n'
                         '{0}'.format(json.dumps(decoded_body,
@@ -553,6 +555,7 @@ USAGE
         api_version = args.api_version
         config_file = args.config
         config_section = args.section
+        assert (config_file != ""), "Config file is missing"
 
         # ----------------------------------------------------------------------
         # Now read the config file, using command-line supplied values as
@@ -642,6 +645,11 @@ USAGE
         handler.setFormatter(formatter)
         logger.addHandler(handler)
         logger.info('Started')
+
+
+        assert (log_file != ""), "Value of property 'log_file' is missing in config file"
+        assert (vel_schema_file != ""), "Value of property 'schema_file' is missing in config file"
+        assert (kafka_server != ""), "Value of property 'kafka_server' is missing in config file"
 
         # ---------------------------------------------------------------------
         # Log the details of the configuration.

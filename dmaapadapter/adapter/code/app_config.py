@@ -38,6 +38,7 @@ class AppConfig:
         args = parser.parse_args()
         config_file = args.config
         config_section = args.section
+        assert (config_file != ""), "Config file is missing"
 
         overrides = {}
         config = configparser.ConfigParser()
@@ -46,6 +47,10 @@ class AppConfig:
         self.kafka_broker = config.get(config_section, 'kafka_broker', vars=overrides)
         log_file = config.get(config_section, 'log_file', vars=overrides)
         log_level = config.get(config_section, 'log_level', vars=overrides)
+
+        assert (self.kafka_broker != ""), "Value of property 'kafka_broker' is missing in config file"
+        assert (log_file != ""), "Value of property 'log_file' is missing in config file"
+        assert (log_level != ""), "Value of property 'log_level' is missing in config file"
 
         self.setLogger(log_file, log_level)
 
