@@ -148,7 +148,9 @@ def listener(environ, start_response, schema):
                      'Against schema: {1}'.format(body, schema))
         try:
             decoded_body = json.loads(body)
-            jsonschema.validate(decoded_body, schema)
+            validate = jsonschema.validate(decoded_body, schema)
+            assert (validate is None), "Invalid event!"
+
             logger.info('Event is valid!')
             logger.info('Valid body decoded & checked against schema OK:\n'
                         '{0}'.format(json.dumps(decoded_body,

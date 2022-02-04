@@ -37,8 +37,8 @@ def send_to_influxdb(event, pdata):
     logger.debug('Send {} to influxdb at {}: {}'.format(event, influxdb, pdata))
     r = requests.post(url, data=pdata, headers={'Content-Type': 'text/plain'})
     logger.info('influxdb return code {}'.format(r.status_code))
-    if r.status_code != 204:
-         logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
+    assert (r.status_code == 204), logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
+    
 
 def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
     for additionalMeasurements in val:
@@ -219,6 +219,10 @@ def save_event_in_db(body):
     domain = jobj['event']['commonEventHeader']['domain']
     eventTimestamp = jobj['event']['commonEventHeader']['startEpochMicrosec']
     agent = jobj['event']['commonEventHeader']['reportingEntityName'].upper()
+
+    assert (domain != ""), "'domain' in payload is empty"
+    assert(eventTimestamp != ""), "'eventTimestamp' in payload is empty"
+
     if "LOCALHOST" in agent:
         agent = "computehost"
         source = jobj['event']['commonEventHeader']['sourceId'].upper()
