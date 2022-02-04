@@ -37,8 +37,8 @@ def send_to_influxdb(event, pdata):
     logger.debug('Send {} to influxdb at {}: {}'.format(event, influxdb, pdata))
     r = requests.post(url, data=pdata, headers={'Content-Type': 'text/plain'})
     logger.info('influxdb return code {}'.format(r.status_code))
-    if r.status_code != 204:
-         logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
+    assert (r.status_code == 204), logger.debug('*** Influxdb save failed, return code {} ***'.format(r.status_code))
+    
 
 def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
     for additionalMeasurements in val:
@@ -219,6 +219,10 @@ def save_event_in_db(body):
     domain = jobj['event']['commonEventHeader']['domain']
     eventTimestamp = jobj['event']['commonEventHeader']['startEpochMicrosec']
     agent = jobj['event']['commonEventHeader']['reportingEntityName'].upper()
+
+    assert (domain != ""), "'domain' in payload is empty"
+    assert(eventTimestamp != ""), "'eventTimestamp' in payload is empty"
+
     if "LOCALHOST" in agent:
         agent = "computehost"
         source = jobj['event']['commonEventHeader']['sourceId'].upper()
@@ -318,6 +322,7 @@ def main():
     verbose = args.verbose
     config_section = args.section
 
+    assert (config_file != ""), "Config file is missing"
     # ----------------------------------------------------------------------
     # Now read the config file, using command-line supplied values as
     # overrides.
@@ -338,8 +343,11 @@ def main():
 
     influxdb = config.get(config_section, 'influxdb', vars=overrides)
     log_file = config.get(config_section, 'log_file', vars=overrides)
-    kafka_server=config.get(config_section,'kafka_server',
-                                   vars=overrides)
+    kafka_server = config.get(config_section,'kafka_server', vars=overrides)
+
+    assert (influxdb != ""), "Value of property 'influxdb' is missing in config file"
+    assert (log_file != ""), "Value of property 'log_file' is missing in config file"
+    assert (kafka_server != ""), "Value of property 'kafka_server' is missing in config file"
 
     # ----------------------------------------------------------------------
     # Finally we have enough info to start a proper flow trace.
@@ -397,6 +405,7 @@ def main():
             if msg is None:
                 continue
             elif not msg.error():
+                assert (msg.value() is not None), "Invalid message"
                 logger.debug('Recived message from topic name {} and offset number {}'.format(msg.topic(), msg.offset()))
                 # saving data in influxdb
                 save_event_in_db(msg.value())
