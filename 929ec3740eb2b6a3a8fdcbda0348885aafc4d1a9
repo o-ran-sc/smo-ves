@@ -107,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91ea64eb_0e008e2a",
+        "filename": "influxdb-connector/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-02-08T13:27:14Z",
+      "side": 1,
+      "message": "I think no need to put assert statement here. Because it\u0027s logging error inside while loop.",
+      "parentUuid": "7baaa5ee_d5f8e2cb",
+      "revId": "929ec3740eb2b6a3a8fdcbda0348885aafc4d1a9",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c2dc383_3571b9ad",
         "filename": "influxdb-connector/influxdb-connector/code/influxdb_connector.py",
         "patchSetId": 4
@@ -118,6 +136,24 @@
       "writtenOn": "2022-02-07T19:42:35Z",
       "side": 1,
       "message": "And here.",
+      "revId": "929ec3740eb2b6a3a8fdcbda0348885aafc4d1a9",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78bee8c9_504aadff",
+        "filename": "influxdb-connector/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-02-08T13:27:14Z",
+      "side": 1,
+      "message": "I think no need to put assert statement here. Because it\u0027s logging error inside while loop.",
+      "parentUuid": "9c2dc383_3571b9ad",
       "revId": "929ec3740eb2b6a3a8fdcbda0348885aafc4d1a9",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
