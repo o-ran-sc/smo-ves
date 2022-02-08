@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c520f5e_8dff2ddc",
+        "filename": "influxdb-connector/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-02-08T12:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d48c331_99cdfb0e",
+      "revId": "929ec3740eb2b6a3a8fdcbda0348885aafc4d1a9",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c863c202_21f3a7ab",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-02-07T19:42:35Z",
       "side": 1,
       "message": "This would be another place to add assert.",
+      "revId": "929ec3740eb2b6a3a8fdcbda0348885aafc4d1a9",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ec9f833_7f0fe61f",
+        "filename": "influxdb-connector/influxdb-connector/code/influxdb_connector.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-02-08T12:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a39a9161_63c67be3",
       "revId": "929ec3740eb2b6a3a8fdcbda0348885aafc4d1a9",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
