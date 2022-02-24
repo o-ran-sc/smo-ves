@@ -59,11 +59,23 @@ echo; echo $config_file
 cat $config_file
 
 if [ "$loglevel" != "" ]; then
-  python3 /opt/smo/evel-test-collector/code/collector/monitor.py \
-    --config /opt/smo/evel-test-collector/config/collector.conf \
-    --section default > /opt/smo/monitor.log 2>&1
+  if [ "$enable_assert" != "True" ]; then
+    python3 -O /opt/smo/evel-test-collector/code/collector/monitor.py \
+      --config /opt/smo/evel-test-collector/config/collector.conf \
+      --section default > /opt/smo/monitor.log 2>&1
+  else
+    python3 /opt/smo/evel-test-collector/code/collector/monitor.py \
+      --config /opt/smo/evel-test-collector/config/collector.conf \
+      --section default > /opt/smo/monitor.log 2>&1
+  fi
 else
-  python3 /opt/smo/evel-test-collector/code/collector/monitor.py \
-    --config /opt/smo/evel-test-collector/config/collector.conf \
-    --section default
+  if [ "$enable_assert" != "True" ]; then
+    python3 -O /opt/smo/evel-test-collector/code/collector/monitor.py \
+      --config /opt/smo/evel-test-collector/config/collector.conf \
+      --section default
+  else
+    python3 /opt/smo/evel-test-collector/code/collector/monitor.py \
+      --config /opt/smo/evel-test-collector/config/collector.conf \
+      --section default
+  fi
 fi
