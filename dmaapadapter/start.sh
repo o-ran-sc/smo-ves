@@ -22,6 +22,8 @@ sed -i -- "s/kafka_broker =/kafka_broker = $kafka_host:$kafka_port/g" \
   $config_file
 sed -i -- "s/log_level =/log_level = $log_level/g" \
   $config_file
+sed -i -- "s/enable_assert =/enable_assert = $enable_assert/g" \
+  $config_file
 
 
 echo; echo $config_file
@@ -29,11 +31,23 @@ cat $config_file
 
 
 if [ "$log_level" != "" ]; then
-  python3 /opt/smo/adapter/code/dmaap_adapter.py \
-    --config /opt/smo/adapter/config/adapter.conf \
-    --section default > /opt/smo/dmaap.log 2>&1
+  if [ "$enable_assert" != "True" ]; then
+    python3 -O /opt/smo/adapter/code/dmaap_adapter.py \
+      --config /opt/smo/adapter/config/adapter.conf \
+      --section default > /opt/smo/dmaap.log 2>&1
+  else
+    python3 /opt/smo/adapter/code/dmaap_adapter.py \
+      --config /opt/smo/adapter/config/adapter.conf \
+      --section default > /opt/smo/dmaap.log 2>&1
+  fi
 else
-  python3 /opt/smo/adapter/code/dmaap_adapter.py \
-    --config /opt/smo/adapter/config/adapter.conf \
-    --section default
+  if [ "$enable_assert" != "True" ]; then
+    python3 -O /opt/smo/adapter/code/dmaap_adapter.py \
+      --config /opt/smo/adapter/config/adapter.conf \
+      --section default
+   else
+     python3 /opt/smo/adapter/code/dmaap_adapter.py \
+       --config /opt/smo/adapter/config/adapter.conf \
+       --section default
+   fi
 fi

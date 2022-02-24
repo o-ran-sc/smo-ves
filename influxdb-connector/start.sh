@@ -45,13 +45,27 @@ curl -X POST http://$smo_influxdb_host:$smo_influxdb_port/query \
   --data-urlencode "q=CREATE DATABASE eventsdb"
 
 if [ "$loglevel" != "" ]; then
-  python3 /opt/smo/influxdb-connector/code/influxdb_connector.py \
-    --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
-    --influxdb $smo_influxdb_host:$smo_influxdb_port \
-    --section default > /opt/smo/monitor.log 2>&1
+  if [ "$enable_assert" != "True" ]; then
+    python3 -O /opt/smo/influxdb-connector/code/influxdb_connector.py \
+     --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
+     --influxdb $smo_influxdb_host:$smo_influxdb_port \
+     --section default > /opt/smo/monitor.log 2>&1
+  else
+    python3 /opt/smo/influxdb-connector/code/influxdb_connector.py \
+      --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
+      --influxdb $smo_influxdb_host:$smo_influxdb_port \
+      --section default > /opt/smo/monitor.log 2>&1
+  fi
 else
-  python3 /opt/smo/influxdb-connector/code/influxdb_connector.py  \
-    --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
-    --influxdb $smo_influxdb_host:$smo_influxdb_port \
-    --section default
+  if [ "$enable_assert" != "True" ]; then
+    python3 -O /opt/smo/influxdb-connector/code/influxdb_connector.py  \
+      --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
+      --influxdb $smo_influxdb_host:$smo_influxdb_port \
+      --section default
+  else
+    python3 /opt/smo/influxdb-connector/code/influxdb_connector.py  \
+      --config /opt/smo/influxdb-connector/config/influxdb_connector.conf \
+      --influxdb $smo_influxdb_host:$smo_influxdb_port \
+      --section default
+  fi
 fi
