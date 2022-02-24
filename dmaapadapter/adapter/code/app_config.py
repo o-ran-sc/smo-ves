@@ -21,6 +21,7 @@ import logging.handlers
 class AppConfig:
     kafka_broker = ""
     logger = logging.getLogger()
+    enable_assert = ""
 
     def __init__(self):
         parser = ArgumentParser(description="",
@@ -45,6 +46,7 @@ class AppConfig:
         config.read(config_file)
 
         self.kafka_broker = config.get(config_section, 'kafka_broker', vars=overrides)
+        self.enable_assert = config.get(config_section, 'enable_assert', vars=overrides)
         log_file = config.get(config_section, 'log_file', vars=overrides)
         log_level = config.get(config_section, 'log_level', vars=overrides)
 
@@ -56,6 +58,9 @@ class AppConfig:
 
     def getKafkaBroker(self):
         return self.kafka_broker
+
+    def getAssertConfigValue(self):
+        return self.enable_assert
 
     def getLogger(self):
         return self.logger

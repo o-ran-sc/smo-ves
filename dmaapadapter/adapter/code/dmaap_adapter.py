@@ -17,6 +17,7 @@ import flask
 from flask import request
 from consumer import EventConsumer, TopicConsumer
 from prepare_response import PrepareResponse
+from app_config import AppConfig
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -52,7 +53,7 @@ def listall_topics():
 
 @app.route(api_base_url + '/topics/<topic>', methods=['GET'])
 def topic_details(topic):
-    assert topic == request.view_args['topic']
+    topic == request.view_args['topic']
     prepareResponse = PrepareResponse()
     topicConsumer = TopicConsumer()
     topicConsumer.getTopicDetails(prepareResponse, topic)
@@ -64,9 +65,9 @@ def topic_details(topic):
 
 @app.route(api_base_url + '/events/<topic>/<consumergroup>/<consumerid>', methods=['GET'])
 def get_events(topic, consumergroup, consumerid):
-    assert topic == request.view_args['topic']
-    assert consumergroup == request.view_args['consumergroup']
-    assert consumerid == request.view_args['consumerid']
+    topic == request.view_args['topic']
+    consumergroup == request.view_args['consumergroup']
+    consumerid == request.view_args['consumerid']
     limit = ""
     timeout = ""
 
@@ -105,4 +106,8 @@ def getTimeout(timeout):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    appConfig = AppConfig()
+    if(appConfig.getAssertConfigValue() == 'False'):
+	app.run(debug=False, host='0.0.0.0')
+    else:
+        app.run(debug=True, host='0.0.0.0')

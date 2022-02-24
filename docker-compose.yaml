@@ -114,6 +114,7 @@ services:
              kafka_host: "smo-kafka"
              kafka_port: "29092"
              log_level: "DEBUG"
+             enable_assert: "False"
   smo-collector:
          container_name: smo-collector
          build: ./collector
@@ -137,6 +138,7 @@ services:
                  collector_pass: "password"
                  collector_path: ""
                  loglevel: "ERROR"
+                 enable_assert: "False"
          depends_on:
              - smo-kafka
   smo-influxdb-connector:
@@ -153,6 +155,7 @@ services:
                  smo_kafka_host: "smo-kafka"
                  smo_kafka_port: "29092"
                  loglevel: "ERROR"
+                 enable_assert: "False"
          depends_on:
              - smo-kafka
              - smo-influxdb
