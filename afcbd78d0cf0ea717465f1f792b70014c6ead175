@@ -16,6 +16,24 @@
       "message": "Not clear on why these assert statements were taken out.",
       "revId": "afcbd78d0cf0ea717465f1f792b70014c6ead175",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d465cf79_b2633522",
+        "filename": "dmaapadapter/adapter/code/dmaap_adapter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-03-01T10:51:13Z",
+      "side": 1,
+      "message": "We realized that this assert statement doesn\u0027t trigger. Because Flask (used Flask to publish REST APIs) handle the situation if user try to access url without providing the topic name like topics/.",
+      "parentUuid": "925c391b_514cf375",
+      "revId": "afcbd78d0cf0ea717465f1f792b70014c6ead175",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
