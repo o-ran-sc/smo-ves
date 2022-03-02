@@ -126,11 +126,9 @@ services:
          volumes:
              - ~/ves-certificate:/opt/smo/certs
          environment:
-                 elasticsearch_domain: "smo-elasticsearch"
                  smo_kafka_host: "smo-kafka"
                  smo_kafka_port: "29092"
                  smo_kafka_topic: "smo-events"
-                 data_storage: "elasticsearch"
                  collector_host: "smo-collector"
                  collector_port: "9999"
                  collector_user: "user"
@@ -180,18 +178,6 @@ services:
           depends_on:
              - agent-kafka
              - smo-collector
-  smo-elasticsearch:
-           image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
-           container_name: smo-elasticsearch
-           restart: always
-           environment:
-                  discovery.type: "single-node"
-                  ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
-           ports:
-                   - 9200:9200
-                   - 9300:9300
-           networks:
-                   - smo-net
   smo-post-config:
          container_name: smo-post-config
          build: ./postconfig

@@ -46,10 +46,6 @@ sed -i -- "s/vel_password =/vel_password = $collector_pass/g" \
   $config_file
 sed -i -- "s~vel_path = vendor_event_listener/~vel_path = $collector_path~g" \
   $config_file
-sed -i -- "s/elasticsearch_domain =/elasticsearch_domain = $elasticsearch_domain/g" \
-  $config_file
-sed -i -- "s/data_storage =/data_storage = $data_storage/g" \
-  $config_file
 sed -i -- "s/kafka_server =/kafka_server = $smo_kafka_host:$smo_kafka_port/g" \
   $config_file
 sed -i -- "s/kafka_topic =/kafka_topic = $smo_kafka_topic/g" \
