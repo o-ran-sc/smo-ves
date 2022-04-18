@@ -18,9 +18,9 @@ touch dmaap.log
 
 config_file="adapter/config/adapter.conf"
 
-sed -i -- "s/kafka_broker =/kafka_broker = $kafka_host:$kafka_port/g" \
+sed -i -- "s/kafka_broker = smo-kafka:29092/kafka_broker = $kafka_host:$kafka_port/g" \
   $config_file
-sed -i -- "s/log_level =/log_level = $log_level/g" \
+sed -i -- "s/log_level = error/log_level = $log_level/g" \
   $config_file
 sed -i -- "s/enable_assert =/enable_assert = $enable_assert/g" \
   $config_file
