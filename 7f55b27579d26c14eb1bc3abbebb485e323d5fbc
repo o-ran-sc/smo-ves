@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "508c20c1_5edf7fbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-04-18T15:58:31Z",
+      "side": 1,
+      "message": "I cannot provide much review from a code perspective. I assume that this has been reviewed by others in the team.\n\nJust one pet peeve. Please get rid of blank spaces in multiple files.",
+      "revId": "7f55b27579d26c14eb1bc3abbebb485e323d5fbc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
