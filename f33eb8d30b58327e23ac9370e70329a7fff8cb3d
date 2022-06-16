@@ -33,6 +33,23 @@
       "message": "jjb-deploy smo-dmaap*",
       "revId": "f33eb8d30b58327e23ac9370e70329a7fff8cb3d",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14c2b37c_05cbc02d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-06-16T05:26:38Z",
+      "side": 1,
+      "message": "jjb-deploy *",
+      "revId": "f33eb8d30b58327e23ac9370e70329a7fff8cb3d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
