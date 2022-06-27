@@ -35,30 +35,6 @@ services:
         depends_on:
              - smo-influxdb
              - smo-influxdb-connector
-  agent-zookeeper:
-        container_name: agent-zookeeper
-        image: confluentinc/cp-zookeeper:5.5.6
-        networks:
-             - agent-net
-        environment:
-             ZOOKEEPER_CLIENT_PORT: 2181
-             ZOOKEEPER_TICK_TIME: 2000
-  agent-kafka:
-         container_name: agent-kafka
-         image: confluentinc/cp-kafka:5.5.6
-         networks:
-             - agent-net
-         depends_on:
-             - agent-zookeeper
-         ports:
-             - 9092:9092
-         environment:
-              KAFKA_BROKER_ID: 1
-              KAFKA_ZOOKEEPER_CONNECT: agent-zookeeper:2181
-              KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://agent-kafka:9092,PLAINTEXT_HOST://localhost:19092
-              KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-              KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-              KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
   smo-zookeeper:
         container_name: smo-zookeeper
         image: confluentinc/cp-zookeeper:5.5.6
@@ -83,17 +59,6 @@ services:
               KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
               KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
               KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-  agent-kafdrop:
-         container_name: agent-kafdrop
-         image: obsidiandynamics/kafdrop:3.27.0
-         networks:
-             - agent-net
-         depends_on:
-             - agent-kafka
-         ports:
-             - 9000:9000
-         environment:
-                 KAFKA_BROKERCONNECT: agent-kafka:9092
   smo-kafdrop:
          container_name: smo-kafdrop
          image: obsidiandynamics/kafdrop:3.27.0
@@ -107,8 +72,7 @@ services:
                  KAFKA_BROKERCONNECT: smo-kafka:29092
   smo-dmaap-adapter:
          container_name: smo-dmaap-adapter
-         build: ./dmaapadapter
-         image: smo-dmaap-adapter
+         image: nexus3.o-ran-sc.org:10004/smo-dmaap-adapter:5.0.1
          networks:
              - smo-net
          ports:
@@ -120,10 +84,8 @@ services:
              enable_assert: "False"
   smo-collector:
          container_name: smo-collector
-         build: ./collector
-         image: smo-collector
+         image: nexus3.o-ran-sc.org:10004/smo-collector:5.0.1
          networks:
-             - agent-net
              - smo-net
          ports:
              - 9999:9999
@@ -144,8 +106,7 @@ services:
              - smo-kafka
   smo-influxdb-connector:
          container_name: smo-influxdb-connector
-         build: ./influxdb-connector
-         image: smo-influxdb-connector
+         image: nexus3.o-ran-sc.org:10004/smo-influxdb-connector:5.0.1
          networks:
              - smo-net
          ports:
@@ -160,34 +121,9 @@ services:
          depends_on:
              - smo-kafka
              - smo-influxdb
-  agent:
-          container_name: agent
-          build: ./agent
-          image: agent
-          networks:
-             - agent-net
-          restart: always
-          environment:
-                  smo_collector_host: "smo-collector"
-                  smo_collector_port: "9999"
-                  smo_collector_path: ""
-                  smo_collector_directory_path: "events"
-                  smo_collector_https: "True"
-                  smo_collector_user: "user"
-                  smo_collector_pass: "password"
-                  smo_collector_version: "5"
-                  agent_interval: "10"
-                  agent_kafka_port: "9092"
-                  agent_kafka_host: "agent-kafka"
-                  agent_mode: "./yaml/host"
-                  loglevel: "ERROR"
-          depends_on:
-             - agent-kafka
-             - smo-collector
   smo-post-config:
          container_name: smo-post-config
-         build: ./postconfig
-         image: smo-post-config
+         image: nexus3.o-ran-sc.org:10004/smo-post-config:5.0.1
          environment:
              smo_influxdb_host: "smo-influxdb"
              smo_influxdb_port: "8086"
@@ -200,9 +136,6 @@ services:
              - smo-net
 
 networks:
-        agent-net:
-                driver: bridge
-                name: agent-net
         smo-net:
                 driver: bridge
                 name: smo-net
