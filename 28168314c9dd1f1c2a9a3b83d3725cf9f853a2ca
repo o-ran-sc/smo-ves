@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "794dfe1c_3a4cbbb4",
+        "filename": "docker-compose.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-06-27T17:54:09Z",
+      "side": 1,
+      "message": "Can we remove these blank spaces.",
+      "revId": "28168314c9dd1f1c2a9a3b83d3725cf9f853a2ca",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
