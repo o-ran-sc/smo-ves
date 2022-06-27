@@ -17,14 +17,17 @@ installed on the machine, where you want to run these containers.
 To build the solution, you need to do the following in the current
 folder.
 
-    % make
+    % docker-compose build
+
+or simply by the following make command
+
+   % make
 
 ## Run:
 
 To run the solution, you need to invoke the following command
 
-    % docker-compose up -d smo-collector
-    % docker-compose up -d agent
+    % docker-compose up -d
 
 or simply by the following make command
 
@@ -32,8 +35,7 @@ or simply by the following make command
 
 To stop the solution the following command should be invoked.
 
-    % docker-compose down -d smo-collector
-    % docker-compose down -d agent
+    % docker-compose down
 
 or simply by the following make command
 
