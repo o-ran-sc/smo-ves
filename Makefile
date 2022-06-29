@@ -17,7 +17,6 @@
 default: all
 
 all:
-	cd agent; make
 	cd collector; make
 	cd kafka; make
 	cd dmaapadapter; make
