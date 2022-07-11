@@ -27,13 +27,6 @@ Prerequisites
 
 The prerequisites for using this solution are that you need Docker and docker-compose installed on the machine, where you want to run these containers.
 
-Build
------
-
-To build the solution, you need to do the following in the current
-folder::
-
-    % make
 
 Run
 ---
@@ -42,17 +35,11 @@ To run the solution, you need to invoke the following command::
 
     % docker-compose up -d
 
-or simply by the following make command::
-
-    % make run
 
 To stop the solution the following command should be invoked::
 
     % docker-compose down
 
-or simply by the following make command::
-
-    % make stop
 
 
 Following steps are required to install a certificate.

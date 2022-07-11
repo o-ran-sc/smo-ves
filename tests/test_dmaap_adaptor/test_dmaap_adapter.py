@@ -25,7 +25,6 @@ from unittest.mock import patch
 from consumer import EventConsumer, TopicConsumer
 import dmaap_adapter
 from prepare_response import PrepareResponse
-import requests_mock
 
 @pytest.fixture
 def response_object():

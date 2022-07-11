@@ -28,6 +28,8 @@ from confluent_kafka import Consumer, KafkaError
 influxdb = '127.0.0.1'
 
 logger = None
+source = None
+eventTimestamp = None
 
 
 def send_to_influxdb(event, pdata):
