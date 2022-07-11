@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d01982_7d94287b",
+        "filename": "tests/test_collector/test_collector.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 1,
+      "message": "Remove extra white spaces after \u003d sign",
+      "revId": "b0141bd09239de0518a77f3bf4ce1c1fbbfe7eab",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b751be19_ac32b137",
+        "filename": "tests/test_dmaap_adaptor/test_dmaap_adapter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 1,
+      "message": "Remove commented import statement",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 8
+      },
+      "revId": "b0141bd09239de0518a77f3bf4ce1c1fbbfe7eab",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c0e45b_662481b6",
+        "filename": "tests/test_influxdb_connector/test_influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 1,
+      "message": "remove extra white space",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 8
+      },
+      "revId": "b0141bd09239de0518a77f3bf4ce1c1fbbfe7eab",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}

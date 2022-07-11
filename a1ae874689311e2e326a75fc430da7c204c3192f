@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07afda1_70f53c53",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "Add Xoriant\u0027s copyright content",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bf855f_695e915f",
+        "filename": "tests/test_influxdb_connector/test_influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78819b5d_5eb4328f",
+        "filename": "tests/test_influxdb_connector/test_influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e50085f_207c6a60",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6425800_7595d35c",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e69eea_0c66f7d6",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7a8e3ae_3269ad91",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-11T10:12:58Z",
+      "side": 0,
+      "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
