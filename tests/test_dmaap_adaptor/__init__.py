@@ -13,10 +13,12 @@
 # limitations under the License.
 #
 
-from docs_conf.conf import *
-linkcheck_ignore = [
-    'http://localhost.*',
-    'http://127.0.0.1.*',
-    'https://gerrit.o-ran-sc.org.*'
-]
-language = 'en'
+import os
+import sys
+
+PROJECT_PATH = os.getcwd()
+PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
+SOURCE_PATH = os.path.join(
+    PROJECT_PATH,"ves/dmaapadapter/adapter/code"
+)
+sys.path.append(SOURCE_PATH)
