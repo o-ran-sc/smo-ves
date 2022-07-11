@@ -1,3 +1,18 @@
+# Copyright 2021 Xoriant Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 import argparse
 import os
 import sys
@@ -18,7 +33,7 @@ def get_path():
 def get_config_path():
     project_path=get_path()
     config_path = os.path.join(
-    project_path,"config/adapter.conf")
+    project_path,"ves/dmaapadapter/adapter/config/adapter.conf")
     return config_path
 
 @pytest.fixture
@@ -40,14 +55,14 @@ def test___init__(parser,mock_setLogger):
     mock_setLogger.assert_called_with('dmaap.log','error')
 
 def test_getKafkaBroker(kafkaBroker):
-     AppConfig.kafka_broker=kafkaBroker
-     res=AppConfig.getKafkaBroker(AppConfig)
-     assert res == kafkaBroker
+    AppConfig.kafka_broker=kafkaBroker
+    res=AppConfig.getKafkaBroker(AppConfig)
+    assert res == kafkaBroker
 
 def test_getLogger(logger):
-     AppConfig.logger=logger
-     res=AppConfig.getLogger(AppConfig)
-     assert res.getEffectiveLevel()==20
+    AppConfig.logger=logger
+    res=AppConfig.getLogger(AppConfig)
+    assert res.getEffectiveLevel()==20
 
 def test_setLogger(logger):
     log_file= 'dmaap.log'

@@ -1,5 +1,5 @@
 # Copyright 2021 Xoriant Corporation
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -77,7 +77,7 @@ def data_set():
                     }
                 }
             }
-    return data_set    
+    return data_set
 
 # <Response [204]>
     """
@@ -102,7 +102,7 @@ def test_send_event_to_influxdb_failed(data_set):
         'http://localhost:8086/write?db=eventsdb', data=data_set
     )
         assert response.status_code == 400
-        
+
 def test_process_time():
     assert process_time(int(1639983600000)) == '1639983600000000000'
 
