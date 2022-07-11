@@ -12,11 +12,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-from docs_conf.conf import *
-linkcheck_ignore = [
-    'http://localhost.*',
-    'http://127.0.0.1.*',
-    'https://gerrit.o-ran-sc.org.*'
-]
-language = 'en'
