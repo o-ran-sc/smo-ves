@@ -53,6 +53,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f499dc1_740a548a",
+        "filename": "tests/test_influxdb_connector/test_influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T08:23:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "19bf855f_695e915f",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78819b5d_5eb4328f",
@@ -66,6 +84,24 @@
       "writtenOn": "2022-07-11T10:12:58Z",
       "side": 0,
       "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f6a568_20daa847",
+        "filename": "tests/test_influxdb_connector/test_influxdb_connector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T08:23:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "78819b5d_5eb4328f",
       "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -87,6 +123,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca884180_daf0c23c",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T08:23:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "5e50085f_207c6a60",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6425800_7595d35c",
@@ -100,6 +154,24 @@
       "writtenOn": "2022-07-11T10:12:58Z",
       "side": 0,
       "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c05677d5_2ce20245",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T08:23:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c6425800_7595d35c",
       "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
@@ -121,6 +193,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a071a1dd_ecbe3435",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T08:23:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "31e69eea_0c66f7d6",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7a8e3ae_3269ad91",
@@ -134,6 +224,24 @@
       "writtenOn": "2022-07-11T10:12:58Z",
       "side": 0,
       "message": "remove extra white space",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d85795d_2548bd18",
+        "filename": "tests/test_influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T08:23:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b7a8e3ae_3269ad91",
       "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
