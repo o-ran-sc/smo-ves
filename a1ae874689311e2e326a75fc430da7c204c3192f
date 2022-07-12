@@ -18,6 +18,24 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fd6b09e_03ac8059",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-12T07:10:50Z",
+      "side": 0,
+      "message": "Added copyright content",
+      "parentUuid": "d07afda1_70f53c53",
+      "revId": "a1ae874689311e2e326a75fc430da7c204c3192f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19bf855f_695e915f",
