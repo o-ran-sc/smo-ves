@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b655b39e_39e14e24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-13T04:27:44Z",
+      "side": 1,
+      "message": "jjb-deploy smo-influxdb*",
+      "revId": "14aa9b489889425d57a7732e6f27c3730c69ed91",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
