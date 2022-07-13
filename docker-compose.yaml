@@ -72,7 +72,8 @@ services:
                  KAFKA_BROKERCONNECT: smo-kafka:29092
   smo-dmaap-adapter:
          container_name: smo-dmaap-adapter
-         image: nexus3.o-ran-sc.org:10004/smo-dmaap-adapter:5.0.1
+         build: ./dmaapadapter
+         image: smo-dmaap-adapter
          networks:
              - smo-net
          ports:
@@ -84,7 +85,8 @@ services:
              enable_assert: "False"
   smo-collector:
          container_name: smo-collector
-         image: nexus3.o-ran-sc.org:10004/smo-collector:5.0.1
+         build: ./collector
+         image: smo-collector
          networks:
              - smo-net
          ports:
@@ -106,7 +108,8 @@ services:
              - smo-kafka
   smo-influxdb-connector:
          container_name: smo-influxdb-connector
-         image: nexus3.o-ran-sc.org:10004/smo-influxdb-connector:5.0.1
+         build: ./influxdb-connector
+         image: smo-influxdb-connector
          networks:
              - smo-net
          ports:
@@ -123,7 +126,8 @@ services:
              - smo-influxdb
   smo-post-config:
          container_name: smo-post-config
-         image: nexus3.o-ran-sc.org:10004/smo-post-config:5.0.1
+         build: ./postconfig
+         image: smo-post-config
          environment:
              smo_influxdb_host: "smo-influxdb"
              smo_influxdb_port: "8086"
