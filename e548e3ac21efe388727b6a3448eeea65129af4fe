@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e3246b_520607a2",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-19T12:01:59Z",
+      "side": 0,
+      "message": "Remove unused line",
+      "revId": "e548e3ac21efe388727b6a3448eeea65129af4fe",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90b90bd0_da766564",
+        "filename": "tests/dmaap_adaptor/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-19T12:01:59Z",
+      "side": 0,
+      "message": "Remove unused line",
+      "revId": "e548e3ac21efe388727b6a3448eeea65129af4fe",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eff056f2_654be50f",
+        "filename": "tests/dmaap_adaptor/test_appConfig.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-19T12:01:59Z",
+      "side": 0,
+      "message": "Remove unused line",
+      "revId": "e548e3ac21efe388727b6a3448eeea65129af4fe",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1dfc189_b13e659e",
+        "filename": "tests/influxdb_connector/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-19T12:01:59Z",
+      "side": 0,
+      "message": "Remove unused line",
+      "revId": "e548e3ac21efe388727b6a3448eeea65129af4fe",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
