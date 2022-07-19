@@ -44,10 +44,10 @@ import sys
 import configparser
 
 PROJECT_PATH = os.getcwd()
-configfile_name = PROJECT_PATH+'ves/tests/test_collector/test_collector.conf'
-PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
+configfile_name = PROJECT_PATH+'tests/test_collector/test_collector.conf'
+#PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
 schema_file_path = os.path.join(
-    PROJECT_PATH,"ves/collector/evel-test-collector/docs/att_interface_definition/CommonEventFormat-v7-2-2.json")
+    PROJECT_PATH,"collector/evel-test-collector/docs/att_interface_definition/CommonEventFormat-v7-2-2.json")
 if  os.path.isfile(configfile_name):
     # Create the configuration file as it doesn't exist yet
     cfgfile = open(configfile_name, "w")
@@ -70,6 +70,6 @@ if  os.path.isfile(configfile_name):
     Config.write(cfgfile)
     cfgfile.close()
 SOURCE_PATH = os.path.join(
-    PROJECT_PATH,"ves/collector/evel-test-collector/code/collector")
-print(SOURCE_PATH, PROJECT_PATH,schema_file_path)
+    PROJECT_PATH,"collector/evel-test-collector/code/collector")
+print(SOURCE_PATH, PROJECT_PATH,schema_file_path, configfile_name )
 sys.path.append(SOURCE_PATH)

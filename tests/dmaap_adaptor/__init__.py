@@ -17,8 +17,8 @@ import os
 import sys
 
 PROJECT_PATH = os.getcwd()
-PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
+#PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
 SOURCE_PATH = os.path.join(
-    PROJECT_PATH,"ves/dmaapadapter/adapter/code"
+    PROJECT_PATH,"dmaapadapter/adapter/code"
 )
 sys.path.append(SOURCE_PATH)

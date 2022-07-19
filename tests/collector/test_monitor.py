@@ -34,19 +34,19 @@ from kafka import KafkaProducer
 
 def get_path():
     project_path = os.getcwd()
-    project_path = project_path[:project_path.rfind('/')]
+    #project_path = project_path[:project_path.rfind('/')]
     return project_path
 
 def get_config_path():
     project_path=get_path()
     config_path = os.path.join(
-        project_path,"ves/tests/collector/test_collector.conf")
+        project_path,"tests/collector/test_collector.conf")
     return config_path
 
 def get_schema_path():
     project_path=get_path()
     schema_path = os.path.join(
-    project_path,"ves/collector/evel-test-collector/docs/att_interface_definition/CommonEventFormat-v7-2-2.json")
+    project_path,"collector/evel-test-collector/docs/att_interface_definition/CommonEventFormat-v7-2-2.json")
     return schema_path
 
 @pytest.fixture

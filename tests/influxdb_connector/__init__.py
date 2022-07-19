@@ -17,8 +17,8 @@ import os
 import sys
 
 PROJECT_PATH = os.getcwd()
-PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
+#PROJECT_PATH = PROJECT_PATH[:PROJECT_PATH.rfind('/')]
 SOURCE_PATH = os.path.join(
-    PROJECT_PATH,"ves/influxdb-connector/influxdb-connector/code"
+    PROJECT_PATH,"influxdb-connector/influxdb-connector/code"
 )
 sys.path.append(SOURCE_PATH)
