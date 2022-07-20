@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d450d264_75327823",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-07-20T16:05:43Z",
+      "side": 1,
+      "message": "Can we get rid of these spaces.",
+      "revId": "d1c520d0153c594f48451172be512c35796ed6be",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
