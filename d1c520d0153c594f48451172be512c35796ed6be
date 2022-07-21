@@ -34,6 +34,24 @@
       "parentUuid": "d450d264_75327823",
       "revId": "d1c520d0153c594f48451172be512c35796ed6be",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "354fe368_65fe1cff",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-07-21T21:57:05Z",
+      "side": 1,
+      "message": "Why do I see these pink markers at the end of every line in the file. Ah! They could be because you might have edited them on a Windows machine, which add ^L character at the end of every line. Can you view this on a Linux machine and see the difference?",
+      "parentUuid": "86ce904b_bf6c1f59",
+      "revId": "d1c520d0153c594f48451172be512c35796ed6be",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
