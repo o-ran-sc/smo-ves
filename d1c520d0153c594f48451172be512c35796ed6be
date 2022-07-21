@@ -16,6 +16,24 @@
       "message": "Can we get rid of these spaces.",
       "revId": "d1c520d0153c594f48451172be512c35796ed6be",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ce904b_bf6c1f59",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-21T10:37:35Z",
+      "side": 1,
+      "message": "Which spaces you are referring? Original content is as below. There no spaces.\n\nThis repository supports the VES collector interface in O-RAN. It\nmakes use of three containers, the ves-collector container that\ncollects VES events posted by other parts of the O-RAN solution,\nGrafana, which is used to display measurement (PM) data posted\nby other entities and InfluxdB which is used to persist the data\nreceived by the collector.",
+      "parentUuid": "d450d264_75327823",
+      "revId": "d1c520d0153c594f48451172be512c35796ed6be",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
