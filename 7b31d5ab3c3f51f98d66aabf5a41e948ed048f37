@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e490db7_dacf9d22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-07-21T21:50:02Z",
+      "side": 1,
+      "message": "Does the influxdb_connector have a test also or not?",
+      "revId": "7b31d5ab3c3f51f98d66aabf5a41e948ed048f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
