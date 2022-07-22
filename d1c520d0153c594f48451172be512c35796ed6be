@@ -52,6 +52,24 @@
       "parentUuid": "86ce904b_bf6c1f59",
       "revId": "d1c520d0153c594f48451172be512c35796ed6be",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6255e6fd_5961db0f",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001849
+      },
+      "writtenOn": "2022-07-22T06:43:44Z",
+      "side": 1,
+      "message": "I checked in both Windows and Linux environment but there is no spaces at the end of every line",
+      "parentUuid": "354fe368_65fe1cff",
+      "revId": "d1c520d0153c594f48451172be512c35796ed6be",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
