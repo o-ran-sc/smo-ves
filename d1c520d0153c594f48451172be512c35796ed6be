@@ -70,6 +70,24 @@
       "parentUuid": "354fe368_65fe1cff",
       "revId": "d1c520d0153c594f48451172be512c35796ed6be",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab4e467a_ff99eb7a",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-07-22T09:53:59Z",
+      "side": 1,
+      "message": "Mahesh,\n\nCould you check those files one more time? I can\u0027t see any pink line at end of every line. There was one space at end of the line in user-guide.rst file. I fix in last patchset.",
+      "parentUuid": "6255e6fd_5961db0f",
+      "revId": "d1c520d0153c594f48451172be512c35796ed6be",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
