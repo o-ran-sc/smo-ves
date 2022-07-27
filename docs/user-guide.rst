@@ -28,6 +28,14 @@ Prerequisites
 The prerequisites for using this solution are that you need Docker and docker-compose installed on the machine, where you want to run these containers.
 
 
+Build
+-----
+
+To build the solution, you need to do the following in the current folder.
+
+   % docker-compose build
+
+
 Run
 ---
 
@@ -53,7 +61,7 @@ Following steps are required for self-signed certificate.
     openssl genrsa -out vescertificate.key 2048
     openssl req -new -key vescertificate.key -out vescertificate.csr
     openssl x509 -req -days 365 -in vescertificate.csr -signkey vescertificate.key -out vescertificate.crt
-    
+
 Third Party Certificates
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Third party certificates can be installed by overwriting the file *vescertificate.csr*, *vescertificate.key*, and *vescertficate.crt* in ~/ves-certificate directory of the host system.

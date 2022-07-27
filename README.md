@@ -12,6 +12,11 @@ received by the collector.
 The prerequisites for using this solution are that you need Docker and docker-compose
 installed on the machine, where you want to run these containers.
 
+## Build:
+
+To build the solution, you need to do the following in the current folder.
+
+   % docker-compose build
 
 ## Run:
 
