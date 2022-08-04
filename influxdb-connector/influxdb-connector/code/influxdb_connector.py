@@ -201,7 +201,7 @@ def process_measurement_events(domain, jobj, pdata, nonstringpdata, eventId, sta
 
 
 def process_special_char(str):
-    for search_char, replace_char in {" ": "\ ", ",": "\,"}.items():
+    for search_char, replace_char in {" ": "\\ ", ",": "\\,"}.items():
         str = str.replace(search_char, replace_char)
     return str
 

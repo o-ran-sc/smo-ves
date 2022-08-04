@@ -15,7 +15,6 @@
 from _pytest.mark import param
 from flask import request
 import flask
-from future.backports.urllib import response
 from mock import MagicMock
 from pathlib import Path
 import pytest
