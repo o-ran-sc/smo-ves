@@ -6,7 +6,7 @@ Release-Notes
 =============
 
 
-This document provides the release notes for <RELEASE> of <COMPONENT>.
+This document provides the release notes for F-RELEASE of semo-ves.
 
 .. contents::
    :depth: 3
@@ -20,7 +20,7 @@ Version history
 | **Date**           | **Ver.**           | **Author**         | **Comment**        |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-| 2021-12-15         | 0.0.1              |                    | First version      |
+| 2022-07-15         | 5.0.1              |                    | First version      |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
 |                    |                    |                    |                    |
@@ -34,7 +34,7 @@ Version history
 Summary
 -------
 
-This release provided several feature/capabilities for the O1/VES interface. It disaggregated the VES solution into several microservices that can scale independently. In addition, it added supoort for Network Slicing use case.
+The O1/VES interface received a number of features and capabilities in this edition. Adding functional test cases, integrating with the Jenkins server, saving container images in the Nexus repository, enhancing the quality of the code, implementing CLM and Sonar Jobs, etc.
 
 
 
@@ -42,16 +42,16 @@ Release Data
 ------------
 
 +--------------------------------------+--------------------------------------+
-| **Project**                          | SMO VES  		              |
+| **Project**                          | SMO VES      		              |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Repo/commit-ID**                   | Repo: smo/ves                        |
-|                                      | Commit-Id:                           |
-+--------------------------------------+--------------------------------------+
-| **Release designation**              | E-release                            |
+| **Repo**                             | Repo: smo/ves                        |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release date**                     | 2021-12-15                           |
+| **Release designation**              | f-release                            |
+|                                      |                                      |
++--------------------------------------+--------------------------------------+
+| **Release date**                     | 2022-07-15                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Purpose of the delivery**          | 	 		     	      |
@@ -69,22 +69,32 @@ Feature Additions
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-16	                       | Add support for measurement event    |
+| SMO-57	                       | Add Jenkins jobs for the smo repo    |
 |                                      | 				      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-15                               | Add Kafka bus to SMO		      |
+| SMO-55                               | Add dmaap and influx-db adapter      |
+|                                      | plugins to the release process       |
+|                                      |                                      |
++--------------------------------------+--------------------------------------+
+| SMO-53                               | Remove redundant code in smo 	      |
+|                                      | collector  			      |
+|                                      |                                      |
++--------------------------------------+--------------------------------------+
+| SMO-68                               | Create CLM job for smo-ves project   |
 |                                      |  				      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-17                               | Add HTTPS support for VES events     |
+| SMO-58                               | Add unit test cases in smo/ves       |
 |                                      |  				      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-18                               | Add support for DMaaP adapter        |
-|                                      |  				      |
+| SMO-64                               | Add smo-post-config image to         |
+|                                      | the release process		      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
+
+
 
 Bug Corrections
 ^^^^^^^^^^^^^^^
@@ -95,12 +105,8 @@ Bug Corrections
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-19	                       | VES Collector crashes after starting |
-|                                      | 				      |
-|                                      |                                      |
-+--------------------------------------+--------------------------------------+
-| SMO-14                               | Create docker-compose file	      |
-|                                      |  				      |
+| SMO-63 	                       | Modify configuration of              |
+|                                      | Influxdb container		      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -110,14 +116,13 @@ Deliverables
 Software Deliverables
 +++++++++++++++++++++
 
-<STATE WHAT SOFTWARE DELIVERABLES THAT ARE RELATED TO THIS VERSION, AND WHERE THOSE CAN BE RETRIEVED>
-
+Complied container images are available at Nexus repository https://nexus3.o-ran-sc.org/. Search with keyword 'smo'.
 
 
 Documentation Deliverables
 ++++++++++++++++++++++++++
 
-<STATE WHAT DOCUMENTATION DELIVERABLES THAT ARE RELATED TO THIS VERSION, AND WHERE THOSE CAN BE RETRIEVED>
+Documentation is available at https://docs.o-ran-sc.org/projects/o-ran-sc-smo-ves/en/latest/release-notes.html
 
 
 
@@ -127,15 +132,13 @@ Known Limitations, Issues and Workarounds
 
 System Limitations
 ^^^^^^^^^^^^^^^^^^
-<STATE ALL RELEVANT SYSTEM LIMITATIONS, IF THERE IS ANY>
+Not identified
 
 
 
 Known Issues
 ^^^^^^^^^^^^
-<STATE ALL KNOWN ISSUES WITH JIRA REFERENCE>
 
-<EXAMPLE>:
 
 **JIRA TICKETS:**
 
@@ -144,7 +147,7 @@ Known Issues
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | 		                       | 				      |
-|                                      | 				      |
+|     SMO-74                           | Failure of Sonar job 		      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | 	                               |  				      |
@@ -154,15 +157,8 @@ Known Issues
 
 Workarounds
 ^^^^^^^^^^^
+Working with the support team of the Linux Foundation to fix the problem.
 
-<STATE ALL KNOWN WORKAROUNDS TO THE ISSUES STATED ABOVE, IF THERE IS ANY>
-
-
-
-
-References
-----------
-<STATE RELEVANT REFERENCES FOR THIS RELEASE/VERSION>
 
 
 
