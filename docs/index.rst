@@ -10,11 +10,10 @@ Welcome to O-RAN SC smo/ves Documentation
    :caption: Contents:
 
    overview.rst
-   developer-guide.rst
    release-notes.rst
    installation-guide.rst
    user-guide.rst
-   api-docs.rst
+
 
 
 
