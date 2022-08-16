@@ -13,7 +13,7 @@ Installation Guide
 Abstract
 --------
 
-This document describes how to install <Component>, it's dependencies and required system resources.
+This document describes how to install smo-ves, it's dependencies and required system resources.
 
 
 Version history
@@ -22,13 +22,13 @@ Version history
 | **Date**           | **Ver.**           | **Author**         | **Comment**        |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-| 20XX-XX-XX         | 0.1.0              | 		       | First draft        |
+| 2022-Aug-10        | 0.1.0              |  Santanu De        |  First draft       |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | 0.1.1              |                    |                    |
+|                    |                    |                    |                    |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-|                    | 1.0                |                    |                    |
+|                    |                    |                    |                    |
 |                    |                    |                    |                    |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
@@ -39,48 +39,44 @@ Introduction
 
 .. <INTRODUCTION TO THE SCOPE AND INTENTION OF THIS DOCUMENT AS WELL AS TO THE SYSTEM TO BE INSTALLED>
 
-.<EXAMPLE>:
 
 This document describes the supported software and hardware configurations for the reference component as well as providing guidelines on how to install and configure such reference system.
 
-The audience of this document is assumed to have good knowledge in RAN network nd Linux system.
+The audience of this document is assumed to have good knowledge in RAN network, Ubuntu 20.04 LTS Desktop Edition system and Docker Compose.
 
 
 Preface
 -------
 .. <DESCRIBE NEEDED PREREQUISITES, PLANNING, ETC.>
 
-<EXAMPLE>:
+Before starting the installation of smo-ves, make sure docker-compose, git are installed on the system
 
-Before starting the installation of <project name>, some planning must preceed.
-
-.. note:any preperation you need before setting up sotfware and hardware 
+.. <note any preperation you need before setting up sotfware and hardware >
 
 
 Hardware Requirements
 ---------------------
 .. <PROVIDE A LIST OF MINIMUM HARDWARE REQUIREMENTS NEEDED FOR THE INSTALL>
 
-<EXAMPLE>:
 
-Following minimum hardware requirements must be met for installation of <project name>:
+Following minimum hardware requirements must be met for installation of smo-ves:
 
 +--------------------+----------------------------------------------------+
 | **HW Aspect**      | **Requirement**                                    |
 |                    |                                                    |
 +--------------------+----------------------------------------------------+
-| **# of servers**   | 		                                          |
+| **# of servers**   | 	1	                                          |
 +--------------------+----------------------------------------------------+
-| **CPU**            | 						          |
+| **CPU**            | 	4 core					          |
 |                    |                                                    |
 +--------------------+----------------------------------------------------+
-| **RAM**            | 							  |
+| **RAM**            | 	8 GB minimum, 16 GB recommended			  |
 |                    |                                                    |
 +--------------------+----------------------------------------------------+
-| **Disk**           | 					                  |
+| **Disk**           | 	100 GB minimum, 500 GB recommended		  |
 |                    |                                                    |
 +--------------------+----------------------------------------------------+
-| **NICs**           | 							  |
+| **NICs**           | 	1						  |
 |                    |                                                    |
 |                    | 							  |
 |                    |                                                    |
@@ -94,16 +90,56 @@ Software Installation and Deployment
 ------------------------------------
 .. <DESCRIBE THE FULL PROCEDURES FOR THE INSTALLATION OF THE O-RAN COMPONENT INSTALLATION AND DEPLOYMENT>
 
-<EXAMPLE>:
+This section describes the installation of the smo-ves installation on the reference hardware.
 
-This section describes the installation of the <project name> installation on the reference hardware.
+Build
+~~~~~
+
+To build the solution, you need to do the following in the current folder::
+
+   % docker-compose build
+
+Run
+~~~
+
+To run the solution, you need to invoke the following command::
+
+    % docker-compose up -d
+
+
+To stop the solution the following command should be invoked::
+
+    % docker-compose down
 
 
 
-References
-----------
-.. <PROVIDE NEEDED/USEFUL REFERENCES>
+Following steps are required to install a certificate.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+   
+Self-Signed Certificates
+^^^^^^^^^^^^^^^^^^^^^^^^
+Following steps are required for self-signed certificate.
+1. Create ves-certificate directory on the host system using command "mkdir ~/ves-certificate".
+2. Go to ves-certificate directory and use below commands to create self-signed certificate files::
+
+    openssl genrsa -out vescertificate.key 2048
+    openssl req -new -key vescertificate.key -out vescertificate.csr
+    openssl x509 -req -days 365 -in vescertificate.csr -signkey vescertificate.key -out vescertificate.crt
+
+Third Party Certificates
+^^^^^^^^^^^^^^^^^^^^^^^^
+Third party certificates can be installed by overwriting the file *vescertificate.csr*, *vescertificate.key*, and *vescertficate.crt* in ~/ves-certificate directory of the host system.
+
+
+Following steps are required to add an entry in the host file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Add following entry in host file on the computer from which user want to access Grafana  dashboard.
+<IP Address of VM/Machine on which docker containers are running> smo-influxdb
+
+For Example- Docker container running on the guest VM or different/remote machine having IP Address 192.168.56.110 then host file entry is as follows::
+
+    192.168.56.110 smo-influxdb
 
 
 
