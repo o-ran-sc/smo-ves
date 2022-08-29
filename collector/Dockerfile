@@ -27,7 +27,6 @@ COPY pip.conf /etc/pip.conf
 
 RUN pip3 install requests jsonschema kafka-python gevent
 
-
 RUN mkdir -p /opt/smo/certs
 
 # Clone VES Collector
