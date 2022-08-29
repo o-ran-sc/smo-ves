@@ -22,7 +22,7 @@ FROM ubuntu:focal
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests jsonschema kafka-python gevent
+RUN pip3 --default-timeout=500 install requests jsonschema kafka-python gevent
 
 
 RUN mkdir -p /opt/smo/certs
