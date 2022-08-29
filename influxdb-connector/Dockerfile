@@ -17,7 +17,7 @@ FROM ubuntu:focal
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests confluent-kafka
+RUN pip3 --default-timeout=500 install requests confluent-kafka
 
 # Clone influxdb-connector
 RUN mkdir -p /opt/smo/influxdb-connector
