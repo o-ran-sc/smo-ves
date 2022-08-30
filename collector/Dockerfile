@@ -25,8 +25,7 @@ RUN apt-get install -y git curl python3 python3-pip
 
 COPY pip.conf /etc/pip.conf
 
-RUN pip3 install requests jsonschema kafka-python gevent
-
+RUN pip3 install requests==2.28.1 jsonschema kafka-python gevent PyYAML
 
 RUN mkdir -p /opt/smo/certs
 
