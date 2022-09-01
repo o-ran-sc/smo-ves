@@ -15,8 +15,25 @@
 
 FROM ubuntu:focal
 
+ENV TZ=Etc/UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
+
+#RUN apt update
+RUN apt-get install -y iproute2 net-tools host wget curl
+RUN ip route
+RUN ip addr
+RUN ifconfig -a
+RUN netstat -rnv
+RUN cat /etc/resolv.conf 
+RUN host pypi.org
+RUN host files.pythonhosted.org
+RUN wget --verbose https://pypi.org  
+RUN wget --verbose https://files.pythonhosted.org
+
 RUN pip3 install requests jsonschema kafka-python flask confluent-kafka
 
 
