@@ -15,8 +15,44 @@
 
 FROM ubuntu:focal
 
+ENV TZ=Etc/UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y git curl python3 python3-pip
+#RUN apt-get install -y iputils-ping
+#RUN ping -c 4 pypi.org
+#RUN ping -c 4 files.pythonhosted.org
+#RUN echo "151.101.0.223 pypi.org" >> /etc/hosts
+#RUN echo "199.232.253.63 files.pythonhosted.org" >> /etc/hosts
+#RUN echo "=========AFTER DNS OVERRIDE============="
+#RUN ping -c 4 pypi.org
+#RUN ping -c 4 files.pythonhosted.org
+
+RUN apt-get install -y git curl python3 python3-pip 
+#RUN apt-get install -y iproute2 net-tools host wget
+
+COPY pip.conf /etc/pip.conf
+
+#RUN curl -v http://pypi.org
+#RUN wget --verbose http://pypi.org  
+
+#RUN curl -v https://pypi.org
+
+#RUN curl -v http://files.pythonhosted.org
+
+#RUN apt update
+
+#RUN ip route
+#RUN ip addr
+#RUN ifconfig -a
+#RUN netstat -rnv
+#RUN cat /etc/resolv.conf 
+#RUN host pypi.org
+#RUN host files.pythonhosted.org
+#RUN wget --verbose https://pypi.org  
+#RUN wget --verbose https://files.pythonhosted.org
+
 RUN pip3 install requests jsonschema kafka-python flask confluent-kafka
 
 
