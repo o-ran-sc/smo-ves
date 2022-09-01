@@ -22,6 +22,9 @@ FROM ubuntu:focal
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
+
+COPY pip.conf /etc/pip.conf
+
 RUN pip3 install requests jsonschema kafka-python gevent
 
 
