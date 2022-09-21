@@ -92,6 +92,7 @@ def test_listener(mock_monitor,mock_input,body,start_response,schema):
 @mock.patch('argparse.ArgumentParser.parse_args',
             return_value=argparse.Namespace(verbose=None, api_version='7',config=get_config_path(),section='default'))
 @mock.patch('gevent.pywsgi.WSGIServer.serve_forever')
+@mock.patch('monitor.logger', logging.getLogger('monitor'))
 def test_main(server,parser,body):
     argv=None
     logger = logging.getLogger('monitor')
@@ -103,6 +104,7 @@ def test_main(server,parser,body):
 
 #@pytest.mark.skip
 @mock.patch('monitor.kafka_server')
+@mock.patch('monitor.logger', logging.getLogger('monitor'))
 def test_save_event_in_kafka(mocker,data_set,topic_name):
     data_set_string=json.dumps(data_set)
     logger = logging.getLogger('monitor')
@@ -116,6 +118,7 @@ def test_save_event_in_kafka(mocker,data_set,topic_name):
 
 @mock.patch('monitor.KafkaProducer')
 @mock.patch('monitor.producer')
+@mock.patch('monitor.logger', logging.getLogger('monitor'))
 def test_produce_events_in_kafka(mock_pro,mock_producer,data_set,topic_name):
     logger = logging.getLogger('monitor')
     logger.setLevel(logging.DEBUG)

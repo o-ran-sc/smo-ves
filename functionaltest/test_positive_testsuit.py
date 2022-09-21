@@ -64,7 +64,6 @@ def test_generate_pnfRegistration_event():
                     "keepaliveDelay": "120",
                     "maxConnectionAttempts": "100",
                     "oamPort": "830",
-                    "password": "netconf",
                     "protocol": "SSH",
                     "reconnectOnChangedSchema": "false",
                     "sleep-factor": "1.5",
@@ -90,7 +89,6 @@ def test_generate_pnfRegistration_event():
     response = requests.post(collector_url + "/eventListener/v7/events",
                              json=payload,
                              auth=('user', 'password'),
-                             verify=False,
                              headers={"Content-Type": "application/json"})
     assert "202" in str(response)
     print("Success")
@@ -140,7 +138,6 @@ def test_generate_heartBeat_event():
     response = requests.post(collector_url + "/eventListener/v7/events",
                              json=payload,
                              auth=('user', 'password'),
-                             verify=False,
                              headers={"Content-Type": "application/json"})
     assert "202" in str(response)
     print("Success")
@@ -198,7 +195,6 @@ def test_generate_fault_event():
     response = requests.post(collector_url + "/eventListener/v7/events",
                              json=payload,
                              auth=('user', 'password'),
-                             verify=False,
                              headers={"Content-Type": "application/json"})
     assert "202" in str(response)
     print("Success")
@@ -274,7 +270,6 @@ def test_generate_thresholdCrossingAlert_event():
     response = requests.post(collector_url + "/eventListener/v7/events",
                              json=payload,
                              auth=('user', 'password'),
-                             verify=False,
                              headers={"Content-Type": "application/json"})
     assert "202" in str(response)
     print("Success")
@@ -382,7 +377,6 @@ def test_generate_measurement_event():
     response = requests.post(collector_url + "/eventListener/v7/events",
                              json=payload,
                              auth=('user', 'password'),
-                             verify=False,
                              headers={"Content-Type": "application/json"})
     assert "202" in str(response)
     print("Success")

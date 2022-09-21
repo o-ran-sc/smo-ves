@@ -42,6 +42,20 @@ def send_to_influxdb(event, pdata):
     except Exception as e:
         logger.error('Exception occured while saving data : '.format(e))
 
+def process_event(jobj, pdata, nonstringpdata):
+    for key, val in jobj.items():
+        if key != 'additionalFields' and val != "":
+            if isinstance(val, str):
+                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
+            else:
+                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
+        elif key == 'additionalFields':
+            for key2, val2 in val.items():
+                if val2 != "" and isinstance(val2, str):
+                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
+                elif val2 != "":
+                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
+    return pdata, nonstringpdata
 
 def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
     for additionalMeasurements in val:
@@ -76,19 +90,7 @@ def process_nonadditional_measurements(val, domain, eventId, startEpochMicrosec,
 
 def process_pnfRegistration_event(domain, jobj, pdata, nonstringpdata):
     pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'additionalFields' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
+    pdata, nonstringpdata = process_event(jobj, pdata, nonstringpdata)
     send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
 
 
@@ -151,19 +153,7 @@ def process_fault_event(domain, jobj, pdata, nonstringpdata):
 
 def process_heartbeat_events(domain, jobj, pdata, nonstringpdata):
     pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'additionalFields' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
+    pdata, nonstringpdata = process_event(jobj, pdata, nonstringpdata)
     send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
 
 
@@ -198,6 +188,52 @@ def process_measurement_events(domain, jobj, pdata, nonstringpdata, eventId, sta
                 nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
 
     send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
+
+def process_stndDefinedFields_events(values, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
+    """
+    Format stndDefined event to store in influx db
+    Values(dict) :- data to store in influxdb,
+    domain(str) :- name of topic ,
+    eventId (str) :- event id,
+    startEpochMicrosec :- Timestamp ,
+    lastEpochMicrosec:- Timestamp
+    """
+    pdata = domain + ",eventId={},system={}".format(eventId, source)
+    nonstringpdata = " startEpochMicrosec={},lastEpochMicrosec={},".format(startEpochMicrosec, lastEpochMicrosec)
+    for key, val in values.items():
+        if isinstance(val, str):
+            pdata = pdata + ',{}={}'.format(key, process_special_char(val))
+        elif isinstance(val, dict):
+            for key2, val2 in val.items():
+                if isinstance(val2, str) and val2 != '':
+                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
+                elif isinstance(val2, dict) and key2 != 'additionalInformation' :
+                    for key3, val3 in val2.items():
+                        if isinstance(val3, str) and val3 != '':
+                            pdata = pdata + ',{}={}'.format(key3, process_special_char(val3))
+                        elif val3 !='':
+                            nonstringpdata = nonstringpdata + '{}={},'.format(key3, val3)
+                elif key2 == 'additionalInformation':
+                    for key3, val3 in val2.items():
+                        if isinstance(val3, str) and val3 != '' :
+                            pdata = pdata + ',{}={}'.format('additionalInformation_'+key3, process_special_char(val3))
+                        elif val3 !='':
+                            nonstringpdata = nonstringpdata + '{}={},'.format(key3, val3)
+                elif key2 == 'correlatedNotifications':
+                    for item in val2:
+                        for key4, val4 in item.items():
+                            if isinstance(val4, str) and val4 !='':
+                                pdata = pdata + ',{}={}'.format(key4, process_special_char(val4))
+                            elif val4 !='':
+                                nonstringpdata = nonstringpdata + '{}={},'.format(key4, val4)
+
+                elif val2 !='':
+                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
+        elif val !='':
+            nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
+
+    send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
+
 
 
 def process_special_char(str):
@@ -286,6 +322,14 @@ def save_event_in_db(body):
                                    jobj['event']['measurementFields'],
                                    pdata,
                                    nonstringpdata,
+                                   jobj['event']['commonEventHeader']['eventId'],
+                                   jobj['event']['commonEventHeader']['startEpochMicrosec'],
+                                   jobj['event']['commonEventHeader']['lastEpochMicrosec'])
+
+    if "stndDefinedFields" in jobj['event']:
+        logger.debug('Found stndDefinedFields')
+        process_stndDefinedFields_events(jobj['event']['stndDefinedFields'],
+                                   domain,
                                    jobj['event']['commonEventHeader']['eventId'],
                                    jobj['event']['commonEventHeader']['startEpochMicrosec'],
                                    jobj['event']['commonEventHeader']['lastEpochMicrosec'])
@@ -398,7 +442,7 @@ def main():
     c = Consumer(settings)
 
     c.subscribe(['measurement', 'pnfregistration',
-    'fault', 'thresholdcrossingalert', 'heartbeat'])
+    'fault', 'thresholdcrossingalert', 'heartbeat', 'stnddefined'])
 
     try:
         while True:
@@ -412,7 +456,7 @@ def main():
                 try:
                     save_event_in_db(msg.value())
                 except Exception as e:
-                    logger.error('Exception occured while saving data : '.format(e))
+                    logger.error('Exception occured while saving data : {} '.format(e))
             elif msg.error().code() == KafkaError._PARTITION_EOF:
                 logger.error('End of partition reached {0}/{1}'
                       .format(msg.topic(), msg.partition()))
