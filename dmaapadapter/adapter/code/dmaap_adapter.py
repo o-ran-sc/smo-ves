@@ -105,7 +105,7 @@ def getTimeout(timeout):
         return timeout
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':      # pragma: no cover
     appConfig = AppConfig()
 
     if(appConfig.getAssertConfigValue() == 'False'):

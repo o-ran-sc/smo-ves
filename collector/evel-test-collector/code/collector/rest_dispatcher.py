@@ -63,7 +63,7 @@ def notfound_404(environ, start_response):
                                              environ['REQUEST_METHOD'].upper(),
                                              environ['PATH_INFO']))
     start_response('404 Not Found', [ ('Content-type', 'text/plain') ])
-    return [template_404.format(base_url)]
+    return ['template_404{}'.format(base_url)]
 
 class PathDispatcher:
     '''
@@ -99,6 +99,5 @@ class PathDispatcher:
         Register a handler for a method/path, adding it to the pathmap.
         '''
         logger.debug('Registering for {0} at {1}'.format(method, path))
-        print('Registering for {0} at {1}'.format(method, path))
         self.pathmap[method.lower(), path] = function
         return function
