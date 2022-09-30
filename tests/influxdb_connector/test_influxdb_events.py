@@ -82,6 +82,17 @@ def test_process_heartbeat_events_called(mocker_process_time, mocker_send_to_inf
     mocker_send_to_influxdb.assert_called_with(domain, hb_expected_pdata)
 
 
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_heartbeat_events(mocker_process_time, mocker_send_to_influxdb, hb_json, hb_data, hb_nonstringpdata, hb_expected_pdata, event_Timestamp):
+    domain = "heartbeat"
+    jobj={'additionalFields':{'eventTime':6}}
+    hb_ex='heartbeat,domain=heartbeat,eventId=ORAN-DEV_2021-12-20T07:29:34.292938Z,eventName=heartbeat_O_RAN_COMPONENT,eventType=O_RAN_COMPONENT,nfNamingCode=SDN-Controller,nfVendorName=O-RAN-SC-OAM,priority=Low,reportingEntityName=ORAN-DEV,sourceName=ORAN-DEV,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None lastEpochMicrosec=1639965574292938,sequence=357,startEpochMicrosec=1639965574292938,eventTime=6 1639985333218840000'
+    influxdb_connector.process_heartbeat_events(domain, jobj, hb_data, hb_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain, hb_ex)
+
+
 # ------------------------------------------------------------------------------
 # Address of pnfRegistration event.
 # ------------------------------------------------------------------------------
@@ -117,6 +128,27 @@ def test_process_pnfRegistration_event_called(mock_process_time ,mocker_send_to_
 
     influxdb_connector.process_pnfRegistration_event(domain, pnf_json, pnf_data, pnf_nonstringpdata)
     mocker_send_to_influxdb.assert_called_with(domain, pnf_expected_pdata)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_pnfRegistration_event(mock_process_time ,mocker_send_to_influxdb, pnf_json, pnf_data, pnf_nonstringpdata, pnf_expected_pdata, event_Timestamp):
+    domain = "pnfRegistration"
+    jobj={1:2,2:4}
+    non_pnf='pnfRegistration,domain=pnfRegistration,eventId=ORAN-DEV_ONAP\\ Controller\\ for\\ Radio,eventName=pnfRegistration_EventType5G,eventType=EventType5G,priority=Low,reportingEntityName=ORAN-DEV,sourceName=ORAN-DEV,nfNamingCode=SDNR,nfVendorName=ONAP,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639985329569087,lastEpochMicrosec=1639985329569087,1=2,2=4 1639985333218840000'
+    influxdb_connector.process_pnfRegistration_event(domain, jobj, pnf_data, pnf_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain, non_pnf)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_pnfRegistration_event_elif(mock_process_time ,mocker_send_to_influxdb, pnf_json, pnf_data, pnf_nonstringpdata, pnf_expected_pdata, event_Timestamp):
+    domain = "pnfRegistration"
+    jobj={'additionalFields': {'oamPort': 830}}
+    non_pnf='pnfRegistration,domain=pnfRegistration,eventId=ORAN-DEV_ONAP\\ Controller\\ for\\ Radio,eventName=pnfRegistration_EventType5G,eventType=EventType5G,priority=Low,reportingEntityName=ORAN-DEV,sourceName=ORAN-DEV,nfNamingCode=SDNR,nfVendorName=ONAP,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639985329569087,lastEpochMicrosec=1639985329569087,oamPort=830 1639985333218840000'
+    influxdb_connector.process_pnfRegistration_event(domain, jobj, pnf_data, pnf_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain, non_pnf)
+
 
 
 # ------------------------------------------------------------------------------
@@ -156,6 +188,38 @@ def test_process_fault_event_called(mock_time,mocker_send_to_influxdb, flt_json,
 
     influxdb_connector.process_fault_event(domain, flt_json, flt_data, flt_nonstringpdata)
     mocker_send_to_influxdb.assert_called_with(domain, flt_expected_pdata)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_fault_event(mock_time,mocker_send_to_influxdb, flt_json, flt_data, flt_nonstringpdata, flt_expected_pdata, event_Timestamp):
+    domain = "fault"
+    payload=flt_json
+    for key, val in payload.items():
+        if key != 'alarmAdditionalInformation' and val != "":
+            if isinstance(val, list):
+                influxdb_connector.process_fault_event(payload.get('alarmAdditionalInformation'),domain, flt_json, flt_data, flt_nonstringpdata)
+                mocker_send_to_influxdb.assert_called_with(domain, flt_expected_pdata)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_fault_event_nonstr(mock_time,mocker_send_to_influxdb, flt_json, flt_data, flt_nonstringpdata, flt_expected_pdata, event_Timestamp):
+    domain = "fault"
+    jobj={2:2}
+    flt_ex='fault,domain=fault,eventId=LKCYFL79Q01M01FYNG01_LP-MWPS-RADIO_TCA,eventName=fault_O_RAN_COMPONENT_Alarms_TCA,eventType=O_RAN_COMPONENT_Alarms,priority=High,reportingEntityName=ORAN-DEV,sourceName=LKCYFL79Q01M01FYNG01,nfNamingCode=FYNG,nfVendorName=VENDORA,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639985333218840,lastEpochMicrosec=1639985333218840,2=2 1639985333218840000'
+    influxdb_connector.process_fault_event(domain, jobj, flt_data, flt_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain, flt_ex)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_fault_event_nonstr_elif(mock_time,mocker_send_to_influxdb, flt_json, flt_data, flt_nonstringpdata, flt_expected_pdata, event_Timestamp):
+    domain = "fault"
+    jobj={'alarmAdditionalInformation':{'eventTime': 234, 'equipType': 345, 'vendor': 'VENDORA', 'model': 'FancyNextGeneration'}}
+    flt_ex='fault,domain=fault,eventId=LKCYFL79Q01M01FYNG01_LP-MWPS-RADIO_TCA,eventName=fault_O_RAN_COMPONENT_Alarms_TCA,eventType=O_RAN_COMPONENT_Alarms,priority=High,reportingEntityName=ORAN-DEV,sourceName=LKCYFL79Q01M01FYNG01,nfNamingCode=FYNG,nfVendorName=VENDORA,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None,vendor=VENDORA,model=FancyNextGeneration sequence=0,startEpochMicrosec=1639985333218840,lastEpochMicrosec=1639985333218840,eventTime=234,equipType=345 1639985333218840000'
+    influxdb_connector.process_fault_event(domain, jobj, flt_data, flt_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain, flt_ex)
 
 
 # ------------------------------------------------------------------------------
@@ -244,10 +308,51 @@ def test_process_measurement_events_called(mock_time,mocker_send_to_influxdb, mo
     mocker_send_to_influxdb.assert_called_with(domain, meas_expected_data)
 
 
+
+@patch('influxdb_connector.process_nonadditional_measurements')
+@patch('influxdb_connector.process_additional_measurements')
+@patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_measurement_events(mock_time,mocker_send_to_influxdb, mocker_additional, mocker_nonadditional, meas_json,
+                                           meas_data, meas_nonstringpdata, event_Id, start_Epoch_Microsec, last_Epoch_Microsec,
+                                           meas_expected_data, non_add_meas_data, add_meas_data, event_Timestamp):
+    domain = "measurement"
+    jobj={"test":[1,2,3],'networkSliceArray':[1,2,3]}
+    means_ex='measurement,domain=measurement,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,eventName=measurement_O_RAN_COMPONENT_PM15min,eventType=O_RAN_COMPONENT_PM15min,priority=Low,reportingEntityName=ORAN-DEV,sourceName=O-RAN-FH-IPv6-01,intervalStartTime=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:00:00\\ +0000,intervalEndTime=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:15:00\\ +0000,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000'
+    influxdb_connector.process_measurement_events('measurement',jobj, meas_data, meas_nonstringpdata, event_Id,
+                                                  start_Epoch_Microsec, last_Epoch_Microsec)
+    influxdb_connector.process_additional_measurements(domain,event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+    mocker_nonadditional.process_nonadditional_measurements([], 'measurementnicperformance', event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain, means_ex)
+
+
+
+@patch('influxdb_connector.process_nonadditional_measurements')
+@patch('influxdb_connector.process_additional_measurements')
+@patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_measurement_events_elif(mock_time,mocker_send_to_influxdb, mocker_additional, mocker_nonadditional, meas_json,
+                                           meas_data, meas_nonstringpdata, event_Id, start_Epoch_Microsec, last_Epoch_Microsec,
+                                           meas_expected_data, non_add_meas_data, add_meas_data, event_Timestamp):
+    domain = "measurement"
+    jobj={"test":{1:26,2:56},'networkSliceArray':{1:4,2:7}}
+    means_ex='measurement,domain=measurement,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,eventName=measurement_O_RAN_COMPONENT_PM15min,eventType=O_RAN_COMPONENT_PM15min,priority=Low,reportingEntityName=ORAN-DEV,sourceName=O-RAN-FH-IPv6-01,intervalStartTime=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:00:00\\ +0000,intervalEndTime=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:15:00\\ +0000,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,1=26,2=56,1=4,2=7 1639985333218840000'
+    influxdb_connector.process_measurement_events('measurement',jobj, meas_data, meas_nonstringpdata, event_Id,
+                                                  start_Epoch_Microsec, last_Epoch_Microsec)
+    influxdb_connector.process_additional_measurements(domain,event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+    mocker_additional.process_additional_measurements(add_meas_data.get('additionalMeasurements'), 'measurementadditionalmeasurements',
+                                                      event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+
+    mocker_nonadditional.process_nonadditional_measurements([], 'measurementnicperformance', event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain, means_ex)
+
+
+
 @pytest.fixture
 def add_meas_expected_pdata():
             additional_expected_pdata = 'measurementadditionalmeasurements,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None,name=LP-MWPS-RADIO-2,es=0,ses=1,cses=0,unavailability=0 startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000'
             return additional_expected_pdata
+
 
 
 # ## process_additional_measurements unit test_case
@@ -263,6 +368,35 @@ def test_process_additional_measurements_called(mock_time, mocker_send_to_influx
                     influxdb_connector.process_additional_measurements(payload.get('additionalMeasurements'), domain,
                                                                        event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
                     mocker_send_to_influxdb.assert_called_with(domain, add_meas_expected_pdata)
+
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_additional_measurements(mock_time, mocker_send_to_influxdb, event_Id, start_Epoch_Microsec, last_Epoch_Microsec,
+                                                add_meas_data, add_meas_expected_pdata, event_Timestamp):
+    payload = [{1:23}]
+    domain = 'measurementadditionalmeasurements'
+    expected_pdata='measurementadditionalmeasurements,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,1=23 1639985333218840000'
+    influxdb_connector.process_additional_measurements(payload, domain,
+                                                                       event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain, expected_pdata)
+
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_additional_measurements_else(mock_time, mocker_send_to_influxdb, event_Id, start_Epoch_Microsec, last_Epoch_Microsec,
+                                                add_meas_data, add_meas_expected_pdata, event_Timestamp):
+    payload = [{1:{1:{67}}}]
+    domain = 'measurementadditionalmeasurements'
+    expected_pdata='measurementadditionalmeasurements,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,1={67} 1639985333218840000'
+    influxdb_connector.process_additional_measurements(payload, domain,
+                                                                       event_Id, start_Epoch_Microsec, last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain, expected_pdata)
+
+
+
 
 
 @pytest.fixture
@@ -322,7 +456,63 @@ def test_process_thresholdCrossingAlert_event_called(thre_json, threshold_data, 
          func.assert_called_with(domain, thre_json, threshold_data, thres_nonstringpdata)
 
 
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_thresholdCrossingAlert_event(mock_pro,mocker_send_to_influxdb,thre_json, threshold_data, thres_nonstringpdata, event_Timestamp):
+    jobj= {"test":"test"}
+    pdata= 'thresholdCrossingAlert,domain=thresholdCrossingAlert,eventId=__TCA,eventName=thresholdCrossingAlert_O_RAN_COMPONENT_TCA_TCA,eventType=O_RAN_COMPONENT_TCA,priority=High,reportingEntityName=ORAN-DEV,nfNamingCode=1OSF,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None'
+    domain = "thresholdCrossingAlert"
+    thres_data='thresholdCrossingAlert,domain=thresholdCrossingAlert,eventId=__TCA,eventName=thresholdCrossingAlert_O_RAN_COMPONENT_TCA_TCA,eventType=O_RAN_COMPONENT_TCA,priority=High,reportingEntityName=ORAN-DEV,nfNamingCode=1OSF,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None,system=None,thresholdCrossingFieldsVersion=4.0,criticality=MAJ,additionalProperties=up-and-down,thresholdCrossed=packetLoss,alertAction=SET,alertDescription=TCA,alertType=INTERFACE-ANOMALY,alertValue=1OSF,associatedAlertIdList=loss-of-signal,collectionTimestamp=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:28:56\\ +0000,dataCollector=data-lake,elementType=1OSF,eventSeverity=WARNING,eventStartTimestamp=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:15:00\\ +0000,networkService=from-a-to-b,possibleRootCause=always-the-others,eventTime=2021-12-20T07:28:56.443218Z,equipType=1OSF sequence=0,startEpochMicrosec=1639985336443218,lastEpochMicrosec=1639985336443218 1639985333218840000'
+    influxdb_connector.process_thresholdCrossingAlert_event(domain,thre_json, pdata, thres_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain, thres_data)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_thresholdCrossingAlert_elif(mock_pro,mocker_send_to_influxdb,thre_json, threshold_data, thres_nonstringpdata, event_Timestamp):
+    jobj={'additionalParameters': [{'addParameter': 'MAJ', 'abc':
+                     {'additionalProperties': 'up-and-down'}, 'thresholdCrossed': 'packetLoss'}],}
+    domain = "thresholdCrossingAlert"
+    nonstr="thresholdCrossingAlert,domain=thresholdCrossingAlert,eventId=__TCA,eventName=thresholdCrossingAlert_O_RAN_COMPONENT_TCA_TCA,eventType=O_RAN_COMPONENT_TCA,priority=High,reportingEntityName=ORAN-DEV,nfNamingCode=1OSF,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None,addParameter=MAJ,thresholdCrossed=packetLoss sequence=0,startEpochMicrosec=1639985336443218,lastEpochMicrosec=1639985336443218,abc={'additionalProperties': 'up-and-down'} 1639985333218840000"
+    influxdb_connector.process_thresholdCrossingAlert_event(domain,jobj, threshold_data, thres_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain,  nonstr)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_thresholdCrossingAlert_elif_elif(mock_pro,mocker_send_to_influxdb,thre_json, threshold_data, thres_nonstringpdata, event_Timestamp):
+    jobj={'additionalParameters': [{'addParameter': 'MAJ', 'hashMap':
+                     {'additionalProperties':67}, 'thresholdCrossed': 'packetLoss'}],}
+    domain = "thresholdCrossingAlert"
+    nonstr='thresholdCrossingAlert,domain=thresholdCrossingAlert,eventId=__TCA,eventName=thresholdCrossingAlert_O_RAN_COMPONENT_TCA_TCA,eventType=O_RAN_COMPONENT_TCA,priority=High,reportingEntityName=ORAN-DEV,nfNamingCode=1OSF,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None,addParameter=MAJ,thresholdCrossed=packetLoss sequence=0,startEpochMicrosec=1639985336443218,lastEpochMicrosec=1639985336443218,additionalProperties=67 1639985333218840000'
+    influxdb_connector.process_thresholdCrossingAlert_event(domain,jobj, threshold_data, thres_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain,  nonstr)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_thresholdCrossingAlert_event_elif(mock_pro,mocker_send_to_influxdb,thre_json, threshold_data, thres_nonstringpdata, event_Timestamp):
+    jobj= {1:2}
+    domain = "thresholdCrossingAlert"
+    nonstr='thresholdCrossingAlert,domain=thresholdCrossingAlert,eventId=__TCA,eventName=thresholdCrossingAlert_O_RAN_COMPONENT_TCA_TCA,eventType=O_RAN_COMPONENT_TCA,priority=High,reportingEntityName=ORAN-DEV,nfNamingCode=1OSF,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639985336443218,lastEpochMicrosec=1639985336443218,1=2 1639985333218840000'
+    influxdb_connector.process_thresholdCrossingAlert_event(domain,jobj, threshold_data, thres_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstr)
+
+
+@mock.patch('influxdb_connector.send_to_influxdb')
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+def test_process_thresholdCrossingAlert_event_nonstr(mock_pro,mocker_send_to_influxdb,thre_json, threshold_data, thres_nonstringpdata, event_Timestamp):
+    jobj= {'additionalFields': {'eventTime': 2}}
+    domain = "thresholdCrossingAlert"
+    nonstr='thresholdCrossingAlert,domain=thresholdCrossingAlert,eventId=__TCA,eventName=thresholdCrossingAlert_O_RAN_COMPONENT_TCA_TCA,eventType=O_RAN_COMPONENT_TCA,priority=High,reportingEntityName=ORAN-DEV,nfNamingCode=1OSF,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639985336443218,lastEpochMicrosec=1639985336443218,eventTime=2 1639985333218840000'
+    influxdb_connector.process_thresholdCrossingAlert_event(domain,jobj, threshold_data, thres_nonstringpdata)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstr)
+
+
+#.................................................................................
 # ## save_event_in_db unit test_cases.
+#....................................................................................
+
 @patch('influxdb_connector.logger')
 @pytest.mark.parametrize("key", [("heartbeat"), ("pnfRegistration"), ("measurement"), ("fault"), ("thresholdCrossingAlert")])
 def test_save_event_in_db(mock_logger, key, hb_json, hb_data, hb_nonstringpdata, pnf_json, pnf_data, pnf_nonstringpdata,
@@ -361,3 +551,48 @@ def test_save_event_in_db(mock_logger, key, hb_json, hb_data, hb_nonstringpdata,
                influxdb_connector.save_event_in_db(data_set)
                func.assert_called_with('thresholdCrossingAlert', thre_json, threshold_data, thres_nonstringpdata)
 
+
+
+@patch('influxdb_connector.logger')
+def test_save_event_in_db_localhost(mock_logger):
+    data_set = {'event':{'commonEventHeader':{'reportingEntityName':'LOCALHOST','domain':'heartbeat','startEpochMicrosec':'1639965574292938','sourceId':'1223'}}}
+    try:
+        res=influxdb_connector.save_event_in_db(json.dumps(data_set))
+    except Exception:
+        pytest.fail('Exception occured while saving data')
+    assert res==None
+
+
+@patch('influxdb_connector.logger')
+def test_save_event_in_db_comman(mock_logger):
+    data_set = {'event':{'commonEventHeader':{'reportingEntityName':'LOCALHOST','domain':'heartbeat','startEpochMicrosec':'1639965574292938','sourceId':'1223','internalHeaderFields':{1:78}}}}
+    try:
+        res=influxdb_connector.save_event_in_db(json.dumps(data_set))
+    except Exception:
+        pytest.fail('Exception occured while saving data')
+    assert res==None
+
+    
+
+@pytest.fixture
+def event():
+    event="domain"
+    return event
+
+
+@pytest.fixture
+def p_data():
+    p_data='heartbeat,domain=heartbeat,eventId=ORAN-DEV_2021-12-20T07:29:34.292938Z,eventName=heartbeat_O_RAN_COMPONENT,eventType=O_RAN_COMPONENT,nfNamingCode=SDN-Controller,nfVendorName=O-RAN-SC-OAM,priority=Low,reportingEntityName=ORAN-DEV,sourceName=ORAN-DEV,timeZoneOffset=+00:00,version=4.1,vesEventListenerVersion=7.2.1'
+    return p_data
+
+
+#send_to_influxdb unittest
+@patch('influxdb_connector.requests.post')
+@patch('influxdb_connector.logger')
+def test_send_to_influxdb(mock_logger,mock_post,event,p_data):
+    mock_post.return_value.status_code=201
+    try:
+        res=influxdb_connector.send_to_influxdb(event,p_data)
+    except Exception:
+        pytest.fail('Exception occured while saving data')
+    assert res==None
