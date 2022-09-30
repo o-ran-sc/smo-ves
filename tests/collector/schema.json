@@ -1,0 +1,63 @@
+{
+    "name": "MyClass",
+    "type": "record",
+    "namespace": "com.acme.avro",
+    "fields": [
+      {
+        "name": "interpretations",
+        "type": {
+          "type": "array",
+          "items": {
+            "name": "interpretations_record",
+            "type": "record",
+            "fields": [
+              {
+                "name": "segments",
+                "type": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "name": "segments_record",
+                      "type": "record",
+                      "fields": [
+                        {
+                          "name": "x",
+                          "type": "string"
+                        },
+                        {
+                          "name": "y",
+                          "type": "string"
+                        },
+                        {
+                          "name": "z",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "segments_record",
+                      "type": "record",
+                      "fields": [
+                        {
+                          "name": "x",
+                          "type": "string"
+                        },
+                        {
+                          "name": "y",
+                          "type": "string"
+                        },
+                        {
+                          "name": "z",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
