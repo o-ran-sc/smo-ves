@@ -50,6 +50,23 @@
       "message": "recheck",
       "revId": "b36d8fcaed7a2903e84fc5db22d859f6e1fb8928",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff598c5_83cbe470",
+        "filename": "collector/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-10-04T02:00:28Z",
+      "side": 1,
+      "message": "Remove the library version if doesn\u0027t require",
+      "revId": "b36d8fcaed7a2903e84fc5db22d859f6e1fb8928",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
