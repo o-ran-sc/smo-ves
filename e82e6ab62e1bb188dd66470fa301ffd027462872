@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f515e80f_1387d166",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000382
+      },
+      "writtenOn": "2022-10-04T16:51:21Z",
+      "side": 1,
+      "message": "I will wait on Santanu and Sahil\u0027s +1 on code-review before I give my vote.",
+      "revId": "e82e6ab62e1bb188dd66470fa301ffd027462872",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
