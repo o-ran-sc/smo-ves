@@ -55,13 +55,12 @@ def resCode():
 
 def get_path():
     project_path = os.getcwd()
-    project_path = project_path[:project_path.rfind('/')]
     return project_path
 
 def get_config_path():
     project_path=get_path()
     config_path = os.path.join(
-        project_path,"ves/dmaapadapter/adapter/config/adapter.conf")
+    project_path,"dmaapadapter/adapter/config/adapter.conf")
     return config_path
 
 #test __init__ of EventConsumer
