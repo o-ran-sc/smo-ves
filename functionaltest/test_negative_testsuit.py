@@ -55,7 +55,6 @@ def test_invalid_domain():
                         "keepaliveDelay": "120",
                         "maxConnectionAttempts": "100",
                         "oamPort": "830",
-                        "password": "netconf",
                         "protocol": "SSH",
                         "reconnectOnChangedSchema": "false",
                         "sleep-factor": "1.5",
@@ -81,7 +80,6 @@ def test_invalid_domain():
     response = requests.post(collector_url + "/eventListener/v7/events",
                              json=payload,
                              auth=('user', 'password'),
-                             verify=False,
                              headers={"Content-Type": "application/json"})
     assert "400" in str(response)
     print("Success")

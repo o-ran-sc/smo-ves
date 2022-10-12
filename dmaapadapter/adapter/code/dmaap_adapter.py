@@ -53,7 +53,7 @@ def listall_topics():
 
 @app.route(api_base_url + '/topics/<topic>', methods=['GET'])
 def topic_details(topic):
-    topic == request.view_args['topic']
+    assert topic == request.view_args['topic']
     prepareResponse = PrepareResponse()
     topicConsumer = TopicConsumer()
     topicConsumer.getTopicDetails(prepareResponse, topic)
@@ -65,9 +65,9 @@ def topic_details(topic):
 
 @app.route(api_base_url + '/events/<topic>/<consumergroup>/<consumerid>', methods=['GET'])
 def get_events(topic, consumergroup, consumerid):
-    topic == request.view_args['topic']
-    consumergroup == request.view_args['consumergroup']
-    consumerid == request.view_args['consumerid']
+    assert topic == request.view_args['topic']
+    assert consumergroup == request.view_args['consumergroup']
+    assert consumerid == request.view_args['consumerid']
     limit = ""
     timeout = ""
 
@@ -90,8 +90,7 @@ def getLimit(limit):
         limit = int(limit)
     except Exception:
         limit = -1
-    finally:
-        return limit
+    return limit
 
 
 def getTimeout(timeout):
@@ -101,8 +100,7 @@ def getTimeout(timeout):
             timeout = 15
     except Exception:
         timeout = 15
-    finally:
-        return timeout
+    return timeout
 
 
 if __name__ == '__main__':      # pragma: no cover
