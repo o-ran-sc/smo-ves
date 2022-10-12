@@ -42,6 +42,20 @@ def send_to_influxdb(event, pdata):
     except Exception as e:
         logger.error('Exception occured while saving data : '.format(e))
 
+def process_event(jobj, pdata, nonstringpdata):
+    for key, val in jobj.items():
+        if key != 'additionalFields' and val != "":
+            if isinstance(val, str):
+                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
+            else:
+                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
+        elif key == 'additionalFields':
+            for key2, val2 in val.items():
+                if val2 != "" and isinstance(val2, str):
+                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
+                elif val2 != "":
+                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
+    return pdata, nonstringpdata
 
 def process_additional_measurements(val, domain, eventId, startEpochMicrosec, lastEpochMicrosec):
     for additionalMeasurements in val:
@@ -76,19 +90,7 @@ def process_nonadditional_measurements(val, domain, eventId, startEpochMicrosec,
 
 def process_pnfRegistration_event(domain, jobj, pdata, nonstringpdata):
     pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'additionalFields' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
+    pdata, nonstringpdata = process_event(jobj, pdata, nonstringpdata)
     send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
 
 
@@ -151,19 +153,7 @@ def process_fault_event(domain, jobj, pdata, nonstringpdata):
 
 def process_heartbeat_events(domain, jobj, pdata, nonstringpdata):
     pdata = pdata + ",system={}".format(source)
-    for key, val in jobj.items():
-        if key != 'additionalFields' and val != "":
-            if isinstance(val, str):
-                pdata = pdata + ',{}={}'.format(key, process_special_char(val))
-            else:
-                nonstringpdata = nonstringpdata + '{}={},'.format(key, val)
-        elif key == 'additionalFields':
-            for key2, val2 in val.items():
-                if val2 != "" and isinstance(val2, str):
-                    pdata = pdata + ',{}={}'.format(key2, process_special_char(val2))
-                elif val2 != "":
-                    nonstringpdata = nonstringpdata + '{}={},'.format(key2, val2)
-
+    pdata, nonstringpdata = process_event(jobj, pdata, nonstringpdata)
     send_to_influxdb(domain, pdata + nonstringpdata[:-1] + ' ' + process_time(eventTimestamp))
 
 
