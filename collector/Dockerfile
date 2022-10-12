@@ -22,8 +22,10 @@ FROM ubuntu:focal
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git curl python3 python3-pip
-RUN pip3 install requests jsonschema kafka-python gevent
 
+COPY pip.conf /etc/pip.conf
+
+RUN pip3 install requests jsonschema kafka-python gevent PyYAML
 
 RUN mkdir -p /opt/smo/certs
 
