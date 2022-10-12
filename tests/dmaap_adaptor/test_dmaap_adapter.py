@@ -183,3 +183,56 @@ def data_set():
                }
             }
     return data_set
+
+
+#test index()
+@mock.patch('dmaap_adapter.TopicConsumer')
+def test_index(self):
+   res=dmaap_adapter.index()
+   assert res=="Welcome !!"
+
+
+#test get_all_topics
+@mock.patch('flask.Flask.response_class')
+@mock.patch('dmaap_adapter.PrepareResponse')
+@mock.patch('dmaap_adapter.TopicConsumer')
+def test_get_all_topics(mock_consumer, mock_response, mock_app, prepareResponse, data_set):
+    mock_app.return_value = prepareResponse
+    res = dmaap_adapter.get_all_topics()
+    mock_consumer.getTopics(mock_response)
+    mock_consumer.getTopics.assert_called_with(mock_response)
+    assert res.responseCode == prepareResponse.getResponseCode()
+
+
+#test listall_topics
+@mock.patch('flask.Flask.response_class')
+@mock.patch('dmaap_adapter.PrepareResponse')
+@mock.patch('dmaap_adapter.TopicConsumer')
+def test_listall_topics(mock_consumer, mock_response, mock_app, prepareResponse, data_set):
+    mock_app.return_value = prepareResponse
+    res = dmaap_adapter.listall_topics()
+    mock_consumer.listAllTopics(mock_response)
+    mock_consumer.listAllTopics.assert_called_with(mock_response)
+    assert res.responseCode == prepareResponse.getResponseCode()
+
+
+#test getLimit()
+def test_getLimit():
+   limit ='abc'
+   res=dmaap_adapter.getLimit(limit)
+   assert res == -1
+
+# test getTimeout exception
+def test_getTimeout_exception():
+   timeout= 'abc'
+   res=dmaap_adapter.getTimeout(timeout)
+   assert res == 15
+
+#test getTimeout
+def test_getTimeout():
+   timeout = -1
+   response=dmaap_adapter.getTimeout(timeout)
+   if timeout<response:
+      timeout = 15
+   assert response==timeout
+

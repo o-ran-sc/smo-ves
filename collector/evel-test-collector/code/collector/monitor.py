@@ -201,7 +201,7 @@ def listener(environ, start_response, schema, yaml_schema=None):
                     start_response('202 Accepted', [])
                     yield ''.encode()
             else:
-                logger.warn('Failed to authenticate OK; creds: ' + credentials)
+                logger.warn('Failed to authenticate OK; creds: ' , credentials)
                 logger.warn('Failed to authenticate agent credentials: ',
                             credentials,
                             'against expected ',
@@ -352,6 +352,7 @@ def test_listener(environ, start_response, schema):
     incoming event on the EVEL interface.
     '''
     global pending_command_list
+    global decoded_body
     logger.info('Got a Test Control input')
     logger.info('============================')
     logger.info('==== TEST CONTROL INPUT ====')
@@ -457,7 +458,7 @@ def main(argv=None):
     program_build_date = str(__updated__)
     program_version_message = '%%(prog)s {0} ({1})'.format(program_version,
                                                            program_build_date)
-    if (__import__('__main__').__doc__ is not None):
+    if (__import__('__main__').__doc__ is not None):       # pragma: no cover
         program_shortdesc = __import__('__main__').__doc__.split('\n')[1]
     else:
         program_shortdesc = 'Running in test harness'
@@ -719,7 +720,7 @@ USAGE
         logger.error('Main loop exited unexpectedly!')
         return 0
 
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:       # pragma: no cover
         # ----------------------------------------------------------------------
         # handle keyboard interrupt
         # ----------------------------------------------------------------------
@@ -745,7 +746,7 @@ USAGE
 # ------------------------------------------------------------------------------
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':      # pragma: no cover
     if TESTRUN:
         # ----------------------------------------------------------------------
         # Running tests - note that doctest comments haven't been included so
