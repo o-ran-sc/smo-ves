@@ -261,6 +261,7 @@ def test_listener_Event_Invalid(mock_monitor,mock_input,body,start_response):
 @mock.patch('argparse.ArgumentParser.parse_args',
             return_value=argparse.Namespace(verbose=None, api_version='7',config=get_config_path(),section='default'))
 @mock.patch('gevent.pywsgi.WSGIServer.serve_forever')
+@mock.patch('monitor.logger', logging.getLogger('monitor'))
 def test_main(server,parser,body):
     argv=None
     result=monitor.main(argv=None)
@@ -431,8 +432,10 @@ def test_TestControl_listener_schema_validation_error(mocker,mock_input,body,sta
 
 @pytest.fixture
 def schema_wrong():
-    schema_path ="/home/ves-dev/ves/tests/collector/schema.json"
-    schema=json.load(open(schema_path, 'r'))
+    project_path = get_path()
+    schema_path = os.path.join(
+        project_path, "tests/collector/schema.json")
+    schema = json.load(open(schema_path, 'r'))
     return schema
 
 
@@ -494,6 +497,7 @@ def test_listener_get_method(mock_monitor,mock_input,body,start_response,schema)
 
 #check  save_event_in_kafka() function
 @mock.patch('monitor.kafka_server')
+@mock.patch('monitor.logger', logging.getLogger('monitor'))
 def test_save_event_in_kafka(mocker,data_set,topic_name):
     data_set_string=json.dumps(data_set)
     logger = logging.getLogger('monitor')
@@ -520,6 +524,7 @@ def test_save_event_in_kafka_topic_len(server,mock_producer,topic_name):
 #check produce_event_in_kafka() function      
 @mock.patch('monitor.KafkaProducer')
 @mock.patch('monitor.producer')
+@mock.patch('monitor.logger', logging.getLogger('monitor'))
 def test_produce_events_in_kafka(mock_pro,mock_producer,data_set,topic_name):
     logger = logging.getLogger('monitor')
     logger.setLevel(logging.DEBUG)
