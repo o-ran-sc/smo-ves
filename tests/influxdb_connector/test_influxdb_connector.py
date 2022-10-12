@@ -80,10 +80,10 @@ def data_set():
     return data_set
 
 # <Response [204]>
+def test_send_event_to_influxdb_successfully(data_set):
     """
     Simply test event should store in influxdb successfully.
     """
-def test_send_event_to_influxdb_successfully(data_set):
     with requests_mock.Mocker() as rm:
         rm.post('http://localhost:8086/write?db=eventsdb', json=data_set, status_code=204)
         response = requests.post(
@@ -92,10 +92,10 @@ def test_send_event_to_influxdb_successfully(data_set):
         assert response.status_code == 204
 
 # <Response [400]>
+def test_send_event_to_influxdb_failed(data_set):
     """
     Bad Request.
     """
-def test_send_event_to_influxdb_failed(data_set):
     with requests_mock.Mocker() as rm:
         rm.post('http://localhost:8086/write?db=eventsdb', json=data_set, status_code=400)
         response = requests.post(

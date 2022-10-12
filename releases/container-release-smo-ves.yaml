@@ -1,28 +1,16 @@
 ---
 distribution_type: container
-container_release_tag: 2.0.1
+container_release_tag: 6.0.1
 container_pull_registry: nexus3.o-ran-sc.org:10004
 container_push_registry: nexus3.o-ran-sc.org:10002
 project: smo/ves
-ref: I152b0ad5a7b6676eef702e3c3811c2f381b0f4f8
+ref: 638cd401fd278e1ea44a432a2e7d5dd89e277942
 containers:
-    - name: smo-influxdb
-      version: 1.8.5
-    - name: smo-grafana
-      version: 7.5.11
-    - name: smo-zookeeper
-      version: 5.5.6
-    - name: smo-kafka
-      version: 5.5.6
-    - name: smo-kafdrop
-      version: 3.27.0
-    - name: smo-dmaap-adapter
-      version: 1.0.0
-    - name: smo-collector
-      version: 2.0.1
-    - name: smo-post-config
-      version: 1.0.0
-    - name: smo-influxdb-connector
-      version: 1.0.0
-    - name: smo-elasticsearch
-      version: 7.11.1
+    - name: smo-ves-collector
+      version: 6.0.1
+    - name: smo-ves-influxdb-connector
+      version: 6.0.1
+    - name: smo-ves-dmaap-adapter
+      version: 6.0.1
+    - name: smo-ves-post-config
+      version: 6.0.1
