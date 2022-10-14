@@ -432,8 +432,10 @@ def test_TestControl_listener_schema_validation_error(mocker,mock_input,body,sta
 
 @pytest.fixture
 def schema_wrong():
-    schema_path ="/home/ves-dev/ves/tests/collector/schema.json"
-    schema=json.load(open(schema_path, 'r'))
+    project_path = get_path()
+    schema_path = os.path.join(
+        project_path, "tests/collector/schema.json")
+    schema = json.load(open(schema_path, 'r'))
     return schema
 
 
