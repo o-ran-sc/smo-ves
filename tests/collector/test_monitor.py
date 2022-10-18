@@ -521,7 +521,134 @@ def test_save_event_in_kafka_topic_len(server,mock_producer,topic_name):
 
 
 
-#check produce_event_in_kafka() function      
+#test listener standardDefineFields
+@patch('monitor.logger',logging.getLogger('monitor'))
+@mock.patch('monitor.stnd_define_event_validation')
+@mock.patch('gevent.pywsgi.Input',autospec=True)
+@mock.patch('monitor.save_event_in_kafka')
+def test_listener_stdDefined_field(mock_monitor,mock_input,mock_std,body,start_response,schema,topic_name):
+    environ={"REQUEST_METHOD": "POST","wsgi.input": mock_input,"CONTENT_TYPE": "application/json","HTTP_AUTHORIZATION": "Basic dXNlcjpwYXNzd29yZA==", "CONTENT_LENGTH": "2"}
+    body={"event":{"stndDefinedFields":{"schemaReference":"https://forge.3gpp.org"}}}
+    mock_input.read.return_value=json.dumps(body)
+    mock_start_response= mock.Mock(start_response)
+    project_path = os.getcwd()
+    dict_schema =os.path.join(project_path,"tests/collector/stdDefined.json")
+    schema=json.load(open(dict_schema,'r'))
+    result = list(monitor.listener(environ, mock_start_response,schema))
+    mock_std.assert_called_once_with(None,body)
+    
+      
+#test listener standardDefineFields schema_ref not found
+@patch('monitor.logger',logging.getLogger('monitor'))
+@mock.patch('gevent.pywsgi.Input',autospec=True)
+@mock.patch('monitor.save_event_in_kafka')
+def test_listener_stdDefine_schema_ref(mock_monitor,mock_input,body,start_response,schema,topic_name):
+    environ={"REQUEST_METHOD": "POST","wsgi.input": mock_input,"CONTENT_TYPE": "application/json","HTTP_AUTHORIZATION": "Basic dXNlcjpwYXNzd29yZA==", "CONTENT_LENGTH": "2"}
+    body={"event":{"stndDefinedFields":{"schemaReference":""}}}
+    mock_input.read.return_value=json.dumps(body)
+    mock_start_response= mock.Mock(start_response)
+    project_path = os.getcwd()
+    dict_schema =os.path.join(project_path,"tests/collector/stdDefined.json")
+    schema=json.load(open(dict_schema,'r'))
+    result = list(monitor.listener(environ, mock_start_response,schema))
+    assert [b'']==result
+    
+      
+@pytest.fixture
+def vel_schema_path():
+    path=os.getcwd()
+    vel_schema_path=os.path.join(path,"collector/evel-test-collector/docs/schema")
+    return vel_schema_path
+
+
+@pytest.fixture
+def schema_ref():
+    config = configparser.ConfigParser()
+    config_file=get_config_path()
+    config.read(config_file)
+    ref = config.get('default', 'schema_ref')
+    return ref
+
+
+#test check_schema_file_exist
+@patch('monitor.logger',logging.getLogger('monitor'))
+def test_check_schema_file_exist(vel_schema_path,schema_ref):
+    result = monitor.check_schema_file_exist(vel_schema_path,schema_ref)
+    path=os.getcwd()
+    assert result ==os.path.join(path,'collector/evel-test-collector/docs/schema/forge.3gpp.org_rep_sa5_MnS_blob_SA88-Rel16_OpenAPI/faultMnS.yaml')
+
+
+
+
+@pytest.fixture
+def wrong_schema_ref():
+    config = configparser.ConfigParser()
+    config_file=get_wrong_config_path()
+    config.read(config_file)
+    ref = config.get('default', 'schema_ref')
+    return ref
+
+
+
+# test check schema file path not exist and checking downloaded file content is yaml or html
+@patch('monitor.logger',logging.getLogger('monitor'))
+@unittest.mock.patch('os.system')
+def test_check_schema_file_content_html(mock_sys,vel_schema_path,wrong_schema_ref):
+    f=open("test_faultMns.html","w+")
+    f.write("<!DOCTYPE html>")
+    f.close()
+    path=os.getcwd()
+    vel_schema_path=os.path.join(path,"tests/collector/")
+    mock_sys.return_value=0
+    with pytest.raises(Exception):
+        result=monitor.check_schema_file_exist(vel_schema_path,wrong_schema_ref)
+        assert result ==os.path.join(path,'tests/collector/forge.3gpp.org_rep_sa5_MnS_blob_SA88-Rel16_OpenAPI/test_faultMns.html')
+    # after creating new file its deleted to keep code in first stage
+    os.remove(os.path.join(path,"test_faultMns.html"))
+
+
+
+
+@pytest.fixture
+def wrong_schema_ref2():
+    config = configparser.ConfigParser()
+    config_file=get_wrong_config_port_path()
+    config.read(config_file)
+    ref = config.get('default', 'schema_ref')
+    return ref
+
+
+# test if downloaded file content is yaml Create a folder from source url
+@patch('monitor.logger',logging.getLogger('monitor'))
+@unittest.mock.patch('os.system')
+def test_check_schema_file_path_not_exist_else(mock_sys,vel_schema_path,wrong_schema_ref2):
+    f=open("test_faultMns.yaml","w+")
+    f.write("NotifyNewAlarm")
+    f.close()
+    path=os.getcwd()
+    vel_schema_path=os.path.join(path,"tests/collector")
+    mock_sys.return_value=0
+    result=monitor.check_schema_file_exist(vel_schema_path,wrong_schema_ref2)
+    # after running test case, created file is deleted to keep code in first stage
+    os.remove(os.path.join(path,"test_faultMns.yaml"))
+    assert result==os.path.join(path,'tests/collector/forge.3gpp.org_rep_sa5_MnS_blob_SA88-Rel16_OpenAPI/test_faultMns.yaml')
+
+
+
+#test stnd_define_event_validation
+@patch('monitor.logger',logging.getLogger('monitor'))
+@mock.patch('monitor.check_schema_file_exist')
+def test_stnd_define_event_validation(mocker_check,vel_schema_path,body):
+    body={"event":{"stndDefinedFields":{"schemaReference":"https://forge.3gpp.org/rep/sa5/MnS/blob/SA88-Rel16/OpenAPI/faultMnS.yaml#components/schemas/NotifyNewAlarm","data":{"href": "href1", "notificationId": 0,"notificationType": "notifyNewAlarm","eventTime": "2022-06-22T12:43:50.579315Z", "systemDN": "xyz","alarmType": "COMMUNICATIONS_ALARM",
+         "alarmId": "lossOfSignal","probableCause": "lossOfSignal","specificProblem": "lossOfSignal","perceivedSeverity": "CRITICAL","correlatedNotifications": [],"rootCauseIndicator": False,"backedUpStatus": True,"backUpObject": "xyz","trendIndication": "MORE_SEVERE"}}}}
+    path = os.getcwd()
+    mocker_check.return_value=os.path.join(path,"collector/evel-test-collector/docs/schema/forge.3gpp.org_rep_sa5_MnS_blob_SA88-Rel16_OpenAPI/faultMnS.yaml")
+    result=monitor.stnd_define_event_validation(vel_schema_path,body)
+    assert result==None
+
+
+
+#check produce_event_in_kafka()function     
 @mock.patch('monitor.KafkaProducer')
 @mock.patch('monitor.producer')
 @mock.patch('monitor.logger', logging.getLogger('monitor'))

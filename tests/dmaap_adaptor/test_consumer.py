@@ -63,6 +63,22 @@ def get_config_path():
     project_path,"dmaapadapter/adapter/config/adapter.conf")
     return config_path
 
+
+@mock.patch('confluent_kafka.Consumer')
+def test_consumeEvents_Msg_None(mock_consumer,prepareResponse,topic,resCode):
+    consumergroup="test"
+    consumerid="test1"
+    limit=10
+    timeout=1
+    mock_consumer.__name__ = 'subscribe'
+    mock_consumer.__name__ = 'poll'
+    mock_consumer.poll.return_value="None"
+    EventConsumer.consumeEvents(EventConsumer, prepareResponse, topic, consumergroup, consumerid,limit, timeout)
+    resMsg='[]'
+    assert resCode == prepareResponse.getResponseCode()
+    assert resMsg == prepareResponse.getResponseMsg()
+
+
 #test __init__ of EventConsumer
 @mock.patch('app_config.AppConfig.setLogger')
 @mock.patch('argparse.ArgumentParser.parse_args',
@@ -91,8 +107,8 @@ def test_consumeEvents(mock_consumer,prepareResponse,topic,resCode):
     mock_consumer.__name__ = 'poll'
     mock_consumer.poll.return_value=None
     EventConsumer.consumeEvents(EventConsumer, prepareResponse, topic, consumergroup, consumerid,limit, timeout)
-    resMsg='[]'
-    assert resCode == prepareResponse.getResponseCode()
+    resMsg='"Unable to read the messages from the topic"'
+    assert 409 == prepareResponse.getResponseCode()
     assert resMsg == prepareResponse.getResponseMsg()
 
 
