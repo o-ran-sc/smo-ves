@@ -418,6 +418,127 @@ def test_process_nonadditional_measurements_called(mock_time, mocker_send_to_inf
     mocker_send_to_influxdb.assert_called_with(domain, non_add_expected_data)
 
 
+
+#-------------------------------------------------------------------------
+# ## process_stndDefinedFields_events unit test_case
+#------------------------------------------------------------------------
+
+@pytest.fixture
+def stndDefined_json():
+    std_json= {"schemaReference": "https://forge.3gpp.org/rep/sa5/MnS/blob/SA88-Rel16/OpenAPI/faultMnS.yaml#components/schemas/NotifyNewAlarm",
+		      "data": {"href": "href1","uri": "1","notificationId": 0,"notificationType": "notifyNewAlarm","eventTime": "2022-06-22T12:43:50.579315Z",
+		      "trendIndication": "MORE_SEVERE","thresholdInfo": {"observedMeasurement": "new","observedValue": 123},"monitoredAttributes": 
+		      {"interface": "LP-MWPS-RADIO"},"proposedRepairActions": "12345","additionalInformation": {"eventTime": "2022-06-22T12:43:50.579315Z","equipType":
+	          "1234","vendor": "VENDORA","model": "1234 BestInClass"}},"stndDefinedFieldsVersion": "1.0"}
+    return std_json
+
+
+
+@pytest.fixture
+def std_nonstringpdata():
+            nonstrdata = ' sequence=0,startEpochMicrosec=1639985336443218,lastEpochMicrosec=1639985336443218,'
+            return str(nonstrdata)
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events(mocker_send_to_influxdb,mock_time,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None,schemaReference=https://forge.3gpp.org/rep/sa5/MnS/blob/SA88-Rel16/OpenAPI/faultMnS.yaml#components/schemas/NotifyNewAlarm,href=href1,uri=1,notificationType=notifyNewAlarm,eventTime=2022-06-22T12:43:50.579315Z,trendIndication=MORE_SEVERE,observedMeasurement=new,interface=LP-MWPS-RADIO,proposedRepairActions=12345,additionalInformation_eventTime=2022-06-22T12:43:50.579315Z,additionalInformation_equipType=1234,additionalInformation_vendor=VENDORA,additionalInformation_model=1234\\ BestInClass,stndDefinedFieldsVersion=1.0 startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,notificationId=0,observedValue=123 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_ins(mocker_send_to_influxdb,mock_time,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":"test1"}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None,events=test1 startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_dic(mocker_send_to_influxdb,mock_time,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":{"commonEventHeader":"test"}}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None,commonEventHeader=test startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_addinfo(mocker_send_to_influxdb,mock_time,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":{"additionalInformation":{"test1":"test2"}}}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None,additionalInformation_test1=test2 startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_addinfo_else(mocker_send_to_influxdb,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":{"additionalInformation":{"test1":2}}}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,test1=2 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_corel(mocker_send_to_influxdb,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":{"correlatedNotifications":[{"test1":"test2"}]}}
+    nonstrdata= 'stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None,test1=test2 startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_corel_else(mocker_send_to_influxdb,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":{"correlatedNotifications":[{2:2}]}}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,2=2 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields_events_else(mocker_send_to_influxdb,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":{"commonEventHeader":2}}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,commonEventHeader=2 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+
+@mock.patch('influxdb_connector.process_time', return_value='1639985333218840000')
+@mock.patch('influxdb_connector.send_to_influxdb')
+def test_process_stndDefinedFields(mocker_send_to_influxdb,std_nonstringpdata,stndDefined_json,event_Id,start_Epoch_Microsec,last_Epoch_Microsec,event_Timestamp):
+    domain="stndDefined"
+    stndDefined_json={"events":2}
+    nonstrdata='stndDefined,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,system=None startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000,events=2 1639985333218840000'
+    influxdb_connector.process_stndDefinedFields_events(stndDefined_json,domain,event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+    mocker_send_to_influxdb.assert_called_with(domain,nonstrdata)
+
+
+
+
+
+
+
 # ------------------------------------------------------------------------------
 # Address of threshold event unit test_case
 # ------------------------------------------------------------------------------
@@ -514,11 +635,11 @@ def test_process_thresholdCrossingAlert_event_nonstr(mock_pro,mocker_send_to_inf
 #....................................................................................
 
 @patch('influxdb_connector.logger')
-@pytest.mark.parametrize("key", [("heartbeat"), ("pnfRegistration"), ("measurement"), ("fault"), ("thresholdCrossingAlert")])
+@pytest.mark.parametrize("key", [("heartbeat"), ("pnfRegistration"), ("measurement"), ("fault"), ("thresholdCrossingAlert"),("stndDefinedFields")])
 def test_save_event_in_db(mock_logger, key, hb_json, hb_data, hb_nonstringpdata, pnf_json, pnf_data, pnf_nonstringpdata,
                                          meas_json, meas_data, meas_nonstringpdata, event_Id, start_Epoch_Microsec, last_Epoch_Microsec,
                                          flt_json, flt_data, flt_nonstringpdata,
-                                         thre_json, threshold_data, thres_nonstringpdata):
+                                         thre_json, threshold_data, thres_nonstringpdata,stndDefined_json):
 
     if(key == 'heartbeat'):
         data_set = getEvent("heartbeat")
@@ -550,6 +671,14 @@ def test_save_event_in_db(mock_logger, key, hb_json, hb_data, hb_nonstringpdata,
           with patch('influxdb_connector.process_thresholdCrossingAlert_event') as func:
                influxdb_connector.save_event_in_db(data_set)
                func.assert_called_with('thresholdCrossingAlert', thre_json, threshold_data, thres_nonstringpdata)
+
+    elif(key == 'stndDefinedFields'):
+          data_set = getEvent("stndDefinedFields")
+          with patch('influxdb_connector.process_stndDefinedFields_events') as func:
+               influxdb_connector.save_event_in_db(data_set)
+               event_Timestamp='1639983600000'
+               func.assert_called_with(stndDefined_json,'stndDefined',event_Id,start_Epoch_Microsec,last_Epoch_Microsec)
+
 
 
 
