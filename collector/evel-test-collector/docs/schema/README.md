@@ -1,1 +1,1 @@
-NOTE: This folder contains yaml schema folder
+NOTE: This folder contains yaml schema files

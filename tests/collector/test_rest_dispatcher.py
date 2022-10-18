@@ -15,66 +15,66 @@
 
 
 import pytest
-import unittest
-import monitor
-from urllib import response
 from unittest import mock
 from unittest.mock import patch
-from pytest_mock import MockerFixture
 import logging
 import rest_dispatcher
 from gevent import socket
 from gevent import pywsgi
-import gevent
+
 
 @pytest.fixture
 def start_response():
-    sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    start_response=pywsgi.WSGIHandler(sock,"","")
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    start_response = pywsgi.WSGIHandler(sock, "", "")
     return start_response
 
-#test test_notfound_404
-@patch('rest_dispatcher.base_url','')
-@mock.patch('gevent.pywsgi.Input',autospec=True)
-@mock.patch('rest_dispatcher.set_404_content')
-def test_notfound_404(mocker_dispatcher,mock_input,start_response):
-    environ={"REQUEST_METHOD": "POST","PATH_INFO":''}
-    mock_start_response= mock.Mock(start_response)
-    base_url=''
-    logger = logging.getLogger('monitor')
+
+# test test_notfound_404
+@patch("rest_dispatcher.base_url", "")
+@mock.patch("gevent.pywsgi.Input", autospec=True)
+@mock.patch("rest_dispatcher.set_404_content")
+def test_notfound_404(mocker_dispatcher, mock_input, start_response):
+    environ = {"REQUEST_METHOD": "POST", "PATH_INFO": ""}
+    mock_start_response = mock.Mock(start_response)
+    logger = logging.getLogger("monitor")
     logger.setLevel(logging.DEBUG)
-    with mock.patch.object(logger,'debug') as mock_debug:
-        result=rest_dispatcher.notfound_404(environ, mock_start_response)
-        assert result==['template_404']
-
-#test call of 
-@patch('rest_dispatcher.base_url','')
-@mock.patch('gevent.pywsgi.Input',autospec=True)
-def test_call(mock_input,start_response):
-     environ={"REQUEST_METHOD": "POST","PATH_INFO":''}
-     mock_start_response= mock.Mock(start_response)
-     rest_obj=rest_dispatcher.PathDispatcher()
-     res=rest_obj.__call__(environ,mock_start_response)
-     assert  ['template_404'] ==res
+    with mock.patch.object(logger, "debug") as mock_debug:
+        result = rest_dispatcher.notfound_404(environ, mock_start_response)
+        assert result == ["template_404"]
 
 
-@patch('rest_dispatcher.base_url')
+# test call of
+@patch("rest_dispatcher.base_url", "")
+@mock.patch("gevent.pywsgi.Input", autospec=True)
+def test_call(mock_input, start_response):
+    environ = {"REQUEST_METHOD": "POST", "PATH_INFO": ""}
+    mock_start_response = mock.Mock(start_response)
+    rest_obj = rest_dispatcher.PathDispatcher()
+    res = rest_obj.__call__(environ, mock_start_response)
+    assert ["template_404"] == res
+
+
+@patch("rest_dispatcher.base_url")
 def test_set_404_content(mock_url):
-    mock_url.return_value=''
-    result=rest_dispatcher.set_404_content('')
-    assert result==None
+    mock_url.return_value = ""
+    result = rest_dispatcher.set_404_content("")
+    assert result == None
+
 
 @pytest.fixture
 def path():
-    path='/eventListener/v5/events'
+    path = "/eventListener/v7/events"
     return path
+
 
 @pytest.fixture
 def method():
-    method='post'
+    method = "post"
     return method
 
-def test_register(path,method):
-    rest_obj=rest_dispatcher.PathDispatcher()
-    res=rest_obj.register(path,method,None)
-    assert res==None
+
+def test_register(path, method):
+    rest_obj = rest_dispatcher.PathDispatcher()
+    res = rest_obj.register(path, method, None)
+    assert res == None
