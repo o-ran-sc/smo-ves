@@ -34,6 +34,24 @@
       "parentUuid": "ae31d11f_19063179",
       "revId": "ad176943a04a2bd9136dc5f4933ffbd038db69aa",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ede2edef_7ed810cc",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-01T12:07:02Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ebef3969_58f8d0bc",
+      "revId": "ad176943a04a2bd9136dc5f4933ffbd038db69aa",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }

@@ -118,6 +118,30 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39dae47_e9d42d97",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-01T12:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efc5440d_e05023fe",
+      "range": {
+        "startLine": 541,
+        "startChar": 0,
+        "endLine": 541,
+        "endChar": 4
+      },
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c64a06d9_f597a95c",
@@ -165,6 +189,30 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "218b6073_8b7dc22b",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-01T12:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f027ba17_425e92aa",
+      "range": {
+        "startLine": 561,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 4
+      },
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94276858_ba9a82f9",
@@ -196,6 +244,24 @@
       "side": 1,
       "message": "changes updated",
       "parentUuid": "94276858_ba9a82f9",
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26caba53_18d5d9c0",
+        "filename": "tests/influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-01T12:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bf5e2bf_516faf5f",
       "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
