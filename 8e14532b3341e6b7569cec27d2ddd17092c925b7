@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2ef6bc5_7e1dde6c",
+        "filename": "tests/collector/stdDefined.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-11-01T07:56:16Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this file?",
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b085353_0a2ba693",
+        "filename": "tests/collector/test_collector.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-11-01T07:56:16Z",
+      "side": 1,
+      "message": "Do we need to define schema ref in config file? Because we are getting schema ref in payload",
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8860248d_959c3cf4",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-11-01T07:56:16Z",
+      "side": 1,
+      "message": "Remove blank spaces",
+      "range": {
+        "startLine": 541,
+        "startChar": 0,
+        "endLine": 541,
+        "endChar": 4
+      },
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64a06d9_f597a95c",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-11-01T07:56:16Z",
+      "side": 1,
+      "message": "Remove blank spaces",
+      "range": {
+        "startLine": 561,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 4
+      },
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94276858_ba9a82f9",
+        "filename": "tests/influxdb_connector/test_influxdb_events.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2022-11-01T07:56:16Z",
+      "side": 1,
+      "message": "Remove blank spaces",
+      "revId": "8e14532b3341e6b7569cec27d2ddd17092c925b7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    }
+  ]
+}
