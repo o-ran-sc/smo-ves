@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0c95b03_f0645198",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-02T11:44:22Z",
+      "side": 1,
+      "message": "changes updated",
+      "parentUuid": "7bdf1eb8_48b693e6",
+      "revId": "7233b89ce6e0d201a75bae44d22e31de1b8718ff",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "635b5fdd_b17c08a9",
         "filename": "tests/collector/test_monitor.py",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-02T11:11:10Z",
       "side": 1,
       "message": "Check the validatior file name. I can see presence of CommonEventFormat-v7-2-2.json and CommonEventFormat-v7-2-1.json",
+      "revId": "7233b89ce6e0d201a75bae44d22e31de1b8718ff",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2e1059_3aa72cc0",
+        "filename": "tests/collector/test_monitor.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-02T11:44:22Z",
+      "side": 1,
+      "message": "changes updated",
+      "parentUuid": "635b5fdd_b17c08a9",
       "revId": "7233b89ce6e0d201a75bae44d22e31de1b8718ff",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
