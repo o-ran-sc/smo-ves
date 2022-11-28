@@ -62,30 +62,8 @@ def get_path():
 
 def get_config_path():
     project_path = get_path()
-    config_path = os.path.join(project_path, "dmaapadapter/adapter/config/adapter.conf")
+    config_path = os.path.join(project_path, "tests/dmaap_adaptor/test_config.conf")
     return config_path
-
-
-# test __init__ of TpoicConsumer
-@mock.patch("app_config.AppConfig.setLogger")
-@mock.patch(
-    "argparse.ArgumentParser.parse_args",
-    return_value=argparse.Namespace(config=get_config_path(), section="default"),
-)
-def test_init_consumer(parser, mock_setLogger):
-    TopicConsumer.__init__(TopicConsumer)
-    mock_setLogger.assert_called_with("dmaap.log", "error")
-
-
-# test __init__ of EventConsumer
-@mock.patch("app_config.AppConfig.setLogger")
-@mock.patch(
-    "argparse.ArgumentParser.parse_args",
-    return_value=argparse.Namespace(config=get_config_path(), section="default"),
-)
-def test_init_event(parser, mock_setLogger):
-    EventConsumer.__init__(EventConsumer)
-    mock_setLogger.assert_called_with("dmaap.log", "error")
 
 
 @mock.patch("confluent_kafka.Consumer")
@@ -103,6 +81,28 @@ def test_consumeEvents(mock_consumer, prepareResponse, topic, resCode):
     resMsg = "[]"
     assert resCode == prepareResponse.getResponseCode()
     assert resMsg == prepareResponse.getResponseMsg()
+
+
+# test __init__()function of TpoicConsumer
+@mock.patch("app_config.AppConfig.setLogger")
+@mock.patch(
+    "argparse.ArgumentParser.parse_args",
+    return_value=argparse.Namespace(config=get_config_path(), section="default"),
+)
+def test_init_consumer(parser, mock_setLogger):
+    TopicConsumer.__init__(TopicConsumer)
+    mock_setLogger.assert_called_with("dmaap.log", "error")
+
+
+# test __init__() function of EventConsumer
+@mock.patch("app_config.AppConfig.setLogger")
+@mock.patch(
+    "argparse.ArgumentParser.parse_args",
+    return_value=argparse.Namespace(config=get_config_path(), section="default"),
+)
+def test_init_event(parser, mock_setLogger):
+    EventConsumer.__init__(EventConsumer)
+    mock_setLogger.assert_called_with("dmaap.log", "error")
 
 
 # test consumeEvents for break
