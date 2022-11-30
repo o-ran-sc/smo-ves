@@ -33,6 +33,23 @@
       "message": "jjb-deploy smo-ves-tox-nexus-iq-clm\n",
       "revId": "1edf979b873b01f2ced61d10077b43680ccb8a71",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b177fb0_f122e952",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001884
+      },
+      "writtenOn": "2022-11-30T06:18:53Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "1edf979b873b01f2ced61d10077b43680ccb8a71",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     }
   ]
 }
