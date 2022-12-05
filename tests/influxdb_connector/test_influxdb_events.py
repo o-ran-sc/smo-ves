@@ -304,7 +304,6 @@ def test_process_fault_event(
         if key != "alarmAdditionalInformation" and val != "":
             if isinstance(val, list):
                 influxdb_connector.process_fault_event(
-                    payload.get("alarmAdditionalInformation"),
                     domain,
                     flt_json,
                     flt_data,
@@ -538,13 +537,11 @@ def test_process_measurement_events_called(
 
 
 @patch("influxdb_connector.process_nonadditional_measurements")
-@patch("influxdb_connector.process_additional_measurements")
 @patch("influxdb_connector.send_to_influxdb")
 @mock.patch("influxdb_connector.process_time", return_value="1639985333218840000")
 def test_process_measurement_events(
     mock_time,
     mocker_send_to_influxdb,
-    mocker_additional,
     mocker_nonadditional,
     meas_json,
     meas_data,
@@ -568,9 +565,6 @@ def test_process_measurement_events(
         event_Id,
         start_Epoch_Microsec,
         last_Epoch_Microsec,
-    )
-    influxdb_connector.process_additional_measurements(
-        domain, event_Id, start_Epoch_Microsec, last_Epoch_Microsec
     )
     mocker_nonadditional.process_nonadditional_measurements(
         [],
@@ -613,9 +607,6 @@ def test_process_measurement_events_elif(
         event_Id,
         start_Epoch_Microsec,
         last_Epoch_Microsec,
-    )
-    influxdb_connector.process_additional_measurements(
-        domain, event_Id, start_Epoch_Microsec, last_Epoch_Microsec
     )
     mocker_additional.process_additional_measurements(
         add_meas_data.get("additionalMeasurements"),
