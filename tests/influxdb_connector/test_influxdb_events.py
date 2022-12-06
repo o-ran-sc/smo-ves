@@ -304,7 +304,6 @@ def test_process_fault_event(
         if key != "alarmAdditionalInformation" and val != "":
             if isinstance(val, list):
                 influxdb_connector.process_fault_event(
-                    payload.get("alarmAdditionalInformation"),
                     domain,
                     flt_json,
                     flt_data,
@@ -537,15 +536,11 @@ def test_process_measurement_events_called(
     mocker_send_to_influxdb.assert_called_with(domain, meas_expected_data)
 
 
-@patch("influxdb_connector.process_nonadditional_measurements")
-@patch("influxdb_connector.process_additional_measurements")
 @patch("influxdb_connector.send_to_influxdb")
 @mock.patch("influxdb_connector.process_time", return_value="1639985333218840000")
 def test_process_measurement_events(
     mock_time,
     mocker_send_to_influxdb,
-    mocker_additional,
-    mocker_nonadditional,
     meas_json,
     meas_data,
     meas_nonstringpdata,
@@ -558,7 +553,7 @@ def test_process_measurement_events(
     event_Timestamp,
 ):
     domain = "measurement"
-    jobj = {"test": [1, 2, 3], "networkSliceArray": [1, 2, 3]}
+    jobj = {"test": [1, 2, 3], "networkSliceArray": [{"a":1}]}
     means_ex = "measurement,domain=measurement,eventId=O-RAN-FH-IPv6-01_1639984500_PM15min,eventName=measurement_O_RAN_COMPONENT_PM15min,eventType=O_RAN_COMPONENT_PM15min,priority=Low,reportingEntityName=ORAN-DEV,sourceName=O-RAN-FH-IPv6-01,intervalStartTime=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:00:00\\ +0000,intervalEndTime=Mon\\,\\ 20\\ Dec\\ 2021\\ 07:15:00\\ +0000,version=4.1,vesEventListenerVersion=7.2.1,system=None sequence=0,startEpochMicrosec=1639983600000,lastEpochMicrosec=1639984500000 1639985333218840000"
     influxdb_connector.process_measurement_events(
         "measurement",
@@ -569,28 +564,14 @@ def test_process_measurement_events(
         start_Epoch_Microsec,
         last_Epoch_Microsec,
     )
-    influxdb_connector.process_additional_measurements(
-        domain, event_Id, start_Epoch_Microsec, last_Epoch_Microsec
-    )
-    mocker_nonadditional.process_nonadditional_measurements(
-        [],
-        "measurementnicperformance",
-        event_Id,
-        start_Epoch_Microsec,
-        last_Epoch_Microsec,
-    )
     mocker_send_to_influxdb.assert_called_with(domain, means_ex)
 
 
-@patch("influxdb_connector.process_nonadditional_measurements")
-@patch("influxdb_connector.process_additional_measurements")
 @patch("influxdb_connector.send_to_influxdb")
 @mock.patch("influxdb_connector.process_time", return_value="1639985333218840000")
-def test_process_measurement_events_elif(
+def test_process_measurement_events_elif_condition(
     mock_time,
     mocker_send_to_influxdb,
-    mocker_additional,
-    mocker_nonadditional,
     meas_json,
     meas_data,
     meas_nonstringpdata,
@@ -610,24 +591,6 @@ def test_process_measurement_events_elif(
         jobj,
         meas_data,
         meas_nonstringpdata,
-        event_Id,
-        start_Epoch_Microsec,
-        last_Epoch_Microsec,
-    )
-    influxdb_connector.process_additional_measurements(
-        domain, event_Id, start_Epoch_Microsec, last_Epoch_Microsec
-    )
-    mocker_additional.process_additional_measurements(
-        add_meas_data.get("additionalMeasurements"),
-        "measurementadditionalmeasurements",
-        event_Id,
-        start_Epoch_Microsec,
-        last_Epoch_Microsec,
-    )
-
-    mocker_nonadditional.process_nonadditional_measurements(
-        [],
-        "measurementnicperformance",
         event_Id,
         start_Epoch_Microsec,
         last_Epoch_Microsec,
