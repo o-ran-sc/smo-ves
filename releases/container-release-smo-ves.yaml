@@ -1,16 +1,16 @@
 ---
 distribution_type: container
-container_release_tag: 6.0.2
+container_release_tag: 6.0.3
 container_pull_registry: nexus3.o-ran-sc.org:10004
 container_push_registry: nexus3.o-ran-sc.org:10002
 project: smo/ves
-ref: d0b08354f126a0ff3c6d887ba2f42c0144280b12
+ref: 54e22321e1446a69a30a05ccf7a84e4db7d96e3e
 containers:
     - name: smo-ves-collector
-      version: 6.0.2
+      version: 6.0.3
     - name: smo-ves-influxdb-connector
-      version: 6.0.2
+      version: 6.0.3
     - name: smo-ves-dmaap-adapter
-      version: 6.0.2
+      version: 6.0.3
     - name: smo-ves-post-config
-      version: 6.0.2
+      version: 6.0.3
