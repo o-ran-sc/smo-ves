@@ -20,7 +20,7 @@ Version history
 | **Date**           | **Ver.**           | **Author**         | **Comment**        |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-| 2022-07-15         | 5.0.1              |                    | First version      |
+| 2022-12-15         | 6.0.3              |                    | First version      |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
 |                    |                    |                    |                    |
@@ -48,10 +48,10 @@ Release Data
 | **Repo**                             | Repo: smo/ves                        |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release designation**              | f-release                            |
+| **Release designation**              | g-release                            |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release date**                     | 2022-07-15                           |
+| **Release date**                     | 2022-12-15                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Purpose of the delivery**          | 	 		     	      |
@@ -69,28 +69,36 @@ Feature Additions
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-57	                       | Add Jenkins jobs for the smo repo    |
+| SMO-76	                       | Implement Standard Defined Validator |
 |                                      | 				      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-55                               | Add dmaap and influx-db adapter      |
-|                                      | plugins to the release process       |
+| SMO-86                               | Modify docker images release plan    |
+|                                      | 				      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-53                               | Remove redundant code in smo 	      |
-|                                      | collector  			      |
+| SMO-89                               | Introduce requirements.txt file in   |
+|                                      | project    			      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-68                               | Create CLM job for smo-ves project   |
+| SMO-90                               | Add suffix "ves" in job name.        |
 |                                      |  				      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-58                               | Add unit test cases in smo/ves       |
-|                                      |  				      |
+| SMO-94                               | Fix Major bugs, Vulnerabilities,     |
+|                                      | Security issues as per Sonar job     |
+|                                      | report                               |
++--------------------------------------+--------------------------------------+
+| SMO-96                               | Introduce more test cases to improve |
+|                                      | code coverage			      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-64                               | Add smo-post-config image to         |
-|                                      | the release process		      |
+| SMO-99                               | Write test cases for Standard Defined|
+|                                      | Validator			      |
+|                                      |                                      |
++--------------------------------------+--------------------------------------+
+| SMO-113                              | Add dependencies in tox file for CLM |
+|                                      | job			              |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -105,8 +113,16 @@ Bug Corrections
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| SMO-63 	                       | Modify configuration of              |
-|                                      | Influxdb container		      |
+| SMO-106 	                       | Fix failure of test case	      |
+|                                      | 		      		      |
+|                                      |                                      |
++--------------------------------------+--------------------------------------+
+| SMO-111 	                       | Unbale to run tox -e coverage        |
+|                                      | 		      		      |
+|                                      |                                      |
++--------------------------------------+--------------------------------------+
+| SMO-100 	                       | Sonar job is broken		      |
+|                                      | 		      		      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -140,18 +156,18 @@ Known Issues
 ^^^^^^^^^^^^
 
 
-**JIRA TICKETS:**
+**LFN TICKETS:**
 
 +--------------------------------------+--------------------------------------+
-| **JIRA REFERENCE**                   | **SLOGAN**                           |
+| **LFN REFERENCE**                    | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | 		                       | 				      |
-|     SMO-74                           | Failure of Sonar job 		      |
+|     IT-24601                         | % of Coverage code is incorrect.     |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | 	                               |  				      |
-|                                      |  				      |
+|     IT-24305                         |  CLM job report is empty  	      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
