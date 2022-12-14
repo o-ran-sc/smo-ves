@@ -6,7 +6,7 @@ Release-Notes
 =============
 
 
-This document provides the release notes for F-RELEASE of semo-ves.
+This document provides the release notes for G-RELEASE of semo-ves.
 
 .. contents::
    :depth: 3
@@ -63,7 +63,7 @@ Release Data
 
 Feature Additions
 ^^^^^^^^^^^^^^^^^
-**JIRA BACK-LOG:**
+**JIRA TICKETS:**
 
 +--------------------------------------+--------------------------------------+
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
@@ -163,8 +163,8 @@ Known Issues
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | 		                       | 				      |
-|     IT-24601                         | % of Coverage code is incorrect.     |
-|                                      |                                      |
+|     IT-24601                         | Percentage of code coverage is       |
+|                                      | incorrect                            |
 +--------------------------------------+--------------------------------------+
 | 	                               |  				      |
 |     IT-24305                         |  CLM job report is empty  	      |
@@ -173,7 +173,7 @@ Known Issues
 
 Workarounds
 ^^^^^^^^^^^
-Working with the support team of the Linux Foundation to fix the problem.
+Working with the support team of the Linux Foundation to fix above mentioned tickets.
 
 
 
