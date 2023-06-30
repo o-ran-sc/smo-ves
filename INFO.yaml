@@ -4,32 +4,29 @@ project_creation_date: '2020-10-02'
 project_category: ''
 lifecycle_state: 'Incubation'
 project_lead: &oran_smo_ptl
-    name: 'Mahesh Jethanandani'
-    email: 'mjethanandani@gmail.com'
-    id: 'mjethanandani '
-    company: 'Juniper'
-    timezone: 'America/Los_Angeles'
+    name: 'Seshu Kumar Mudiganti'
+    email: 'seshukumar.mudiganti@windriver.com'
+    company: 'Windriver'
+    id: 'seshukm'
+    timezone: 'Asia/Kolkata'
 primary_contact: *oran_smo_ptl
 issue_tracking:
     type: 'jira'
-    url: 'https://jira.o-ran-sc.org/projects/'
+    url: 'https://jira.o-ran-sc.org/projects/SMO'
     key: 'smo'
 mailing_list:
     type: 'groups.io'
-    url: 'technical-discuss@lists.o-ran-sc.org'
+    url: 'https://lists.o-ran-sc.org/g/discuss'
     tag: '[]'
-realtime_discussion:
-    type: 'irc'
-    server: 'freenode.net'
-    channel: '#oran'
+realtime_discussion: ''
 meetings:
-    - type: 'gotomeeting+irc'
-      agenda: 'https://wiki.o-ran-sc.org/display/'
-      url: ''
-      server: 'freenode.net'
-      channel: '#oran'
-      repeats: ''
-      time: ''
+    - type: 'zoom'
+      agenda: 'https://wiki.o-ran-sc.org/display/SMO/Meetings'
+      url: 'https://wiki.o-ran-sc.org/display/SMO/Meetings'
+      server: 'n/a'
+      channel: 'n/a'
+      repeats: 'by-weekly'
+      time: 'Wednesday, 12:00 UTC'
 repositories:
     - smo/ves
 committers:
@@ -44,6 +41,11 @@ committers:
       company: 'ATT'
       id: 'demx8as6'
       timezone: 'UNKNOWN/UNKOWN'
+    - name: 'Mahesh Jethanandani'
+      email: 'mjethanandani@gmail.com'
+      id: 'mjethanandani '
+      company: 'Juniper'
+      timezone: 'America/Los_Angeles'
 tsc:
     # yamllint disable rule:line-length
     approval: 'https://wiki.o-ran-sc.org/display/TOC#ORANSCTechnicalOversightCommittee(TOC)-20200923'
