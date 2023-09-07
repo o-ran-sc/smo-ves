@@ -48,6 +48,30 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "909b315f_43990b47",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000103
+      },
+      "writtenOn": "2023-09-07T11:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "91d95f42_5f7a6db3",
+      "range": {
+        "startLine": 15,
+        "startChar": 44,
+        "endLine": 15,
+        "endChar": 46
+      },
+      "revId": "4bfc5cd3e93bce47f42ca199d81a407ebdc929c4",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5407baad_8f4273b2",
@@ -95,6 +119,30 @@
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d993ea_8cd8e7e8",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000103
+      },
+      "writtenOn": "2023-09-07T11:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0357a90e_df88a40a",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "4bfc5cd3e93bce47f42ca199d81a407ebdc929c4",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2ce5335_638bacaa",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "I have removed realtime_discussion (make empty) and updated meetings infromation.",
       "parentUuid": "e2ce5335_638bacaa",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "4bfc5cd3e93bce47f42ca199d81a407ebdc929c4",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ca61b7_c6ecbce8",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000103
+      },
+      "writtenOn": "2023-09-07T11:26:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "63ee1821_0b6981f4",
       "range": {
         "startLine": 21,
         "startChar": 0,
