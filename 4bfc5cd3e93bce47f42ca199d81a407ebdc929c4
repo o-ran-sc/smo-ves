@@ -310,6 +310,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3078e64a_62c83f71",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000060
+      },
+      "writtenOn": "2023-09-22T08:12:16Z",
+      "side": 1,
+      "message": "please see oam repo: \n\n    name: \u0027Martin Skorupski\u0027\n    email: \u0027martin.skorupski@highstreet-technologies.com\u0027\n    id: \u0027demx8as6\u0027\n    company: \u0027highstreet technologies GmbH\u0027\n    timezone: \u0027Germany/Berlin\u0027\n    \n    \n    https://gerrit.o-ran-sc.org/r/gitweb?p\u003doam.git;a\u003dblob_plain;f\u003dINFO.yaml",
+      "parentUuid": "7e050c7f_07793362",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 19
+      },
+      "revId": "4bfc5cd3e93bce47f42ca199d81a407ebdc929c4",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d7a088e_9d5ca37b",
         "filename": "INFO.yaml",
         "patchSetId": 1
