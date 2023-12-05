@@ -334,6 +334,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71dafda4_f9f634a8",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001727
+      },
+      "writtenOn": "2023-12-05T04:17:16Z",
+      "side": 1,
+      "message": "Thank you for your comment, I have fixed it.",
+      "parentUuid": "3078e64a_62c83f71",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 19
+      },
+      "revId": "4bfc5cd3e93bce47f42ca199d81a407ebdc929c4",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d7a088e_9d5ca37b",
         "filename": "INFO.yaml",
         "patchSetId": 1
@@ -463,6 +487,30 @@
       "side": 1,
       "message": "Sorry but honestly I am not sure how to update here.\nSeshu, do you have any information?",
       "parentUuid": "71307faa_f7cdb39a",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 11
+      },
+      "revId": "4bfc5cd3e93bce47f42ca199d81a407ebdc929c4",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28cec465_e0346eac",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1001727
+      },
+      "writtenOn": "2023-12-05T04:17:16Z",
+      "side": 1,
+      "message": "Seshu, do you have any comment on this section...?",
+      "parentUuid": "4de76a07_55b6bf6a",
       "range": {
         "startLine": 55,
         "startChar": 4,
